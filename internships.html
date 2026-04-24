@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Internship Opportunities · QITE</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; color: #1a1f2e; background: #fafbfc; }
+
+    .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.2rem 3rem; display: flex; align-items: center; justify-content: space-between; background: linear-gradient(to bottom, rgba(8,28,51,0.9), transparent); transition: all 0.3s; }
+    .navbar.scrolled { background: rgba(255,255,255,0.95); backdrop-filter: blur(15px); box-shadow: 0 5px 30px rgba(0,0,0,0.1); padding: 0.8rem 3rem; }
+    .navbar.scrolled .logo, .navbar.scrolled .nav-links a { color: #0b2b4a; }
+    .logo { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 2rem; color: white; text-decoration: none; }
+    .logo i { font-size: 2.2rem; color: #6ec8ff; }
+    .nav-links { display: flex; gap: 2.5rem; }
+    .nav-links a { text-decoration: none; color: white; font-weight: 500; font-size: 1.2rem; transition: 0.3s; display: flex; align-items: center; gap: 8px; }
+    .nav-links a i { font-size: 1.1rem; }
+    .nav-links a:hover, .nav-links a.active { color: #6ec8ff; }
+    .navbar.scrolled .nav-links a.active { color: #0b4a6f; }
+
+    .hero-section { position: relative; height: 55vh; min-height: 400px; display: flex; align-items: center; justify-content: center; background: url('https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=1920') center/cover; }
+    .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(8,28,51,0.9), rgba(11,43,74,0.85)); z-index: 1; }
+    .hero-content { position: relative; z-index: 2; text-align: center; padding: 0 2rem; margin-top: 40px; }
+    .hero-badge { display: inline-block; background: rgba(110,200,255,0.2); backdrop-filter: blur(10px); padding: 0.5rem 1.5rem; border-radius: 50px; color: #6ec8ff; font-weight: 500; font-size: 0.9rem; margin-bottom: 1.5rem; border: 1px solid rgba(110,200,255,0.3); letter-spacing: 2px; }
+    .hero-title { font-size: 3.5rem; font-weight: 800; color: white; margin-bottom: 1rem; }
+    .hero-title span { color: #6ec8ff; }
+    .hero-subtitle { font-size: 1.2rem; color: rgba(255,255,255,0.9); margin-bottom: 2rem; }
+    .hero-search { display: flex; gap: 0.8rem; max-width: 500px; margin: 0 auto; }
+    .hero-search input { flex: 1; padding: 0.9rem 1.5rem; border: none; border-radius: 50px; font-size: 0.95rem; outline: none; background: white; }
+    .hero-search button { padding: 0.9rem 2rem; background: #0b4a6f; color: white; border: none; border-radius: 50px; font-weight: 600; cursor: pointer; transition: 0.2s; }
+    .hero-search button:hover { background: #1a6a96; }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+
+    .stats-row { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.5rem; margin: -40px 0 2rem; position: relative; z-index: 10; }
+    .stat-card { text-align: center; padding: 1.5rem; background: white; border-radius: 14px; border: 1px solid #edf2f7; box-shadow: 0 8px 20px -8px rgba(0,0,0,0.08); }
+    .stat-card i { font-size: 1.8rem; color: #0b4a6f; margin-bottom: 0.5rem; }
+    .stat-number { font-size: 2rem; font-weight: 700; color: #0b2b4a; }
+    .stat-label { color: #5a6d80; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.3px; }
+
+    .section-header { margin-bottom: 1.5rem; }
+    .section-header h2 { font-size: 2rem; font-weight: 700; color: #0b2b4a; }
+    .section-header p { color: #5a6d80; font-size: 0.95rem; }
+    .results-count { font-size: 0.85rem; color: #5a6d80; background: #f0f6fa; padding: 0.3rem 1rem; border-radius: 20px; display: inline-block; margin-bottom: 1rem; }
+
+    .filter-tabs { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
+    .filter-tab { padding: 0.5rem 1.2rem; background: white; border: 1px solid #e2eaf0; border-radius: 30px; color: #5a6d80; font-size: 0.85rem; cursor: pointer; transition: 0.2s; }
+    .filter-tab:hover { background: #f0f6fa; }
+    .filter-tab.active { background: #0b4a6f; color: white; border-color: #0b4a6f; }
+
+    .internship-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1.5rem; margin: 1.5rem 0 3rem; }
+    .internship-card { background: white; border-radius: 16px; padding: 1.5rem; border: 1px solid #edf2f7; transition: all 0.2s; }
+    .internship-card:hover { box-shadow: 0 10px 25px -8px rgba(11,74,111,0.1); border-color: #c0d4e0; transform: translateY(-2px); }
+    .card-header { display: flex; align-items: center; gap: 12px; margin-bottom: 1rem; }
+    .company-logo { width: 48px; height: 48px; background: linear-gradient(135deg,#e8f4fd,#d0e8f5); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #0b4a6f; font-weight: 600; font-size: 1rem; }
+    .company-info h3 { font-size: 1rem; font-weight: 600; color: #0b2b4a; }
+    .company-info p { font-size: 0.78rem; color: #5a6d80; }
+    .internship-title { font-size: 1.1rem; font-weight: 600; color: #0b2b4a; margin-bottom: 0.8rem; }
+    .internship-meta { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-bottom: 0.8rem; }
+    .meta-item { font-size: 0.8rem; color: #5a6d80; display: flex; align-items: center; gap: 5px; }
+    .meta-item i { color: #0b4a6f; }
+    .card-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 1rem; border-top: 1px solid #f0f4f8; }
+    .stipend { font-weight: 700; color: #0b4a6f; font-size: 1.1rem; }
+    .apply-btn { padding: 0.5rem 1.5rem; background: #0b4a6f; color: white; border: none; border-radius: 25px; font-weight: 600; font-size: 0.85rem; cursor: pointer; transition: 0.2s; }
+    .apply-btn:hover { background: #1a6a96; transform: translateY(-1px); }
+
+    .no-results { text-align: center; padding: 3rem; color: #5a6d80; display: none; }
+    .no-results i { font-size: 2.5rem; color: #d0e0ec; margin-bottom: 0.8rem; }
+
+    .cta-section { background: linear-gradient(135deg,#e8f4fd,#d0e8f5); border-radius: 24px; padding: 2.5rem; text-align: center; margin: 2rem 0; }
+    .cta-section h3 { font-size: 1.6rem; color: #0b2b4a; margin-bottom: 0.5rem; }
+    .cta-section p { color: #3a4c5e; margin-bottom: 1.2rem; }
+    .btn-primary { padding: 0.8rem 2rem; background: #0b4a6f; color: white; border: none; border-radius: 40px; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-block; transition: 0.2s; }
+    .btn-primary:hover { background: #1a6a96; }
+
+    .footer { background: #1a2e3c; color: white; padding: 3rem 0 1.5rem; margin-top: 2rem; }
+    .footer-content { max-width: 1200px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2rem; }
+    .footer-section h4 { font-size: 1rem; margin-bottom: 1rem; color: #8ec8e8; text-transform: uppercase; letter-spacing: 0.3px; }
+    .footer-section p, .footer-section ul li a { color: #a0b8c6; font-size: 0.85rem; text-decoration: none; }
+    .footer-section ul { list-style: none; }
+    .footer-section ul li { margin-bottom: 0.4rem; }
+    .footer-section ul li a:hover { color: white; }
+    .social-links { display: flex; gap: 0.6rem; margin-top: 0.8rem; }
+    .social-links a { color: white; background: rgba(255,255,255,0.08); width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 0.9rem; }
+    .social-links a:hover { background: #0b4a6f; }
+    .footer-bottom { max-width: 1200px; margin: 2rem auto 0; padding: 1.2rem 2rem 0; border-top: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: space-between; color: #8aa0ae; font-size: 0.8rem; }
+    .footer-bottom a { color: #8aa0ae; text-decoration: none; }
+
+    @media(max-width:768px){ .nav-links{display:none} .internship-grid{grid-template-columns:1fr} .stats-row{grid-template-columns:1fr;margin-top:2rem} .footer-content{grid-template-columns:1fr} .footer-bottom{flex-direction:column;gap:0.5rem;text-align:center} .hero-title{font-size:2.5rem} .hero-search{flex-direction:column} }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar" id="navbar">
+    <a href="index.html" class="logo"><i class="fas fa-bolt"></i><span>QITE</span></a>
+    <div class="nav-links">
+      <a href="index.html"><i class="fas fa-home"></i> Home</a>
+      <a href="why-qite.html"><i class="fas fa-compass"></i> Why QITE</a>
+      <a href="how-qite-works.html"><i class="fas fa-diagram-project"></i> How It Works</a>
+      <a href="internships.html" class="active"><i class="fas fa-briefcase"></i> Internships</a>
+      <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+    </div>
+  </nav>
+
+  <section class="hero-section">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-badge"><i class="fas fa-gem"></i> EXPERIENCE BEFORE YOU DECIDE</div>
+      <h1 class="hero-title">Find Your <span>Internship</span></h1>
+      <p class="hero-subtitle">Discover opportunities across technology, business, design, and more</p>
+      <div class="hero-search">
+        <input type="text" id="searchInput" placeholder="Search by role, company, or keyword...">
+        <button onclick="doSearch()"><i class="fas fa-search"></i> Search</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="stats-row">
+      <div class="stat-card"><i class="fas fa-building"></i><div class="stat-number">500+</div><div class="stat-label">Partner Companies</div></div>
+      <div class="stat-card"><i class="fas fa-briefcase"></i><div class="stat-number">85%</div><div class="stat-label">Paid Internships</div></div>
+      <div class="stat-card"><i class="fas fa-chart-line"></i><div class="stat-number">89%</div><div class="stat-label">Job Offer Rate</div></div>
+      <div class="stat-card"><i class="fas fa-globe"></i><div class="stat-number">30+</div><div class="stat-label">Countries</div></div>
+    </div>
+
+    <div class="section-header"><h2>Available Opportunities</h2><p>Browse internships vetted for quality learning experiences</p></div>
+
+    <span class="results-count" id="resultsCount">Showing all internships</span>
+
+    <div class="filter-tabs" id="filterTabs">
+      <button class="filter-tab active" data-filter="all">All</button>
+      <button class="filter-tab" data-filter="technology">Technology</button>
+      <button class="filter-tab" data-filter="business">Business</button>
+      <button class="filter-tab" data-filter="design">Design</button>
+      <button class="filter-tab" data-filter="marketing">Marketing</button>
+      <button class="filter-tab" data-filter="healthcare">Healthcare</button>
+      <button class="filter-tab" data-filter="engineering">Engineering</button>
+    </div>
+
+    <div class="internship-grid" id="internshipGrid"></div>
+
+    <div class="no-results" id="noResults">
+      <i class="fas fa-search"></i><h3>No internships found</h3><p>Try adjusting your search or filters</p>
+    </div>
+
+    <div class="cta-section">
+      <h3>Don't see the right fit?</h3>
+      <p>Join our talent pool and get notified when new opportunities match your profile.</p>
+      <a href="contact.html" class="btn-primary">Create Your Profile <i class="fas fa-arrow-right" style="margin-left:8px"></i></a>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-section"><h4>About QITE</h4><p>QITE helps individuals explore careers, gain experience, and choose the right path.</p><div class="social-links"><a href="#"><i class="fab fa-linkedin-in"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-instagram"></i></a></div></div>
+      <div class="footer-section"><h4>Explore</h4><ul><li><a href="why-qite.html">Why QITE</a></li><li><a href="how-qite-works.html">How It Works</a></li><li><a href="internships.html">Internships</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div class="footer-section"><h4>Resources</h4><ul><li><a href="#">Career Guides</a></li><li><a href="#">Resume Tips</a></li><li><a href="#">Interview Prep</a></li><li><a href="#">FAQs</a></li></ul></div>
+      <div class="footer-section"><h4>Contact</h4><p>hello@qite.co</p></div>
+    </div>
+    <div class="footer-bottom"><div>© 2026 QITE. All rights reserved.</div><div><a href="#">Privacy</a><span style="margin:0 1rem;opacity:0.3">|</span><a href="#">Terms</a></div></div>
+  </footer>
+
+  <script>
+    // Navbar scroll
+    window.addEventListener('scroll', () => {
+      document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 100);
+    });
+
+    // Internship data
+    const internships = [
+      { company:'TechCorp',location:'San Francisco, CA',title:'Frontend Developer Intern',duration:'12 weeks',start:'Summer 2026',stipend:'$6,200/mo',category:'technology',deadline:'May 15, 2026',type:'Remote'},
+      { company:'DataFlow',location:'New York, NY',title:'Data Science Intern',duration:'10 weeks',start:'Fall 2026',stipend:'$5,800/mo',category:'technology',deadline:'June 1, 2026',type:'Hybrid'},
+      { company:'NeuraLab',location:'Boston, MA',title:'AI/ML Research Intern',duration:'14 weeks',start:'Summer 2026',stipend:'$7,000/mo',category:'technology',deadline:'May 10, 2026',type:'Hybrid'},
+      { company:'CloudScale',location:'Seattle, WA',title:'Cloud Engineering Intern',duration:'12 weeks',start:'Summer 2026',stipend:'$6,500/mo',category:'technology',deadline:'May 25, 2026',type:'Remote'},
+      { company:'CyberShield',location:'Washington, DC',title:'Cybersecurity Intern',duration:'12 weeks',start:'Fall 2026',stipend:'$6,000/mo',category:'technology',deadline:'June 15, 2026',type:'On-site'},
+      { company:'AppForge',location:'Austin, TX',title:'iOS Developer Intern',duration:'10 weeks',start:'Summer 2026',stipend:'$5,500/mo',category:'technology',deadline:'May 20, 2026',type:'Remote'},
+      { company:'FinServe',location:'Chicago, IL',title:'Financial Analyst Intern',duration:'10 weeks',start:'Summer 2026',stipend:'$5,500/mo',category:'business',deadline:'May 30, 2026',type:'On-site'},
+      { company:'StratEdge',location:'New York, NY',title:'Consulting Intern',duration:'12 weeks',start:'Summer 2026',stipend:'$6,800/mo',category:'business',deadline:'May 12, 2026',type:'On-site'},
+      { company:'VentureFirst',location:'San Francisco, CA',title:'VC Intern',duration:'10 weeks',start:'Fall 2026',stipend:'$5,200/mo',category:'business',deadline:'June 5, 2026',type:'Hybrid'},
+      { company:'Studio M',location:'Los Angeles, CA',title:'Product Design Intern',duration:'8 weeks',start:'Summer 2026',stipend:'$5,200/mo',category:'design',deadline:'May 20, 2026',type:'On-site'},
+      { company:'EcoDesign',location:'Portland, OR',title:'UX Research Intern',duration:'8 weeks',start:'Summer 2026',stipend:'$4,900/mo',category:'design',deadline:'May 18, 2026',type:'Hybrid'},
+      { company:'PixelCraft',location:'Remote',title:'Graphic Design Intern',duration:'10 weeks',start:'Fall 2026',stipend:'$3,800/mo',category:'design',deadline:'June 8, 2026',type:'Remote'},
+      { company:'Brandify',location:'Austin, TX',title:'Digital Marketing Intern',duration:'10 weeks',start:'Fall 2026',stipend:'$4,800/mo',category:'marketing',deadline:'June 15, 2026',type:'Remote'},
+      { company:'MediaPulse',location:'Remote',title:'Content Creation Intern',duration:'10 weeks',start:'Fall 2026',stipend:'$4,500/mo',category:'marketing',deadline:'June 5, 2026',type:'Remote'},
+      { company:'GrowthHack',location:'Los Angeles, CA',title:'Growth Marketing Intern',duration:'12 weeks',start:'Summer 2026',stipend:'$5,000/mo',category:'marketing',deadline:'May 25, 2026',type:'Hybrid'},
+      { company:'HealthTech',location:'Remote',title:'Healthcare Analytics Intern',duration:'12 weeks',start:'Fall 2026',stipend:'$5,000/mo',category:'healthcare',deadline:'June 10, 2026',type:'Remote'},
+      { company:'BioGen',location:'San Diego, CA',title:'Clinical Research Intern',duration:'14 weeks',start:'Summer 2026',stipend:'$4,800/mo',category:'healthcare',deadline:'May 15, 2026',type:'On-site'},
+      { company:'AeroDyne',location:'Houston, TX',title:'Mechanical Engineering Intern',duration:'12 weeks',start:'Summer 2026',stipend:'$5,500/mo',category:'engineering',deadline:'May 20, 2026',type:'On-site'},
+      { company:'GreenBuild',location:'Denver, CO',title:'Civil Engineering Intern',duration:'10 weeks',start:'Summer 2026',stipend:'$5,000/mo',category:'engineering',deadline:'May 25, 2026',type:'On-site'},
+      { company:'QuantumBit',location:'Remote',title:'Software Engineer Intern',duration:'12 weeks',start:'Summer 2026',stipend:'$6,300/mo',category:'technology',deadline:'May 18, 2026',type:'Remote'},
+    ];
+
+    let currentFilter = 'all';
+    let searchQuery = '';
+
+    function getLogo(name) { return name.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase(); }
+
+    function render() {
+      let filtered = internships;
+      if (currentFilter !== 'all') filtered = filtered.filter(i => i.category === currentFilter);
+      if (searchQuery) {
+        const q = searchQuery.toLowerCase();
+        filtered = filtered.filter(i => i.company.toLowerCase().includes(q) || i.title.toLowerCase().includes(q) || i.location.toLowerCase().includes(q) || i.type.toLowerCase().includes(q));
+      }
+      
+      document.getElementById('resultsCount').textContent = filtered.length ? `Showing ${filtered.length} internship${filtered.length>1?'s':''}` : 'No internships found';
+      document.getElementById('noResults').style.display = filtered.length ? 'none' : 'block';
+      
+      document.getElementById('internshipGrid').innerHTML = filtered.map(i => `
+        <div class="internship-card">
+          <div class="card-header"><div class="company-logo">${getLogo(i.company)}</div><div class="company-info"><h3>${i.company}</h3><p><i class="fas fa-map-pin"></i> ${i.location}</p></div></div>
+          <h4 class="internship-title">${i.title}</h4>
+          <div class="internship-meta">
+            <span class="meta-item"><i class="far fa-clock"></i> ${i.duration}</span>
+            <span class="meta-item"><i class="far fa-calendar"></i> ${i.start}</span>
+            <span class="meta-item"><i class="fas fa-laptop"></i> ${i.type}</span>
+          </div>
+          <div class="card-footer"><span class="stipend">${i.stipend}</span><button class="apply-btn">Apply Now <i class="fas fa-arrow-right" style="margin-left:6px"></i></button></div>
+        </div>
+      `).join('');
+    }
+
+    function doSearch() {
+      searchQuery = document.getElementById('searchInput').value.trim();
+      render();
+    }
+
+    document.getElementById('searchInput').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') doSearch();
+    });
+
+    document.querySelectorAll('.filter-tab').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.filter-tab').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        currentFilter = this.dataset.filter;
+        render();
+      });
+    });
+
+    render();
+  </script>
+</body>
+</html>

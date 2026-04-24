@@ -1,0 +1,1301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Why Choose QITE · Experience Before You Decide</title>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: #1a1f2e;
+      line-height: 1.6;
+      background: #fafbfc;
+    }
+
+    /* ===== Navigation - EXACTLY SAME AS INDEX.HTML (TRANSPARENT) ===== */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1.2rem 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: linear-gradient(to bottom, rgba(8, 28, 51, 0.9), transparent);
+      transition: all 0.3s ease;
+    }
+
+    .navbar.scrolled {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(15px);
+      box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
+      padding: 0.8rem 3rem;
+    }
+
+    .navbar.scrolled .logo,
+    .navbar.scrolled .nav-links a {
+      color: #0b2b4a;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      font-size: 2rem;
+      color: white;
+      text-decoration: none;
+    }
+
+    .logo i {
+      font-size: 2.2rem;
+      color: #6ec8ff;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: white;
+      font-weight: 500;
+      font-size: 1.2rem;
+      transition: 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-links a i {
+      font-size: 1.1rem;
+    }
+
+    .nav-links a:hover {
+      color: #6ec8ff;
+    }
+
+    .nav-links a.active {
+      color: #6ec8ff;
+    }
+
+    .navbar.scrolled .nav-links a.active {
+      color: #0b4a6f;
+    }
+
+    /* ===== Hero Section with Background Image ===== */
+    .hero-section {
+      position: relative;
+      height: 100vh;
+      min-height: 500px;
+      width: 100%;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 0;
+      background-image: url("image/interns.png");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgb(8 28 51 / 41%) 0%, rgb(11 43 74 / 63%) 100%);
+      z-index: 1;
+    }
+
+    .hero-content-wrapper {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 1000px;
+      padding: 0 2rem;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(110, 200, 255, 0.2);
+      backdrop-filter: blur(10px);
+      padding: 0.6rem 1.8rem;
+      border-radius: 50px;
+      color: #6ec8ff;
+      font-weight:500;
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+      border: 1px solid rgba(110, 200, 255, 0.3);
+      letter-spacing: 2px;
+    }
+
+    .hero-title {
+      font-size: 4rem;
+      font-weight: 800;
+      color: white;
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+      text-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero-title span {
+      background: linear-gradient(135deg, #6ec8ff, #ffffff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      font-size: 1.3rem;
+      color: rgba(255, 255, 255, 0.9);
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* ===== Container ===== */
+    .container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ===== Breadcrumb ===== */
+    .breadcrumb {
+      padding: 2rem 0 1rem;
+      color: #5a6d80;
+    }
+
+    .breadcrumb a {
+      color: #0b4a6f;
+      text-decoration: none;
+    }
+
+    .breadcrumb a:hover {
+      text-decoration: underline;
+    }
+
+    /* ===== Section Styles ===== */
+    .section {
+      padding: 4rem 0;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #0b2b4a;
+      margin-bottom: 2rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, #0b4a6f, #6ec8ff);
+      border-radius: 2px;
+    }
+
+    /* ===== Benefits Grid ===== */
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+
+    .benefit-card {
+      background: white;
+      padding: 2.5rem 2rem;
+      border-radius: 25px;
+      box-shadow: 0 15px 40px -15px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      text-align: center;
+    }
+
+    .benefit-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 25px 50px -15px rgba(11, 74, 111, 0.25);
+    }
+
+    .benefit-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, #e8f4fd, #d0e8f5);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+    }
+
+    .benefit-icon i {
+      font-size: 2.5rem;
+      color: #0b4a6f;
+    }
+
+    .benefit-card h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #0b2b4a;
+      margin-bottom: 1rem;
+    }
+
+    .benefit-card p {
+      color: #5a6d80;
+    }
+
+    /* ===== Feature Blocks - WITH ANIMATIONS ===== */
+    .feature-block {
+      display: flex;
+      align-items: center;
+      gap: 4rem;
+      margin: 4rem 0;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .feature-block.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .feature-block.reverse {
+      flex-direction: row-reverse;
+    }
+
+    .feature-content {
+      flex: 1;
+      opacity: 0;
+      transform: translateX(-30px);
+      transition: opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s;
+    }
+
+    .feature-block.reverse .feature-content {
+      transform: translateX(30px);
+    }
+
+    .feature-block.visible .feature-content {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .feature-image {
+      flex: 1;
+      opacity: 0;
+      transform: translateX(30px);
+      transition: opacity 0.6s ease 0.4s, transform 0.6s ease 0.4s;
+    }
+
+    .feature-block.reverse .feature-image {
+      transform: translateX(-30px);
+    }
+
+    .feature-block.visible .feature-image {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .feature-image img {
+      width: 100%;
+      border-radius: 25px;
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.15);
+      transition: transform 0.3s ease;
+    }
+
+    .feature-image img:hover {
+      transform: scale(1.02);
+    }
+
+    .feature-content h3 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #0b2b4a;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .feature-content h3 i {
+      color: #0b4a6f;
+      background: #e8f4fd;
+      padding: 10px;
+      border-radius: 15px;
+    }
+
+    .feature-list {
+      list-style: none;
+      margin: 1.5rem 0;
+    }
+
+    .feature-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 1rem;
+      color: #3a4c5e;
+      opacity: 0;
+      transform: translateX(-15px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    .feature-block.visible .feature-list li {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .feature-block.visible .feature-list li:nth-child(1) { transition-delay: 0.5s; }
+    .feature-block.visible .feature-list li:nth-child(2) { transition-delay: 0.6s; }
+    .feature-block.visible .feature-list li:nth-child(3) { transition-delay: 0.7s; }
+    .feature-block.visible .feature-list li:nth-child(4) { transition-delay: 0.8s; }
+
+    .feature-list li i {
+      color: #0b4a6f;
+      margin-top: 4px;
+    }
+
+    /* ===== Stats Banner ===== */
+    .stats-banner {
+      background: linear-gradient(135deg, #0b2b4a, #1a4a6f);
+      border-radius: 30px;
+      padding: 3rem 4rem;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      margin: 4rem 0;
+    }
+
+    .stat-item {
+      text-align: center;
+      color: white;
+    }
+
+    .stat-item .number {
+      font-size: 3rem;
+      font-weight: 800;
+      color: #6ec8ff;
+    }
+
+    .stat-item .label {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    /* ===== CTA Section ===== */
+    .cta-section {
+      background: linear-gradient(135deg, #e8f4fd, #d0e8f5);
+      border-radius: 40px;
+      padding: 4rem;
+      text-align: center;
+      margin: 4rem 0;
+    }
+
+    .cta-section h2 {
+      font-size: 2.5rem;
+      color: #0b2b4a;
+      margin-bottom: 1rem;
+    }
+
+    .cta-section p {
+      font-size: 1.2rem;
+      color: #3a4c5e;
+      margin-bottom: 2rem;
+    }
+
+    .btn-large {
+      padding: 1.2rem 3rem;
+      font-size: 1.2rem;
+      background: #0b4a6f;
+      color: white;
+      border: none;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .btn-large:hover {
+      background: #1a6a96;
+      transform: translateY(-3px);
+      box-shadow: 0 20px 35px rgba(11, 74, 111, 0.3);
+    }
+
+    /* ===== Footer ===== */
+    .footer {
+      background: linear-gradient(135deg, #0a1e30, #0b2b4a);
+      color: white;
+      padding: 4rem 0 2rem;
+      margin-top: 4rem;
+    }
+
+    .footer-content {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: 3rem;
+    }
+
+    .footer-section h4 {
+      font-size: 1.3rem;
+      margin-bottom: 1.5rem;
+      color: #6ec8ff;
+    }
+
+    .footer-section p {
+      color: #b8d4e8;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-section ul {
+      list-style: none;
+    }
+
+    .footer-section ul li {
+      margin-bottom: 0.8rem;
+    }
+
+    .footer-section ul li a {
+      color: #b8d4e8;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .footer-section ul li a:hover {
+      color: #6ec8ff;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .social-links a {
+      color: white;
+      background: rgba(255, 255, 255, 0.1);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+      text-decoration: none;
+    }
+
+    .social-links a:hover {
+      background: #0b4a6f;
+      transform: translateY(-3px);
+    }
+
+    .footer-bottom {
+      max-width: 1300px;
+      margin: 3rem auto 0;
+      padding: 2rem 2rem 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #8aa9c2;
+    }
+
+    .newsletter-input {
+      display: flex;
+      margin-top: 1rem;
+    }
+
+    .newsletter-input input {
+      flex: 1;
+      padding: 0.8rem 1rem;
+      border: none;
+      border-radius: 10px 0 0 10px;
+      outline: none;
+    }
+
+    .newsletter-input button {
+      background: #0b4a6f;
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 0 10px 10px 0;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .benefits-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .feature-block {
+        flex-direction: column !important;
+        gap: 2rem;
+      }
+      .stats-banner {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 2rem;
+      }
+      .testimonials-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-content {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .hero-title {
+        font-size: 3rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 1rem 1.5rem;
+      }
+      .nav-links {
+        display: none;
+      }
+      .benefits-grid {
+        grid-template-columns: 1fr;
+      }
+      .stats-banner {
+        grid-template-columns: 1fr;
+      }
+      .footer-content {
+        grid-template-columns: 1fr;
+      }
+      .hero-title {
+        font-size: 2.2rem;
+      }
+      .cta-section {
+        padding: 2rem;
+      }
+      .hero-section {
+        background-attachment: scroll;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation - EXACTLY SAME AS INDEX.HTML (TRANSPARENT) -->
+  <nav class="navbar" id="navbar">
+    <a href="index.html" class="logo">
+   
+      <i class="fas fa-bolt"></i>
+      <span>QITE</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html"> Home</a>
+      <a href="why-qite.html" class="active">Why QITE</a>
+      <a href="how-qite-works.html"> How It Works</a>
+      <a href="#"> Internships</a>
+      <a href="#"> Contact</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section with Background Image -->
+  <section class="hero-section">
+    <div class="hero-overlay"></div>
+    
+    <div class="hero-content-wrapper">
+      <div class="hero-badge">
+        <i class="fas fa-gem"></i> THE QITE DIFFERENCE
+      </div>
+      <h1 class="hero-title">
+        Why <span>Choose QITE</span>
+      </h1>
+      <p class="hero-subtitle">
+        We're not just another internship platform. We're your career discovery partner, committed to helping you find clarity before commitment.
+      </p>
+    </div>
+  </section>
+
+  <!-- Breadcrumb -->
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a> <i class="fas fa-chevron-right" style="font-size: 0.7rem; margin: 0 8px;"></i> 
+      <span style="color: #0b4a6f; font-weight: 500;">Why Choose QITE</span>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="container">
+    
+    <!-- Intro Section -->
+    <section class="section">
+      <h2 class="section-title">The QITE Advantage</h2>
+      <p style="font-size: 1.2rem; color: #3a4c5e; max-width: 900px;">
+        In a world where career decisions shape your future, QITE provides the experience you need to make informed choices. 
+        We've designed every aspect of our platform to give you real exposure, practical skills, and genuine clarity.
+      </p>
+    </section>
+
+    <!-- Key Benefits Grid - 3D Flip Animation (Icons Removed, Headings CENTERED) -->
+    <div class="benefits-flip-grid">
+      
+      <!-- Card 1: Clarity Before Commitment -->
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <img src="https://images.pexels.com/photos/3184298/pexels-photo-3184298.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Career Clarity">
+            <div class="flip-overlay"></div>
+            <div class="flip-content">
+              <h3>Clarity Before Commitment</h3>
+              <span class="flip-hint"><i class="fas fa-sync-alt"></i> Hover to explore</span>
+            </div>
+          </div>
+          <div class="flip-card-back">
+            <div class="flip-back-content">
+              
+              <h3>Clarity Before Commitment</h3>
+              <p class="flip-back-subtitle">Test-drive careers before deciding</p>
+              <ul class="flip-bullet-list">
+                <li><i class="fas fa-check-circle"></i> Multi-role exploration opportunities</li>
+                <li><i class="fas fa-check-circle"></i> Personalized career assessments</li>
+                <li><i class="fas fa-check-circle"></i> Industry shadowing programs</li>
+                <li><i class="fas fa-check-circle"></i> 1-on-1 career coaching sessions</li>
+              </ul>
+              <div class="flip-stat">
+                <span class="flip-stat-number">94%</span>
+                <span class="flip-stat-label">clarity rate</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: Dedicated Mentorship -->
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <img src="https://images.pexels.com/photos/3184423/pexels-photo-3184423.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Mentorship">
+            <div class="flip-overlay"></div>
+            <div class="flip-content">
+              <h3>Dedicated Mentorship</h3>
+              <span class="flip-hint"><i class="fas fa-sync-alt"></i> Hover to explore</span>
+            </div>
+          </div>
+          <div class="flip-card-back">
+            <div class="flip-back-content">
+              
+              <h3>Dedicated Mentorship</h3>
+              <p class="flip-back-subtitle">Guidance from industry experts</p>
+              <ul class="flip-bullet-list">
+                <li><i class="fas fa-check-circle"></i> Weekly 1-on-1 meetings</li>
+                <li><i class="fas fa-check-circle"></i> Portfolio and work reviews</li>
+                <li><i class="fas fa-check-circle"></i> Professional network introductions</li>
+                <li><i class="fas fa-check-circle"></i> Career advocacy and support</li>
+              </ul>
+              <div class="flip-stat">
+                <span class="flip-stat-number">500+</span>
+                <span class="flip-stat-label">active mentors</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: Industry-Recognized Training -->
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <img src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Training">
+            <div class="flip-overlay"></div>
+            <div class="flip-content">
+              <h3>Industry-Recognized Training</h3>
+              <span class="flip-hint"><i class="fas fa-sync-alt"></i> Hover to explore</span>
+            </div>
+          </div>
+          <div class="flip-card-back">
+            <div class="flip-back-content">
+              
+              <h3>Industry Training</h3>
+              <p class="flip-back-subtitle">Skills that employers value</p>
+              <ul class="flip-bullet-list">
+                <li><i class="fas fa-check-circle"></i> 20-40 hour micro-courses</li>
+                <li><i class="fas fa-check-circle"></i> Expert-led live workshops</li>
+                <li><i class="fas fa-check-circle"></i> Portfolio-building projects</li>
+                <li><i class="fas fa-check-circle"></i> Industry-recognized certificates</li>
+              </ul>
+              <div class="flip-stat">
+                <span class="flip-stat-number">50+</span>
+                <span class="flip-stat-label">certification paths</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4: Global Opportunities -->
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <img src="https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Global Opportunities">
+            <div class="flip-overlay"></div>
+            <div class="flip-content">
+              <h3>Global Opportunities</h3>
+              <span class="flip-hint"><i class="fas fa-sync-alt"></i> Hover to explore</span>
+            </div>
+          </div>
+          <div class="flip-card-back">
+            <div class="flip-back-content">
+             
+              <h3>Global Opportunities</h3>
+              <p class="flip-back-subtitle">Work without borders</p>
+              <ul class="flip-bullet-list">
+                <li><i class="fas fa-check-circle"></i> 100% remote options available</li>
+                <li><i class="fas fa-check-circle"></i> Hybrid roles in tech hubs</li>
+                <li><i class="fas fa-check-circle"></i> In-person across 30+ countries</li>
+                <li><i class="fas fa-check-circle"></i> Visa sponsorship support</li>
+              </ul>
+              <div class="flip-stat">
+                <span class="flip-stat-number">30+</span>
+                <span class="flip-stat-label">countries</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 5: 89% Job Offer Rate -->
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <img src="https://images.pexels.com/photos/3769021/pexels-photo-3769021.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Job Success">
+            <div class="flip-overlay"></div>
+            <div class="flip-content">
+              <h3>89% Job Offer Rate</h3>
+              <span class="flip-hint"><i class="fas fa-sync-alt"></i> Hover to explore</span>
+            </div>
+          </div>
+          <div class="flip-card-back">
+            <div class="flip-back-content">
+              
+              <h3>89% Job Offer Rate</h3>
+              <p class="flip-back-subtitle">From intern to employee</p>
+              <ul class="flip-bullet-list">
+                <li><i class="fas fa-check-circle"></i> Real project ownership</li>
+                <li><i class="fas fa-check-circle"></i> Direct exposure to hiring managers</li>
+                <li><i class="fas fa-check-circle"></i> Performance reviews that matter</li>
+                <li><i class="fas fa-check-circle"></i> Full-time offer negotiation support</li>
+              </ul>
+              <div class="flip-stat">
+                <span class="flip-stat-number">89%</span>
+                <span class="flip-stat-label">offer rate</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 6: 500+ Partner Companies -->
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <img src="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Partner Companies">
+            <div class="flip-overlay"></div>
+            <div class="flip-content">
+              <h3>500+ Partner Companies</h3>
+              <span class="flip-hint"><i class="fas fa-sync-alt"></i> Hover to explore</span>
+            </div>
+          </div>
+          <div class="flip-card-back">
+            <div class="flip-back-content">
+             
+              <h3>500+ Partners</h3>
+              <p class="flip-back-subtitle">Find your perfect culture fit</p>
+              <ul class="flip-bullet-list">
+                <li><i class="fas fa-check-circle"></i> Fortune 500 corporations</li>
+                <li><i class="fas fa-check-circle"></i> High-growth startups</li>
+                <li><i class="fas fa-check-circle"></i> Non-profit organizations</li>
+                <li><i class="fas fa-check-circle"></i> Government and research labs</li>
+              </ul>
+              <div class="flip-stat">
+                <span class="flip-stat-number">500+</span>
+                <span class="flip-stat-label">vetted partners</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <style>
+      /* ===== 3D Flip Benefits Grid - WITH CENTERED HEADINGS ===== */
+      .benefits-flip-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+        margin: 3rem 0;
+      }
+
+      .flip-card {
+        background: transparent;
+        height: 380px;
+        perspective: 1500px;
+        cursor: pointer;
+      }
+
+      .flip-card-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        text-align: left;
+        transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        transform-style: preserve-3d;
+        border-radius: 20px;
+        box-shadow: 0 15px 35px -12px rgba(0, 0, 0, 0.1);
+      }
+
+      .flip-card:hover .flip-card-inner {
+        transform: rotateY(180deg);
+      }
+
+      .flip-card-front,
+      .flip-card-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+        border-radius: 20px;
+        overflow: hidden;
+      }
+
+      .flip-card-front {
+        background: #0b2b4a;
+      }
+
+      .flip-card-front img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.75;
+        transition: opacity 0.3s ease;
+      }
+
+      .flip-card:hover .flip-card-front img {
+        opacity: 0.5;
+      }
+
+      .flip-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to top, rgba(11, 43, 74, 0.95) 0%, rgba(11, 43, 74, 0.4) 100%);
+        z-index: 1;
+      }
+
+      .flip-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        padding: 2rem 1.5rem;
+        z-index: 2;
+        color: white;
+        text-align: center;
+      }
+
+      .flip-icon {
+        width: 50px;
+        height: 50px;
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(5px);
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1rem;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .flip-icon i {
+        font-size: 1.5rem;
+        color: #6ec8ff;
+      }
+
+      .flip-content h3 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: white;
+        margin-bottom: 1rem;
+        letter-spacing: -0.02em;
+      }
+
+      .flip-hint {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.8rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: rgba(255, 255, 255, 0.7);
+        margin-top: 0.5rem;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .flip-card:hover .flip-hint {
+        opacity: 1;
+      }
+
+      .flip-hint i {
+        font-size: 0.7rem;
+        animation: spinHint 3s infinite;
+      }
+
+      @keyframes spinHint {
+        0%, 100% { transform: rotate(0deg); }
+        50% { transform: rotate(180deg); }
+      }
+
+      /* Back of card */
+      .flip-card-back {
+        background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+        transform: rotateY(180deg);
+        border: 1px solid #e8edf2;
+      }
+
+      .flip-back-content {
+        padding: 2rem 1.5rem;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .flip-back-icon {
+        width: 45px;
+        height: 45px;
+        background: linear-gradient(135deg, #0b4a6f, #1a6a96);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1rem;
+      }
+
+      .flip-back-icon i {
+        font-size: 1.3rem;
+        color: white;
+      }
+
+      .flip-back-content h3 {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: #0b2b4a;
+        margin-bottom: 0.3rem;
+        letter-spacing: -0.02em;
+      }
+
+      .flip-back-subtitle {
+        font-size: 0.85rem;
+        color: #5a6d80;
+        margin-bottom: 1.2rem;
+        font-weight: 400;
+      }
+
+      .flip-bullet-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        flex-grow: 1;
+      }
+
+      .flip-bullet-list li {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        margin-bottom: 0.7rem;
+        font-size: 0.85rem;
+        color: #3a4c5e;
+        line-height: 1.4;
+      }
+
+      .flip-bullet-list li i {
+        color: #0b4a6f;
+        font-size: 0.8rem;
+        margin-top: 3px;
+      }
+
+      .flip-stat {
+        background: #f0f6fa;
+        padding: 0.8rem 1rem;
+        border-radius: 12px;
+        display: flex;
+        align-items: baseline;
+        justify-content: center;
+        gap: 6px;
+        margin-top: 1rem;
+        border: 1px solid #dce5ec;
+      }
+
+      .flip-stat-number {
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: #0b4a6f;
+        line-height: 1;
+      }
+
+      .flip-stat-label {
+        font-size: 0.8rem;
+        color: #5a6d80;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.3px;
+      }
+
+      /* Responsive */
+      @media (max-width: 1024px) {
+        .benefits-flip-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .benefits-flip-grid {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+        }
+        
+        .flip-card {
+          height: 360px;
+        }
+      }
+    </style>
+
+    <!-- Detailed Feature 1: Career Exploration - WITH ANIMATION -->
+    <div class="feature-block" id="feature1">
+      <div class="feature-content">
+        <h3>Deep Career Exploration</h3>
+        <p style="font-size: 1.1rem; color: #3a4c5e; margin-bottom: 1.5rem;">
+          Before you commit to a career path, you need to understand what the day-to-day really looks like. 
+          QITE provides immersive experiences that go beyond job descriptions.
+        </p>
+        <ul class="feature-list">
+          <li><i class="fas fa-check-circle"></i> Comprehensive career assessments to identify your strengths and interests</li>
+          <li><i class="fas fa-check-circle"></i> Industry deep-dives with professionals sharing real experiences</li>
+          <li><i class="fas fa-check-circle"></i> Job shadowing opportunities before full internship commitment</li>
+          <li><i class="fas fa-check-circle"></i> Personalized career coaching sessions</li>
+        </ul>
+      </div>
+      <div class="feature-image">
+        <img src="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Career Exploration">
+      </div>
+    </div>
+
+    <!-- Detailed Feature 2: Training - WITH ANIMATION -->
+    <div class="feature-block reverse" id="feature2">
+      <div class="feature-content">
+        <h3>Practical Skills Training</h3>
+        <p style="font-size: 1.1rem; color: #3a4c5e; margin-bottom: 1.5rem;">
+          We don't throw you into the deep end. Our training phase ensures you have the foundational skills 
+          to contribute meaningfully from day one of your internship.
+        </p>
+        <ul class="feature-list">
+          <li><i class="fas fa-check-circle"></i> Industry-specific micro-courses (20-40 hours each)</li>
+          <li><i class="fas fa-check-circle"></i> Live workshops with industry professionals</li>
+          <li><i class="fas fa-check-circle"></i> Technical and soft skills development</li>
+          <li><i class="fas fa-check-circle"></i> Portfolio-building projects to showcase your abilities</li>
+        </ul>
+      </div>
+      <div class="feature-image">
+        <img src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Skills Training">
+      </div>
+    </div>
+
+    <!-- Detailed Feature 3: Real Experience - WITH ANIMATION -->
+    <div class="feature-block" id="feature3">
+      <div class="feature-content">
+        <h3>Meaningful Work Experience</h3>
+        <p style="font-size: 1.1rem; color: #3a4c5e; margin-bottom: 1.5rem;">
+          Our internships aren't about getting coffee. You'll work on real projects that matter to the business 
+          and build your professional portfolio.
+        </p>
+        <ul class="feature-list">
+          <li><i class="fas fa-check-circle"></i> Real responsibilities with measurable outcomes</li>
+          <li><i class="fas fa-check-circle"></i> Regular feedback and performance reviews</li>
+          <li><i class="fas fa-check-circle"></i> Networking opportunities with industry leaders</li>
+          <li><i class="fas fa-check-circle"></i> Competitive stipends (85% of our internships are paid)</li>
+        </ul>
+      </div>
+      <div class="feature-image">
+        <img src="https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Real Experience">
+      </div>
+    </div>
+
+    <!-- Detailed Feature 4: Post-Internship Support - WITH ANIMATION -->
+    <div class="feature-block reverse" id="feature4">
+      <div class="feature-content">
+        <h3>Beyond The Internship</h3>
+        <p style="font-size: 1.1rem; color: #3a4c5e; margin-bottom: 1.5rem;">
+          Our relationship doesn't end when your internship does. We continue to support your career journey 
+          long after you complete your program.
+        </p>
+        <ul class="feature-list">
+          <li><i class="fas fa-check-circle"></i> Alumni network with exclusive job opportunities</li>
+          <li><i class="fas fa-check-circle"></i> Resume and LinkedIn profile optimization</li>
+          <li><i class="fas fa-check-circle"></i> Interview preparation and salary negotiation tips</li>
+          <li><i class="fas fa-check-circle"></i> Lifetime access to career resources and webinars</li>
+        </ul>
+      </div>
+      <div class="feature-image">
+        <img src="https://images.pexels.com/photos/3184396/pexels-photo-3184396.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Career Support">
+      </div>
+    </div>
+
+    <!-- Stats Banner -->
+    <div class="stats-banner">
+      <div class="stat-item">
+        <div class="number">15,000+</div>
+        <div class="label">Interns Placed</div>
+      </div>
+      <div class="stat-item">
+        <div class="number">94%</div>
+        <div class="label">Clarity Rate</div>
+      </div>
+      <div class="stat-item">
+        <div class="number">89%</div>
+        <div class="label">Job Offer Rate</div>
+      </div>
+      <div class="stat-item">
+        <div class="number">4.9/5</div>
+        <div class="label">Satisfaction Score</div>
+      </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="cta-section">
+      <h2>Ready to Find Your Path?</h2>
+      <p>Join thousands of students and career-changers who found clarity through QITE.</p>
+      <a href="#" class="btn-large">
+       Start Your Journey Today
+      </a>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>About QITE</h4>
+        <p>QITE helps individuals explore careers, gain experience, and choose the right path. Experience before you decide.</p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+        </div>
+      </div>
+      
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="why-qite.html">Why QITE</a></li>
+          <li><a href="#">How It Works</a></li>
+          <li><a href="#">Internships</a></li>
+          <li><a href="#">For Employers</a></li>
+          <li><a href="#">Blog</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="#">Career Guides</a></li>
+          <li><a href="#">Resume Tips</a></li>
+          <li><a href="#">Interview Prep</a></li>
+          <li><a href="#">Salary Insights</a></li>
+          <li><a href="#">FAQs</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h4>Stay Updated</h4>
+        <p>Get the latest internship opportunities and career advice.</p>
+        <div class="newsletter-input">
+          <input type="email" placeholder="Your email">
+          <button><i class="fas fa-paper-plane"></i></button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <div>
+        <i class="far fa-copyright"></i> 2026 QITE. All rights reserved. Experience Before You Decide.
+      </div>
+      <div>
+        <a href="#" style="color: #8aa9c2; text-decoration: none; margin-right: 1.5rem;">Privacy Policy</a>
+        <a href="#" style="color: #8aa9c2; text-decoration: none;">Terms of Service</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Navbar scroll effect - EXACTLY SAME AS INDEX.HTML
+    window.addEventListener('scroll', function() {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 100) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    // Scroll animations for feature blocks
+    const observerOptions = { threshold: 0.2 };
+    const featureObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    // Observe all feature blocks
+    document.querySelectorAll('.feature-block').forEach(block => {
+      featureObserver.observe(block);
+    });
+  </script>
+</body>
+</html>

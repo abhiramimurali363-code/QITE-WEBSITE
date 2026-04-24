@@ -1,0 +1,1337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How QITE Works · Experience Before You Decide</title>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: #1a1f2e;
+      line-height: 1.6;
+      background: #fafbfc;
+      overflow-x: hidden;
+    }
+
+    /* ===== Navigation ===== */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1.2rem 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: linear-gradient(to bottom, rgba(8, 28, 51, 0.9), transparent);
+      transition: all 0.3s ease;
+    }
+
+    .navbar.scrolled {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(15px);
+      box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
+      padding: 0.8rem 3rem;
+    }
+
+    .navbar.scrolled .logo,
+    .navbar.scrolled .nav-links a {
+      color: #0b2b4a;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      font-size: 2rem;
+      color: white;
+      text-decoration: none;
+    }
+
+    .logo i {
+      font-size: 2.2rem;
+      color: #6ec8ff;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: white;
+      font-weight: 500;
+      font-size: 1.2rem;
+      transition: 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-links a i {
+      font-size: 1.1rem;
+    }
+
+    .nav-links a:hover {
+      color: #6ec8ff;
+    }
+
+    .nav-links a.active {
+      color: #6ec8ff;
+    }
+
+    .navbar.scrolled .nav-links a.active {
+      color: #0b4a6f;
+    }
+
+    /* ===== Hero Section ===== */
+    .hero-section {
+      position: relative;
+      height: 100vh;
+      min-height: 500px;
+      width: 100%;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 0;
+      background-image: url('https://images.pexels.com/photos/3184423/pexels-photo-3184423.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&dpr=2');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: scroll;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgb(0 0 0 / 86%) 0%, rgb(11 43 74 / 0%) 100%);
+      z-index: 1;
+    }
+
+    .hero-content-wrapper {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 1000px;
+      padding: 0 2rem;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(110, 200, 255, 0.2);
+      backdrop-filter: blur(10px);
+      padding: 0.6rem 1.8rem;
+      border-radius: 50px;
+      color: #6ec8ff;
+      font-weight: 500;
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+      border: 1px solid rgba(110, 200, 255, 0.3);
+      letter-spacing: 2px;
+    }
+
+    .hero-title {
+      font-size: 4rem;
+      font-weight: 800;
+      color: white;
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+      text-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero-title span {
+      background: linear-gradient(135deg, #6ec8ff, #ffffff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      font-size: 1.3rem;
+      color: rgba(255, 255, 255, 0.9);
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* ===== Container ===== */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ===== Breadcrumb ===== */
+    .breadcrumb {
+      padding: 2rem 0 1rem;
+      color: #5a6d80;
+      border-bottom: 1px solid #e2eaf0;
+      margin-bottom: 1.5rem;
+    }
+
+    .breadcrumb a {
+      color: #0b4a6f;
+      text-decoration: none;
+    }
+
+    .breadcrumb a:hover {
+      text-decoration: underline;
+    }
+
+    /* ===== Alternating Section Backgrounds ===== */
+    .section-new {
+      padding: 5rem 0;
+      border-bottom: 1px solid #eef2f6;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+      position: relative;
+      z-index: 1;
+      width: 100vw;
+      margin-left: calc(-50vw + 50%);
+      margin-right: calc(-50vw + 50%);
+    }
+
+    .section-new.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section-white {
+      background: #ffffff;
+    }
+
+    .section-light {
+      background: #f8fafc;
+    }
+
+    .section-lighter {
+      background: #f2f6f9;
+    }
+
+    .section-row {
+      display: flex;
+      align-items: center;
+      gap: 4rem;
+      position: relative;
+      z-index: 2;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .section-row.reverse {
+      flex-direction: row-reverse;
+    }
+
+    .section-content {
+      flex: 1;
+      opacity: 0;
+      transform: translateX(-30px);
+      transition: opacity 0.8s ease 0.2s, transform 0.8s ease 0.2s;
+    }
+
+    .section-row.reverse .section-content {
+      transform: translateX(30px);
+    }
+
+    .section-new.visible .section-content {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .section-image {
+      flex: 1;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px -12px rgba(11, 74, 111, 0.12);
+      opacity: 0;
+      transform: translateX(30px);
+      transition: opacity 0.8s ease 0.4s, transform 0.8s ease 0.4s;
+    }
+
+    .section-row.reverse .section-image {
+      transform: translateX(-30px);
+    }
+
+    .section-new.visible .section-image {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .section-image img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .section-image:hover img {
+      transform: scale(1.05);
+    }
+
+    .section-label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #0b4a6f;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-heading {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #0b2b4a;
+      margin-bottom: 1.2rem;
+      letter-spacing: -0.02em;
+    }
+
+    .section-text {
+      font-size: 1.1rem;
+      color: #3a4c5e;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+      font-weight: 400;
+      opacity: 0;
+      transform: translateY(15px);
+      transition: opacity 0.6s ease 0.3s, transform 0.6s ease 0.3s;
+    }
+
+    .section-new.visible .section-text {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Feature List - CORRECTED ALIGNMENT */
+    .feature-list {
+      list-style: none;
+      margin: 1.5rem 0;
+      padding: 0;
+    }
+
+    .feature-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 1rem;
+      color: #3a4c5e;
+      font-size: 1.05rem;
+      font-weight: 400;
+      line-height: 1.6;
+      opacity: 0;
+      transform: translateX(-15px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .section-new.visible .feature-list li {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .section-new.visible .feature-list li:nth-child(1) { transition-delay: 0.35s; }
+    .section-new.visible .feature-list li:nth-child(2) { transition-delay: 0.45s; }
+    .section-new.visible .feature-list li:nth-child(3) { transition-delay: 0.55s; }
+    .section-new.visible .feature-list li:nth-child(4) { transition-delay: 0.65s; }
+
+    .feature-list li i {
+      color: #0b4a6f;
+      font-size: 1rem;
+      margin-top: 5px;
+      flex-shrink: 0;
+      width: 16px;
+      text-align: center;
+    }
+
+    .feature-list li span {
+      flex: 1;
+    }
+
+    .feature-list li strong {
+      color: #0b2b4a;
+      font-weight: 600;
+    }
+
+    /* Duration Badge */
+    .duration-badge {
+      display: inline-block;
+      background: #e8f4fd;
+      padding: 0.6rem 1.5rem;
+      border-radius: 30px;
+      font-size: 0.95rem;
+      color: #0b4a6f;
+      font-weight: 500;
+      margin-top: 0.5rem;
+    }
+
+    .duration-badge i {
+      margin-right: 8px;
+    }
+
+    /* Timeline */
+    .timeline {
+      margin: 2rem 0;
+      padding: 0;
+    }
+
+    .timeline-item {
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 1.8rem;
+      opacity: 0;
+      transform: translateX(-20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .section-new.visible .timeline-item {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .section-new.visible .timeline-item:nth-child(1) { transition-delay: 0.3s; }
+    .section-new.visible .timeline-item:nth-child(2) { transition-delay: 0.45s; }
+    .section-new.visible .timeline-item:nth-child(3) { transition-delay: 0.6s; }
+    .section-new.visible .timeline-item:nth-child(4) { transition-delay: 0.75s; }
+    .section-new.visible .timeline-item:nth-child(5) { transition-delay: 0.9s; }
+
+    .timeline-icon {
+      width: 50px;
+      height: 50px;
+      background: #f0f6fa;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .timeline-icon i {
+      font-size: 1.3rem;
+      color: #0b4a6f;
+    }
+
+    .timeline-content {
+      flex: 1;
+    }
+
+    .timeline-content h4 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #0b2b4a;
+      margin-bottom: 0.4rem;
+    }
+
+    .timeline-content p {
+      color: #5a6d80;
+      font-size: 1rem;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* Stats Banner */
+    .stats-banner {
+      background: #ffffff;
+      border: 1px solid #e2eaf0;
+      border-radius: 20px;
+      padding: 2.5rem 2rem;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .stat-item {
+      text-align: center;
+      opacity: 0;
+      transform: scale(0.9);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .stats-banner.visible .stat-item {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .stats-banner.visible .stat-item:nth-child(1) { transition-delay: 0.1s; }
+    .stats-banner.visible .stat-item:nth-child(2) { transition-delay: 0.2s; }
+    .stats-banner.visible .stat-item:nth-child(3) { transition-delay: 0.3s; }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #0b2b4a;
+      line-height: 1.2;
+    }
+
+    .stat-label {
+      color: #5a6d80;
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* CTA Section */
+    .cta-fullwidth {
+      width: 100vw;
+      margin-left: calc(-50vw + 50%);
+      margin-right: calc(-50vw + 50%);
+      background: linear-gradient(135deg, #1a3a4f 0%, #0b2b4a 100%);
+      padding: 4rem 0;
+      margin-top: 2rem;
+      margin-bottom: 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-fullwidth::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 20% 50%, rgba(110, 200, 255, 0.08) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .cta-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .cta-badge {
+      display: inline-block;
+      color: #8ec8e8;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .cta-fullwidth.visible .cta-badge {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .cta-title {
+      font-size: 3rem;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease 0.1s, transform 0.6s ease 0.1s;
+    }
+
+    .cta-fullwidth.visible .cta-title {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .cta-title span {
+      color: #6ec8ff;
+    }
+
+    .cta-subtitle {
+      font-size: 1.2rem;
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 2rem;
+      font-weight: 400;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s;
+    }
+
+    .cta-fullwidth.visible .cta-subtitle {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease 0.3s, transform 0.6s ease 0.3s;
+    }
+
+    .cta-fullwidth.visible .cta-buttons {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .btn-primary-cta {
+      padding: 1rem 2.5rem;
+      font-size: 1.1rem;
+      background: #6ec8ff;
+      color: #0b2b4a;
+      border: none;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .btn-primary-cta:hover {
+      background: #8ed4ff;
+      transform: translateY(-3px);
+      box-shadow: 0 15px 30px -10px rgba(110, 200, 255, 0.3);
+    }
+
+    .btn-outline-cta {
+      padding: 1rem 2.5rem;
+      font-size: 1.1rem;
+      background: transparent;
+      color: white;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .btn-outline-cta:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.5);
+      transform: translateY(-3px);
+    }
+
+    /* ===== Footer ===== */
+    .footer {
+      background: linear-gradient(135deg, #0a1e30, #0b2b4a);
+      color: white;
+      padding: 4rem 0 2rem;
+      margin-top: 0;
+      width: 100vw;
+      margin-left: calc(-50vw + 50%);
+      margin-right: calc(-50vw + 50%);
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: 3rem;
+    }
+
+    .footer-section h4 {
+      font-size: 1.3rem;
+      margin-bottom: 1.5rem;
+      color: #6ec8ff;
+    }
+
+    .footer-section p {
+      color: #b8d4e8;
+      margin-bottom: 1.5rem;
+      font-size: 1rem;
+    }
+
+    .footer-section ul {
+      list-style: none;
+    }
+
+    .footer-section ul li {
+      margin-bottom: 0.8rem;
+    }
+
+    .footer-section ul li a {
+      color: #b8d4e8;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: color 0.3s;
+    }
+
+    .footer-section ul li a:hover {
+      color: #6ec8ff;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .social-links a {
+      color: white;
+      background: rgba(255, 255, 255, 0.1);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+      text-decoration: none;
+    }
+
+    .social-links a:hover {
+      background: #0b4a6f;
+      transform: translateY(-3px);
+    }
+
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 3rem auto 0;
+      padding: 2rem 2rem 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #8aa9c2;
+      font-size: 0.95rem;
+    }
+
+    .footer-bottom a {
+      color: #8aa9c2;
+      text-decoration: none;
+    }
+
+    .footer-bottom a:hover {
+      color: #ffffff;
+    }
+
+    .newsletter-input {
+      display: flex;
+      margin-top: 1rem;
+    }
+
+    .newsletter-input input {
+      flex: 1;
+      padding: 0.8rem 1rem;
+      border: none;
+      border-radius: 10px 0 0 10px;
+      outline: none;
+    }
+
+    .newsletter-input button {
+      background: #0b4a6f;
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 0 10px 10px 0;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .newsletter-input button:hover {
+      background: #1a6a96;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .section-row {
+        flex-direction: column !important;
+        gap: 2rem;
+      }
+      .footer-content {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .hero-title {
+        font-size: 3rem;
+      }
+      .cta-title {
+        font-size: 2.5rem;
+      }
+      .section-heading {
+        font-size: 1.9rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 1rem 1.5rem;
+      }
+      .nav-links {
+        display: none;
+      }
+      .hero-title {
+        font-size: 2.5rem;
+      }
+      .stats-banner {
+        grid-template-columns: 1fr;
+      }
+      .footer-content {
+        grid-template-columns: 1fr;
+      }
+      .footer-bottom {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+      }
+      .section-heading {
+        font-size: 1.7rem;
+      }
+      .cta-title {
+        font-size: 2rem;
+      }
+      .section-text {
+        font-size: 1rem;
+      }
+      .feature-list li {
+        font-size: 0.95rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <a href="index.html" class="logo">
+      <i class="fas fa-bolt"></i>
+      <span>QITE</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html"> Home</a>
+      <a href="why-qite.html">Why QITE</a>
+      <a href="how-qite-works.html" class="active"> How It Works</a>
+      <a href="index.html#internships"> Internships</a>
+      <a href="#contact"> Contact</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-overlay"></div>
+    
+    <div class="hero-content-wrapper">
+      <div class="hero-badge">
+        <i class="fas fa-diagram-project"></i> THE QITE MODEL
+      </div>
+      <h1 class="hero-title">
+        How <span>QITE Works</span>
+      </h1>
+      <p class="hero-subtitle">
+        A structured three-phase approach designed to prepare you for career success through exploration, training, and real-world experience.
+      </p>
+    </div>
+  </section>
+
+  <!-- Breadcrumb -->
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a> <i class="fas fa-chevron-right" style="font-size: 0.7rem; margin: 0 8px;"></i> 
+      <span style="color: #0b4a6f; font-weight: 500;">How QITE Works</span>
+    </div>
+  </div>
+
+  <!-- Intro Section - Bubble/Card UI -->
+<div class="container">
+  <div style="padding: 3rem 0 4rem;">
+    <div class="intro-bubble">
+      <div class="intro-icon-wrapper">
+        
+      </div>
+      <h2 class="intro-title">Explore <span class="intro-arrow">→</span> Train <span class="intro-arrow">→</span> Intern</h2>
+      <p class="intro-description">
+        Our proven three-phase model ensures you're fully prepared, confident, and ready to contribute from day one of your internship.
+      </p>
+      <div class="intro-badge-group">
+        <span class="intro-badge">1-2 Weeks Exploration</span>
+        <span class="intro-badge">2-4 Weeks Training</span>
+        <span class="intro-badge">8-12 Weeks Internship</span>
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+    /* ===== Intro Bubble Card ===== */
+.intro-bubble {
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  border-radius: 60px 20px 60px 20px;
+  padding: 3.5rem 3rem;
+  box-shadow: 0 30px 50px -20px rgba(11, 74, 111, 0.15), 0 0 0 1px rgba(11, 74, 111, 0.05) inset;
+  border: 1px solid rgba(110, 200, 255, 0.15);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.intro-bubble:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 40px 60px -20px rgba(11, 74, 111, 0.2), 0 0 0 1px rgba(11, 74, 111, 0.08) inset;
+  border-color: rgba(110, 200, 255, 0.3);
+}
+
+.intro-bubble::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(110, 200, 255, 0.05) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.intro-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -30%;
+  left: -10%;
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(circle, rgba(11, 74, 111, 0.04) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.intro-icon-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.intro-icon-circle {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #0b4a6f, #1a6a96);
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 15px 30px -10px rgba(11, 74, 111, 0.3);
+  animation: morphShape 8s ease-in-out infinite;
+}
+
+@keyframes morphShape {
+  0%, 100% {
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  }
+  25% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+  50% {
+    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+  }
+  75% {
+    border-radius: 40% 60% 30% 70% / 40% 70% 30% 60%;
+  }
+}
+
+.intro-icon-circle i {
+  font-size: 2.5rem;
+  color: white;
+}
+
+.intro-title {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #0b2b4a;
+  text-align: center;
+  margin-bottom: 1.2rem;
+  letter-spacing: -0.02em;
+  position: relative;
+  z-index: 2;
+}
+
+.intro-arrow {
+  color: #0b4a6f;
+  font-weight: 300;
+  margin: 0 8px;
+  opacity: 0.6;
+}
+
+.intro-description {
+  font-size: 1.2rem;
+  color: #5a6d80;
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 1.8rem;
+  line-height: 1.7;
+  position: relative;
+  z-index: 2;
+}
+
+.intro-badge-group {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 2;
+}
+
+.intro-badge {
+  background: linear-gradient(135deg, #e8f4fd, #dcecf5);
+  color: #0b4a6f;
+  padding: 0.6rem 1.5rem;
+  border-radius: 40px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  border: 1px solid rgba(11, 74, 111, 0.1);
+  box-shadow: 0 4px 10px -5px rgba(11, 74, 111, 0.1);
+  transition: all 0.3s ease;
+}
+
+.intro-badge:hover {
+  background: #0b4a6f;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 15px -5px rgba(11, 74, 111, 0.2);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .intro-bubble {
+    padding: 2.5rem 1.5rem;
+    border-radius: 40px 15px 40px 15px;
+  }
+  
+  .intro-title {
+    font-size: 2rem;
+  }
+  
+  .intro-description {
+    font-size: 1rem;
+  }
+  
+  .intro-icon-circle {
+    width: 65px;
+    height: 65px;
+  }
+  
+  .intro-icon-circle i {
+    font-size: 2rem;
+  }
+  
+  .intro-badge-group {
+    gap: 0.8rem;
+  }
+  
+  .intro-badge {
+    padding: 0.5rem 1.2rem;
+    font-size: 0.8rem;
+  }
+}
+</style>
+
+  <!-- Phase 1: Exploration -->
+  <section class="section-new section-white">
+    <div class="section-row">
+      <div class="section-content">
+        <div class="section-label">Phase 01</div>
+        <h2 class="section-heading">Exploration</h2>
+        <p class="section-text">Discover your strengths, interests, and ideal career path before making any commitments.</p>
+        <ul class="feature-list">
+          <li><i class="fas fa-check-circle"></i> <span><strong>Career assessments:</strong> Identify your strengths, values, and interests</span></li>
+          <li><i class="fas fa-check-circle"></i> <span><strong>Industry deep-dives:</strong> Learn from professionals about day-to-day realities</span></li>
+          <li><i class="fas fa-check-circle"></i> <span><strong>Career coaching:</strong> 1-on-1 sessions with experienced career coaches</span></li>
+          <li><i class="fas fa-check-circle"></i> <span><strong>Job shadowing:</strong> Observe professionals before committing to an internship</span></li>
+        </ul>
+        <div style="margin-top: 1.5rem;">
+          <span class="duration-badge">
+            <i class="far fa-clock"></i> Duration: 1-2 weeks
+          </span>
+        </div>
+      </div>
+      <div class="section-image">
+        <img src="https://images.pexels.com/photos/3184298/pexels-photo-3184298.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Career Exploration">
+      </div>
+    </div>
+  </section>
+
+  <!-- Phase 2: Training -->
+  <section class="section-new section-light">
+    <div class="section-row reverse">
+      <div class="section-content">
+        <div class="section-label">Phase 02</div>
+        <h2 class="section-heading">Training</h2>
+        <p class="section-text">Build the foundational skills you need to succeed before your internship begins.</p>
+        <ul class="feature-list">
+          <li><i class="fas fa-check-circle"></i> <span><strong>Micro-courses:</strong> 20-40 hour courses specific to your chosen field</span></li>
+          <li><i class="fas fa-check-circle"></i> <span><strong>Live workshops:</strong> Interactive sessions with industry experts</span></li>
+          <li><i class="fas fa-check-circle"></i> <span><strong>Technical skills:</strong> Hands-on practice with tools and technologies</span></li>
+          <li><i class="fas fa-check-circle"></i> <span><strong>Soft skills:</strong> Communication, teamwork, and professional etiquette</span></li>
+        </ul>
+        <div style="margin-top: 1.5rem;">
+          <span class="duration-badge">
+            <i class="far fa-clock"></i> Duration: 2-4 weeks
+          </span>
+        </div>
+      </div>
+      <div class="section-image">
+        <img src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Skills Training">
+      </div>
+    </div>
+  </section>
+
+  <!-- Phase 3: Internship -->
+  <section class="section-new section-lighter">
+    <div class="section-row">
+      <div class="section-content">
+        <div class="section-label">Phase 03</div>
+        <h2 class="section-heading">Internship</h2>
+        <p class="section-text">Apply your learning in a real-world setting with dedicated mentorship and support.</p>
+        <ul class="feature-list">
+          <li><i class="fas fa-check-circle"></i> <span><strong>Real projects:</strong> Meaningful work that impacts the business</span></li>
+          <li><i class="fas fa-check-circle"></i> <span><strong>Dedicated mentor:</strong> Weekly 1-on-1 guidance and feedback</span></li>
+          <li><i class="fas fa-check-circle"></i> <span><strong>Performance reviews:</strong> Regular check-ins to track your growth</span></li>
+          <li><i class="fas fa-check-circle"></i> <span><strong>Networking:</strong> Build connections with industry professionals</span></li>
+        </ul>
+        <div style="margin-top: 1.5rem;">
+          <span class="duration-badge">
+            <i class="far fa-clock"></i> Duration: 8-12 weeks
+          </span>
+        </div>
+      </div>
+      <div class="section-image">
+        <img src="https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Internship Experience">
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline Section -->
+  <section class="section-new section-white">
+    <div class="section-row">
+      <div class="section-content">
+        <div class="section-label">Your Journey</div>
+        <h2 class="section-heading">A typical QITE timeline</h2>
+        <p class="section-text">From application to completion, here's what you can expect.</p>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-icon"><i class="fas fa-file-alt"></i></div>
+            <div class="timeline-content">
+              <h4>Apply & Match</h4>
+              <p>Submit your application and get matched with opportunities aligned to your interests.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-icon"><i class="fas fa-compass"></i></div>
+            <div class="timeline-content">
+              <h4>Exploration Phase</h4>
+              <p>Complete assessments and meet with career coaches to refine your path.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-icon"><i class="fas fa-graduation-cap"></i></div>
+            <div class="timeline-content">
+              <h4>Training Phase</h4>
+              <p>Complete micro-courses and workshops to build foundational skills.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-icon"><i class="fas fa-briefcase"></i></div>
+            <div class="timeline-content">
+              <h4>Internship Phase</h4>
+              <p>Work on real projects with mentorship and regular feedback.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-icon"><i class="fas fa-rocket"></i></div>
+            <div class="timeline-content">
+              <h4>Launch Your Career</h4>
+              <p>89% of interns receive full-time offers. Continue growing with alumni resources.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="section-image">
+        <img src="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Career Journey">
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Banner -->
+  <div class="container">
+    <div class="stats-banner" id="statsBanner">
+      <div class="stat-item">
+        <div class="stat-number">12 Weeks</div>
+        <div class="stat-label">Average Duration</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">94%</div>
+        <div class="stat-label">Completion Rate</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">89%</div>
+        <div class="stat-label">Job Offer Rate</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA Section -->
+  <section class="cta-fullwidth" id="ctaFullwidth">
+    <div class="cta-container">
+      <div class="cta-badge">
+        <i class="fas fa-rocket"></i> Start Your Journey Today
+      </div>
+      <h2 class="cta-title">
+        Ready to <span>get started?</span>
+      </h2>
+      <p class="cta-subtitle">
+        Join thousands of students who launched their careers through QITE's proven model.
+      </p>
+      <div class="cta-buttons">
+        <a href="index.html#internships" class="btn-primary-cta">
+          <i class="fas fa-search"></i> Browse Internships
+        </a>
+        <a href="#" class="btn-outline-cta">
+          <i class="fas fa-calendar-alt"></i> Schedule a Call
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer" id="contact">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>About QITE</h4>
+        <p>QITE helps individuals explore careers, gain experience, and choose the right path. Experience before you decide.</p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+      <div class="footer-section">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="why-qite.html">Why QITE</a></li>
+          <li><a href="how-qite-works.html">How It Works</a></li>
+          <li><a href="index.html#internships">Internships</a></li>
+          <li><a href="#">For Employers</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="#">Career Guides</a></li>
+          <li><a href="#">Resume Tips</a></li>
+          <li><a href="#">Interview Prep</a></li>
+          <li><a href="#">FAQs</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Stay updated</h4>
+        <p>Get the latest opportunities.</p>
+        <div class="newsletter-input">
+          <input type="email" placeholder="Your email">
+          <button><i class="fas fa-paper-plane"></i></button>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 QITE. All rights reserved.</div>
+      <div>
+        <a href="#">Privacy</a>
+        <span style="margin: 0 1rem; opacity: 0.5;">|</span>
+        <a href="#">Terms</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    window.addEventListener('scroll', function() {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 100) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    const observerOptions = { threshold: 0.2 };
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.section-new').forEach(section => {
+      sectionObserver.observe(section);
+    });
+
+    const statsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.3 });
+
+    const statsBanner = document.getElementById('statsBanner');
+    if (statsBanner) {
+      statsObserver.observe(statsBanner);
+    }
+
+    const ctaObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.3 });
+
+    const ctaSection = document.getElementById('ctaFullwidth');
+    if (ctaSection) {
+      ctaObserver.observe(ctaSection);
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>

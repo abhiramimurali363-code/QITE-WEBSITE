@@ -1,0 +1,1278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QITE · Experience Before You Decide</title>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: #1a1f2e;
+      line-height: 1.5;
+      background: #fafbfc;
+      overflow-x: hidden;
+    }
+
+    /* ===== Video Hero Section ===== */
+    .video-hero {
+      position: relative;
+      height: 100vh;
+      min-height: 700px;
+      width: 100%;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .video-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+
+    .video-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(112deg, #b8d4e812 0%, rgb(22 55 90 / 41%) 50%, rgba(8, 40, 65, 0.8) 100%);
+      z-index: 1;
+    }
+
+    .hero-content-wrapper {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 1100px;
+      padding: 0 2rem;
+      animation: fadeInUp 1.2s ease-out;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      padding: 0.6rem 1.8rem;
+      border-radius: 50px;
+      color: #ffffff;
+      font-weight: 500;
+      font-size: 1rem;
+      margin-bottom: 2rem;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      letter-spacing: 2px;
+    }
+
+    .hero-badge h3 {
+      font-weight: 500;
+      font-size: 1rem;
+      margin: 0;
+    }
+
+    .hero-title {
+      font-size: 4.5rem;
+      font-weight: 800;
+      color: white;
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+      text-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero-title span {
+      background: linear-gradient(135deg, #6ec8ff, #a8e0ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: inline-block;
+    }
+
+    .hero-subtitle {
+      font-size: 1.5rem;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 2.5rem;
+      font-weight: 400;
+    }
+
+    .hero-motivation {
+      font-size: 2rem;
+      font-weight: 600;
+      color: white;
+      margin-bottom: 3rem;
+      font-style: italic;
+      padding-left: 2rem;
+      display: inline-block;
+      text-align: left;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 1rem 2.5rem;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: #0b4a6f;
+      color: white;
+      box-shadow: 0 10px 25px rgba(11, 74, 111, 0.4);
+    }
+
+    .btn-primary:hover {
+      background: #1a6a96;
+      transform: translateY(-3px);
+      box-shadow: 0 15px 35px rgba(11, 74, 111, 0.5);
+    }
+
+    .btn-outline-light {
+      background: transparent;
+      color: white;
+      border: 2px solid rgba(255, 255, 255, 0.5);
+    }
+
+    .btn-outline-light:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: white;
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      opacity: 0.8;
+      animation: bounce 2s infinite;
+    }
+
+    .scroll-indicator i {
+      font-size: 1.5rem;
+    }
+
+    /* ===== Navigation ===== */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1.2rem 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: linear-gradient(to bottom, rgba(8, 28, 51, 0.9), transparent);
+      transition: all 0.3s ease;
+    }
+
+    .navbar.scrolled {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(15px);
+      box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
+      padding: 0.8rem 3rem;
+    }
+
+    .navbar.scrolled .logo,
+    .navbar.scrolled .nav-links a {
+      color: #0b2b4a;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      font-size: 2rem;
+      color: white;
+      text-decoration: none;
+    }
+
+    .logo i {
+      font-size: 2.2rem;
+      color: #6ec8ff;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: white;
+      font-weight: 500;
+      font-size: 1.2rem;
+      transition: 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-links a i {
+      font-size: 1.1rem;
+    }
+
+    .nav-links a:hover {
+      color: #6ec8ff;
+    }
+
+    /* ===== Container ===== */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      background: transparent;
+    }
+
+    /* ===== Stats Grid ===== */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      margin: 2rem 0 4rem;
+    }
+
+    .stat-card {
+      text-align: center;
+      padding: 2.2rem 1.5rem;
+      background: white;
+      border-radius: 18px;
+      border: 1px solid #e8edf2;
+      box-shadow: 0 8px 20px -10px rgba(0, 0, 0, 0.04);
+      transition: all 0.25s ease;
+      opacity: 0;
+      animation: fadeInCard 0.6s ease forwards;
+    }
+
+    .stat-card:nth-child(1) { animation-delay: 0.1s; }
+    .stat-card:nth-child(2) { animation-delay: 0.2s; }
+    .stat-card:nth-child(3) { animation-delay: 0.3s; }
+    .stat-card:nth-child(4) { animation-delay: 0.4s; }
+
+    .stat-card:hover {
+      transform: translateY(-5px);
+      border-color: #c0d4e0;
+      box-shadow: 0 15px 30px -12px rgba(11, 74, 111, 0.1);
+    }
+
+    .stat-card i {
+      font-size: 2.5rem;
+      color: #0b4a6f;
+      margin-bottom: 1rem;
+    }
+
+    .stat-number {
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: #0b2b4a;
+      letter-spacing: -0.02em;
+    }
+
+    .stat-label {
+      color: #5a6d80;
+      font-weight: 500;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* ===== Alternating Section Backgrounds ===== */
+    .section-new {
+      padding: 5rem 0;
+      border-bottom: 1px solid #eef2f6;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+      position: relative;
+      z-index: 1;
+      width: 100vw;
+      margin-left: calc(-50vw + 50%);
+      margin-right: calc(-50vw + 50%);
+    }
+
+    .section-new.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    #why-qite { background: #ffffff; }
+    #how-works { background: #f8fafc; }
+    #internships { background: #f2f6f9; }
+
+    .section-row {
+      display: flex;
+      align-items: center;
+      gap: 5rem;
+      position: relative;
+      z-index: 2;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .section-row.reverse { flex-direction: row-reverse; }
+
+    .section-content {
+      flex: 1;
+      opacity: 0;
+      transform: translateX(-30px);
+      transition: opacity 0.8s ease 0.2s, transform 0.8s ease 0.2s;
+    }
+
+    .section-row.reverse .section-content { transform: translateX(30px); }
+    .section-new.visible .section-content { opacity: 1; transform: translateX(0); }
+
+    .section-image {
+      flex: 1;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 25px 50px -12px rgba(11, 74, 111, 0.15);
+      opacity: 0;
+      transform: translateX(30px);
+      transition: opacity 0.8s ease 0.4s, transform 0.8s ease 0.4s;
+    }
+
+    .section-row.reverse .section-image { transform: translateX(-30px); }
+    .section-new.visible .section-image { opacity: 1; transform: translateX(0); }
+
+    .section-image img {
+      width: 600px;
+      height: 550px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .section-image:hover img { transform: scale(1.05); }
+
+    .section-heading-large {
+      font-size: 3.5rem;
+      font-weight: 800;
+      color: #0b2b4a;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+
+    .text-blue {
+      color: #0b4a6f;
+      position: relative;
+      display: inline-block;
+    }
+
+    .text-blue::after {
+      content: '';
+      position: absolute;
+      bottom: 8px;
+      left: 0;
+      width: 100%;
+      height: 8px;
+      background: rgba(11, 74, 111, 0.15);
+      z-index: -1;
+    }
+
+    .section-subheading {
+      font-size: 1.2rem;
+      color: #5a6d80;
+      margin-bottom: 2.5rem;
+      font-weight: 400;
+    }
+
+    .feature-box {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 2rem;
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
+      border: 1px solid #e8edf2;
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
+    }
+
+    .feature-box:hover {
+      box-shadow: 0 20px 40px -12px rgba(11, 74, 111, 0.12);
+      transform: translateY(-3px);
+    }
+
+    .feature-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #0b2b4a;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+
+    .feature-text {
+      font-size: 1.05rem;
+      color: #4a5c6a;
+      line-height: 1.7;
+      margin-bottom: 1.2rem;
+    }
+
+    .read-more-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #0b4a6f;
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      border-bottom: 2px solid #0b4a6f;
+      padding-bottom: 4px;
+      transition: all 0.25s ease;
+    }
+
+    .read-more-link:hover {
+      color: #1a6a96;
+      border-bottom-color: #1a6a96;
+      gap: 12px;
+    }
+
+    .btn-expand {
+      background: none;
+      border: none;
+      color: #0b4a6f;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0.5rem 0;
+      margin-top: 0.5rem;
+      transition: all 0.25s ease;
+    }
+
+    .btn-expand:hover { color: #1a6a96; gap: 12px; }
+    .btn-expand i { font-size: 0.9rem; transition: transform 0.3s ease; }
+    .btn-expand.active i { transform: rotate(180deg); }
+
+    .expandable-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease-out;
+      margin-top: 0;
+    }
+
+    .expandable-content.show {
+      max-height: 2000px;
+      margin-top: 1.5rem;
+    }
+
+    .phase-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin: 1rem 0;
+    }
+
+    .phase-item {
+      text-align: left;
+      padding: 1rem;
+      border-radius: 12px;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    .phase-item:hover {
+      background: #f8fafc;
+      transform: translateY(-3px);
+    }
+
+    .phase-number {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: rgba(11, 74, 111, 0.15);
+      line-height: 1;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .phase-item h4 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #0b2b4a;
+      margin-bottom: 0.5rem;
+    }
+
+    .phase-item p {
+      font-size: 0.9rem;
+      color: #5a6d80;
+      line-height: 1.5;
+    }
+
+    .industry-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin: 1rem 0;
+    }
+
+    .industry-tag {
+      background: #f0f6fa;
+      color: #0b4a6f;
+      padding: 0.5rem 1rem;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      border: 1px solid #d0e0ec;
+      transition: all 0.2s ease;
+    }
+
+    .industry-tag:hover {
+      background: #0b4a6f;
+      color: white;
+      border-color: #0b4a6f;
+      transform: translateY(-2px);
+    }
+
+/* ===== Testimonials Carousel Section - COMPACT ===== */
+.testimonials-section {
+  padding: 3rem 0;
+  background: #f8fafc;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+  border-top: 1px solid #e2eaf0;
+}
+
+.testimonials-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.testimonials-header h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #0b2b4a;
+  margin-bottom: 0.3rem;
+}
+
+.testimonials-header span {
+  color: #0b4a6f;
+}
+
+.testimonials-header p {
+  font-size: 1rem;
+  color: #5a6d80;
+}
+
+.testimonials-carousel {
+  position: relative;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.testimonial-slide {
+  display: none;
+  animation: fadeIn 0.3s ease;
+}
+
+.testimonial-slide.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateX(10px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.testimonial-card-compact {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 2rem 2rem 1.5rem;
+  border: 1px solid #e8edf2;
+  box-shadow: 0 5px 15px -8px rgba(0, 0, 0, 0.05);
+  text-align: center;
+}
+
+.testimonial-rating-compact {
+  margin-bottom: 1rem;
+}
+
+.testimonial-rating-compact i {
+  color: #f5b342;
+  font-size: 1rem;
+  margin: 0 1px;
+}
+
+.testimonial-quote-compact {
+  font-size: 1rem;
+  color: #3a4c5e;
+  line-height: 1.6;
+  font-style: italic;
+  margin-bottom: 1.5rem;
+}
+
+.testimonial-quote-compact i {
+  color: #6ec8ff;
+  opacity: 0.3;
+  font-size: 1.2rem;
+  margin-right: 5px;
+}
+
+.testimonial-author-compact {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.author-avatar-compact {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #0b4a6f, #1a6a96);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.author-info-compact {
+  text-align: left;
+}
+
+.author-info-compact h4 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #0b2b4a;
+  margin-bottom: 2px;
+}
+
+.author-info-compact p {
+  font-size: 0.8rem;
+  color: #5a6d80;
+}
+
+.carousel-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.carousel-btn {
+  width: 36px;
+  height: 36px;
+  background: white;
+  border: 1px solid #e2eaf0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0b4a6f;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.carousel-btn:hover {
+  background: #0b4a6f;
+  color: white;
+  border-color: #0b4a6f;
+}
+
+.carousel-dots {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  background: #d0e0ec;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.dot.active {
+  background: #0b4a6f;
+  width: 20px;
+  border-radius: 10px;
+}
+
+.dot:hover {
+  background: #0b4a6f;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .testimonials-section {
+    padding: 2.5rem 0;
+  }
+  
+  .testimonial-card-compact {
+    padding: 1.5rem;
+  }
+  
+  .testimonial-quote-compact {
+    font-size: 0.9rem;
+  }
+}
+
+    /* ===== Footer ===== */
+    .footer {
+      background: #1a2e3c;
+      color: white;
+      padding: 4rem 0 2rem;
+      margin-top: 0;
+      width: 100vw;
+      margin-left: calc(-50vw + 50%);
+      margin-right: calc(-50vw + 50%);
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: 3rem;
+    }
+
+    .footer-section h4 {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+      color: #8ec8e8;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .footer-section p {
+      color: #b0c8d8;
+      margin-bottom: 1.5rem;
+      font-size: 1rem;
+    }
+
+    .footer-section ul {
+      list-style: none;
+    }
+
+    .footer-section ul li {
+      margin-bottom: 0.7rem;
+    }
+
+    .footer-section ul li a {
+      color: #b0c8d8;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: color 0.2s;
+    }
+
+    .footer-section ul li a:hover { color: #ffffff; }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .social-links a {
+      color: white;
+      background: rgba(255, 255, 255, 0.08);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+      text-decoration: none;
+      font-size: 1.1rem;
+    }
+
+    .social-links a:hover {
+      background: #0b4a6f;
+      transform: translateY(-2px);
+    }
+
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 3rem auto 0;
+      padding: 2rem 2rem 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #8aa0ae;
+      font-size: 0.95rem;
+    }
+
+    .footer-bottom a {
+      color: #8aa0ae;
+      text-decoration: none;
+    }
+
+    .footer-bottom a:hover { color: #c0d0db; }
+
+    .newsletter-input {
+      display: flex;
+      margin-top: 1rem;
+    }
+
+    .newsletter-input input {
+      flex: 1;
+      padding: 0.8rem 1rem;
+      border: 1px solid #3a5666;
+      background: #243a48;
+      border-radius: 8px 0 0 8px;
+      outline: none;
+      font-size: 0.95rem;
+      color: white;
+    }
+
+    .newsletter-input input::placeholder { color: #8aa0ae; }
+
+    .newsletter-input button {
+      background: #0b4a6f;
+      color: white;
+      border: none;
+      padding: 0.8rem 1.2rem;
+      border-radius: 0 8px 8px 0;
+      cursor: pointer;
+      transition: background 0.2s;
+      font-size: 1rem;
+    }
+
+    .newsletter-input button:hover { background: #1a6a96; }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInCard {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+      40% { transform: translateX(-50%) translateY(-20px); }
+      60% { transform: translateX(-50%) translateY(-10px); }
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .section-row { flex-direction: column !important; gap: 2.5rem; }
+      .hero-title { font-size: 3.5rem; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-content { grid-template-columns: repeat(2, 1fr); }
+      .section-heading-large { font-size: 2.8rem; }
+      .phase-grid { grid-template-columns: 1fr; gap: 1rem; }
+    }
+
+    @media (max-width: 768px) {
+      .navbar { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .hero-title { font-size: 2.5rem; }
+      .hero-motivation { font-size: 1.5rem; }
+      .stats-grid { grid-template-columns: 1fr; }
+      .footer-content { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+      .section-heading-large { font-size: 2.2rem; }
+      .feature-title { font-size: 1.5rem; }
+      .section-new { padding: 3rem 0; }
+      .testimonial-card-large { padding: 2rem 1.5rem; }
+      .testimonial-quote-large { font-size: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <a href="index.html" class="logo">
+      <i class="fas fa-bolt"></i>
+      <span>QITE</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html"> Home</a>
+      <a href="why-qite.html">Why QITE</a>
+      <a href="how-qite-works.html"> How It Works</a>
+      <a href="internships.html">Internships</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
+
+  <!-- Video Hero Section -->
+  <section class="video-hero" id="home">
+    <video class="video-background" autoplay muted loop playsinline>
+      <source src="https://videos.pexels.com/video-files/3129957/3129957-uhd_2560_1440_25fps.mp4" type="video/mp4">
+      <img src="https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg" alt="Career Development">
+    </video>
+    <div class="video-overlay"></div>
+    
+    <div class="hero-content-wrapper">
+      <div class="hero-badge">
+        <h3>EXPERIENCE BEFORE YOU DECIDE</h3>
+      </div>
+      <h1 class="hero-title">
+        Your <span>Career Journey</span><br>
+        Starts With Experience
+      </h1>
+      <p class="hero-subtitle">
+        QITE helps individuals explore careers, gain real-world experience,<br>
+        and choose the right path with confidence.
+      </p>
+      <div class="hero-motivation">
+        "The only way to discover your path is to walk it first."
+      </div>
+      <div class="hero-cta-group">
+        <a href="internships.html" class="btn btn-primary">
+          <i class="fas fa-rocket"></i> Explore Internships
+        </a>
+        <a href="why-qite.html" class="btn btn-outline-light">
+          <i class="fas fa-play-circle"></i> Why Choose QITE
+        </a>
+      </div>
+    </div>
+    
+    <div class="scroll-indicator">
+      <span>Scroll to discover</span>
+      <i class="fas fa-chevron-down"></i>
+    </div>
+  </section>
+
+  <!-- Why QITE Section -->
+  <section class="section-new" id="why-qite">
+    <div class="section-row">
+      <div class="section-content">
+        <h2 class="section-heading-large">Why Choose <span class="text-blue">QITE?</span></h2>
+        <p class="section-subheading">We bridge the gap between education and employment with meaningful experiences</p>
+        <div class="feature-box">
+          <h3 class="feature-title">Career Exploration That Matters</h3>
+          <p class="feature-text">Before committing to a career path, you need to experience it firsthand. QITE provides immersive internship opportunities that let you test-drive different roles and industries.</p>
+          <p class="feature-text">Our platform connects you with over 500 industry partners across technology, finance, healthcare, marketing, and more.</p>
+          
+          <button class="btn-expand" onclick="toggleNewDescription('desc1-new', this)">Read More <i class="fas fa-chevron-down"></i></button>
+          
+          <div class="expandable-content" id="desc1-new">
+            <p style="margin-bottom: 1rem;">Each internship is designed to give you real responsibilities and meaningful projects that build your portfolio. You'll work alongside professionals who mentor and guide you.</p>
+            <p>94% of our interns report having much clearer career direction after completing a QITE program.</p>
+            <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid #eef2f6;">
+              <a href="why-qite.html" class="read-more-link">Learn More about the QITE difference <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="section-image">
+        <img src="https://images.pexels.com/photos/3184298/pexels-photo-3184298.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Career Exploration">
+      </div>
+    </div>
+  </section>
+
+  <!-- How QITE Works Section -->
+  <section class="section-new" id="how-works">
+    <div class="section-row reverse">
+      <div class="section-content">
+        <h2 class="section-heading-large">How <span class="text-blue">QITE Works</span></h2>
+        <p class="section-subheading">A structured approach to discovering your ideal career path</p>
+        <div class="feature-box">
+          <h3 class="feature-title">The QITE Model: Explore, Train, Intern</h3>
+          <p class="feature-text">Our three-phase model ensures you're fully prepared before stepping into a professional environment.</p>
+          
+          <button class="btn-expand" onclick="toggleNewDescription('desc2-new', this)">Read More <i class="fas fa-chevron-down"></i></button>
+          
+          <div class="expandable-content" id="desc2-new">
+            <div class="phase-grid">
+              <div class="phase-item">
+                <span class="phase-number">01</span>
+                <h4>Exploration</h4>
+                <p>Career assessments and industry overviews with career coaches.</p>
+              </div>
+              <div class="phase-item">
+                <span class="phase-number">02</span>
+                <h4>Training</h4>
+                <p>Focused micro-courses and workshops for your chosen field.</p>
+              </div>
+              <div class="phase-item">
+                <span class="phase-number">03</span>
+                <h4>Internship</h4>
+                <p>Real-world experience with dedicated mentor support.</p>
+              </div>
+            </div>
+            <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid #eef2f6;">
+              <a href="how-qite-works.html" class="read-more-link">Learn More about our process <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="section-image">
+        <img src="https://images.pexels.com/photos/3184423/pexels-photo-3184423.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Training Process">
+      </div>
+    </div>
+  </section>
+
+  <!-- Internship Opportunities Section -->
+  <section class="section-new" id="internships">
+    <div class="section-row">
+      <div class="section-content">
+        <h2 class="section-heading-large">Internship <span class="text-blue">Opportunities</span></h2>
+        <p class="section-subheading">Find the perfect internship to kickstart your career journey</p>
+        <div class="feature-box">
+          <h3 class="feature-title">Real Experience With Top Companies</h3>
+          <p class="feature-text">From startups to Fortune 500 companies, our partners offer internships across every major industry.</p>
+          
+          <button class="btn-expand" onclick="toggleNewDescription('desc3-new', this)">Read More <i class="fas fa-chevron-down"></i></button>
+          
+          <div class="expandable-content" id="desc3-new">
+            <p style="margin-bottom: 1rem;">We partner with organizations that value mentorship:</p>
+            <div class="industry-grid">
+              <span class="industry-tag">Software Development</span>
+              <span class="industry-tag">Data Science</span>
+              <span class="industry-tag">AI/ML</span>
+              <span class="industry-tag">Cloud Engineering</span>
+              <span class="industry-tag">Marketing</span>
+              <span class="industry-tag">Finance</span>
+              <span class="industry-tag">Graphic Design</span>
+              <span class="industry-tag">Healthcare</span>
+            </div>
+            <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid #eef2f6;">
+              <a href="internships.html" class="read-more-link">Browse all opportunities <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="section-image">
+        <img src="https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Internship Opportunities">
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-card">
+        <i class="fas fa-building"></i>
+        <div class="stat-number"><span class="counter" data-target="500">0</span>+</div>
+        <div class="stat-label">Partner Companies</div>
+      </div>
+      <div class="stat-card">
+        <i class="fas fa-user-graduate"></i>
+        <div class="stat-number"><span class="counter" data-target="15">0</span>k+</div>
+        <div class="stat-label">Interns Placed</div>
+      </div>
+      <div class="stat-card">
+        <i class="fas fa-chart-line"></i>
+        <div class="stat-number"><span class="counter" data-target="89">0</span>%</div>
+        <div class="stat-label">Job Offer Rate</div>
+      </div>
+      <div class="stat-card">
+        <i class="fas fa-globe"></i>
+        <div class="stat-number"><span class="counter" data-target="30">0</span>+</div>
+        <div class="stat-label">Countries</div>
+      </div>
+    </div>
+  </div>
+
+  
+
+
+  <!-- Footer -->
+  <footer class="footer" id="contact">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>About QITE</h4>
+        <p>QITE helps individuals explore careers, gain experience, and choose the right path. Experience before you decide.</p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="why-qite.html">Why QITE</a></li>
+          <li><a href="how-qite-works.html">How It Works</a></li>
+          <li><a href="internships.html">Internships</a></li>
+          <li><a href="#">For Employers</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="#">Career Guides</a></li>
+          <li><a href="#">Resume Tips</a></li>
+          <li><a href="#">Interview Prep</a></li>
+          <li><a href="#">FAQs</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Stay Updated</h4>
+        <p>Get the latest internship opportunities.</p>
+        <div class="newsletter-input">
+          <input type="email" placeholder="Your email">
+          <button><i class="fas fa-paper-plane"></i></button>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 QITE. All rights reserved.</div>
+      <div>
+        <a href="#">Privacy Policy</a>
+        <span style="margin: 0 1rem; opacity: 0.5;">|</span>
+        <a href="#">Terms of Service</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    window.addEventListener('scroll', function() {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 100) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    const observerOptions = { threshold: 0.2 };
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.section-new').forEach(section => {
+      sectionObserver.observe(section);
+    });
+
+    function toggleNewDescription(descId, button) {
+      const desc = document.getElementById(descId);
+      desc.classList.toggle('show');
+      button.classList.toggle('active');
+      if (desc.classList.contains('show')) {
+        button.innerHTML = 'Read Less <i class="fas fa-chevron-up"></i>';
+      } else {
+        button.innerHTML = 'Read More <i class="fas fa-chevron-down"></i>';
+      }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    const counters = document.querySelectorAll('.counter');
+    let animationTriggered = false;
+
+    function startCounting() {
+      counters.forEach(counter => {
+        const target = parseInt(counter.getAttribute('data-target'));
+        let current = 0;
+        const increment = target / 50;
+        const duration = 2000;
+        const stepTime = duration / 50;
+        
+        const timer = setInterval(() => {
+          current += increment;
+          if (current >= target) {
+            counter.textContent = target;
+            clearInterval(timer);
+          } else {
+            counter.textContent = Math.floor(current);
+          }
+        }, stepTime);
+      });
+    }
+
+    const statsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !animationTriggered) {
+          animationTriggered = true;
+          startCounting();
+        }
+      });
+    }, { threshold: 0.3 });
+
+    const statsSection = document.querySelector('.stats-grid');
+    if (statsSection) {
+      statsObserver.observe(statsSection);
+    }
+
+    // Testimonials Carousel
+    let currentTestimonial = 0;
+    const slides = document.querySelectorAll('.testimonial-slide');
+    const dots = document.querySelectorAll('.dot');
+    const totalSlides = slides.length;
+
+    function updateCarousel() {
+      slides.forEach((slide, index) => {
+        slide.classList.remove('active');
+        if (index === currentTestimonial) {
+          slide.classList.add('active');
+        }
+      });
+      
+      dots.forEach((dot, index) => {
+        dot.classList.remove('active');
+        if (index === currentTestimonial) {
+          dot.classList.add('active');
+        }
+      });
+    }
+
+    function nextTestimonial() {
+      currentTestimonial = (currentTestimonial + 1) % totalSlides;
+      updateCarousel();
+    }
+
+    function prevTestimonial() {
+      currentTestimonial = (currentTestimonial - 1 + totalSlides) % totalSlides;
+      updateCarousel();
+    }
+
+    function goToTestimonial(index) {
+      currentTestimonial = index;
+      updateCarousel();
+    }
+
+    setInterval(nextTestimonial, 6000);
+  </script>
+</body>
+</html>
