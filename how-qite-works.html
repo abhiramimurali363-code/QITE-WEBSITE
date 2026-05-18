@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>How QITE Works · Experience Before You Decide</title>
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -30,19 +30,19 @@
       left: 0;
       right: 0;
       z-index: 100;
-      padding: 1.2rem 3rem;
+      padding: 1rem 1.5rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: linear-gradient(to bottom, rgba(8, 28, 51, 0.9), transparent);
+      background: linear-gradient(to bottom, rgba(8, 28, 51, 0.95), transparent);
       transition: all 0.3s ease;
     }
 
     .navbar.scrolled {
-      background: rgba(255, 255, 255, 0.95);
+      background: rgba(255, 255, 255, 0.96);
       backdrop-filter: blur(15px);
       box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
-      padding: 0.8rem 3rem;
+      padding: 0.7rem 1.5rem;
     }
 
     .navbar.scrolled .logo,
@@ -53,36 +53,36 @@
     .logo {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 8px;
       font-weight: 700;
-      font-size: 2rem;
+      font-size: 1.7rem;
       color: white;
       text-decoration: none;
     }
 
     .logo i {
-      font-size: 2.2rem;
+      font-size: 1.8rem;
       color: #6ec8ff;
     }
 
     .nav-links {
       display: flex;
-      gap: 2.5rem;
+      gap: 1.5rem;
     }
 
     .nav-links a {
       text-decoration: none;
       color: white;
       font-weight: 500;
-      font-size: 1.2rem;
+      font-size: 1rem;
       transition: 0.3s;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
     }
 
     .nav-links a i {
-      font-size: 1.1rem;
+      font-size: 0.95rem;
     }
 
     .nav-links a:hover {
@@ -130,7 +130,7 @@
       z-index: 2;
       text-align: center;
       max-width: 1000px;
-      padding: 0 2rem;
+      padding: 0 1.5rem;
       animation: fadeInUp 1s ease-out;
     }
 
@@ -138,22 +138,22 @@
       display: inline-block;
       background: rgba(110, 200, 255, 0.2);
       backdrop-filter: blur(10px);
-      padding: 0.6rem 1.8rem;
+      padding: 0.5rem 1.2rem;
       border-radius: 50px;
       color: #6ec8ff;
       font-weight: 500;
-      font-size: 1rem;
-      margin-bottom: 1.5rem;
+      font-size: 0.85rem;
+      margin-bottom: 1.2rem;
       border: 1px solid rgba(110, 200, 255, 0.3);
-      letter-spacing: 2px;
+      letter-spacing: 1.5px;
     }
 
     .hero-title {
-      font-size: 4rem;
+      font-size: 3.2rem;
       font-weight: 800;
       color: white;
       line-height: 1.2;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1rem;
       text-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
     }
 
@@ -165,7 +165,7 @@
     }
 
     .hero-subtitle {
-      font-size: 1.3rem;
+      font-size: 1.1rem;
       color: rgba(255, 255, 255, 0.9);
       max-width: 800px;
       margin: 0 auto;
@@ -175,15 +175,16 @@
     .container {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 0 2rem;
+      padding: 0 1.25rem;
     }
 
     /* ===== Breadcrumb ===== */
     .breadcrumb {
-      padding: 2rem 0 1rem;
+      padding: 1.5rem 0 1rem;
       color: #5a6d80;
       border-bottom: 1px solid #e2eaf0;
       margin-bottom: 1.5rem;
+      font-size: 0.9rem;
     }
 
     .breadcrumb a {
@@ -197,7 +198,7 @@
 
     /* ===== Alternating Section Backgrounds ===== */
     .section-new {
-      padding: 5rem 0;
+      padding: 3.5rem 0;
       border-bottom: 1px solid #eef2f6;
       opacity: 0;
       transform: translateY(30px);
@@ -229,12 +230,12 @@
     .section-row {
       display: flex;
       align-items: center;
-      gap: 4rem;
+      gap: 3rem;
       position: relative;
       z-index: 2;
       max-width: 1200px;
       margin: 0 auto;
-      padding: 0 2rem;
+      padding: 0 1.5rem;
     }
 
     .section-row.reverse {
@@ -278,18 +279,19 @@
 
     .section-image img {
       width: 100%;
-      height: 400px;
+      height: auto;
+      aspect-ratio: 4 / 3;
       object-fit: cover;
       display: block;
       transition: transform 0.4s ease;
     }
 
     .section-image:hover img {
-      transform: scale(1.05);
+      transform: scale(1.03);
     }
 
     .section-label {
-      font-size: 0.85rem;
+      font-size: 0.75rem;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 1.5px;
@@ -298,18 +300,18 @@
     }
 
     .section-heading {
-      font-size: 2.2rem;
+      font-size: 2rem;
       font-weight: 700;
       color: #0b2b4a;
-      margin-bottom: 1.2rem;
+      margin-bottom: 1rem;
       letter-spacing: -0.02em;
     }
 
     .section-text {
-      font-size: 1.1rem;
+      font-size: 1rem;
       color: #3a4c5e;
       line-height: 1.7;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.2rem;
       font-weight: 400;
       opacity: 0;
       transform: translateY(15px);
@@ -324,7 +326,7 @@
     /* Feature List - CORRECTED ALIGNMENT */
     .feature-list {
       list-style: none;
-      margin: 1.5rem 0;
+      margin: 1.2rem 0;
       padding: 0;
     }
 
@@ -332,9 +334,9 @@
       display: flex;
       align-items: flex-start;
       gap: 12px;
-      margin-bottom: 1rem;
+      margin-bottom: 0.9rem;
       color: #3a4c5e;
-      font-size: 1.05rem;
+      font-size: 0.95rem;
       font-weight: 400;
       line-height: 1.6;
       opacity: 0;
@@ -354,8 +356,8 @@
 
     .feature-list li i {
       color: #0b4a6f;
-      font-size: 1rem;
-      margin-top: 5px;
+      font-size: 0.9rem;
+      margin-top: 3px;
       flex-shrink: 0;
       width: 16px;
       text-align: center;
@@ -374,28 +376,28 @@
     .duration-badge {
       display: inline-block;
       background: #e8f4fd;
-      padding: 0.6rem 1.5rem;
+      padding: 0.5rem 1.2rem;
       border-radius: 30px;
-      font-size: 0.95rem;
+      font-size: 0.85rem;
       color: #0b4a6f;
       font-weight: 500;
       margin-top: 0.5rem;
     }
 
     .duration-badge i {
-      margin-right: 8px;
+      margin-right: 6px;
     }
 
     /* Timeline */
     .timeline {
-      margin: 2rem 0;
+      margin: 1.5rem 0;
       padding: 0;
     }
 
     .timeline-item {
       display: flex;
-      gap: 1.5rem;
-      margin-bottom: 1.8rem;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
       opacity: 0;
       transform: translateX(-20px);
       transition: opacity 0.5s ease, transform 0.5s ease;
@@ -413,8 +415,8 @@
     .section-new.visible .timeline-item:nth-child(5) { transition-delay: 0.9s; }
 
     .timeline-icon {
-      width: 50px;
-      height: 50px;
+      width: 44px;
+      height: 44px;
       background: #f0f6fa;
       border-radius: 50%;
       display: flex;
@@ -424,7 +426,7 @@
     }
 
     .timeline-icon i {
-      font-size: 1.3rem;
+      font-size: 1.1rem;
       color: #0b4a6f;
     }
 
@@ -433,16 +435,16 @@
     }
 
     .timeline-content h4 {
-      font-size: 1.2rem;
+      font-size: 1.05rem;
       font-weight: 600;
       color: #0b2b4a;
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.3rem;
     }
 
     .timeline-content p {
       color: #5a6d80;
-      font-size: 1rem;
-      line-height: 1.6;
+      font-size: 0.9rem;
+      line-height: 1.5;
       margin: 0;
     }
 
@@ -451,10 +453,10 @@
       background: #ffffff;
       border: 1px solid #e2eaf0;
       border-radius: 20px;
-      padding: 2.5rem 2rem;
+      padding: 2rem 1.5rem;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
+      gap: 1.2rem;
       margin: 2rem 0;
     }
 
@@ -475,7 +477,7 @@
     .stats-banner.visible .stat-item:nth-child(3) { transition-delay: 0.3s; }
 
     .stat-number {
-      font-size: 2.5rem;
+      font-size: 2rem;
       font-weight: 700;
       color: #0b2b4a;
       line-height: 1.2;
@@ -483,7 +485,7 @@
 
     .stat-label {
       color: #5a6d80;
-      font-size: 0.9rem;
+      font-size: 0.8rem;
       font-weight: 500;
       text-transform: uppercase;
       letter-spacing: 0.5px;
@@ -495,7 +497,7 @@
       margin-left: calc(-50vw + 50%);
       margin-right: calc(-50vw + 50%);
       background: linear-gradient(135deg, #1a3a4f 0%, #0b2b4a 100%);
-      padding: 4rem 0;
+      padding: 3rem 0;
       margin-top: 2rem;
       margin-bottom: 0;
       position: relative;
@@ -516,7 +518,7 @@
     .cta-container {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 0 2rem;
+      padding: 0 1.5rem;
       text-align: center;
       position: relative;
       z-index: 2;
@@ -525,11 +527,11 @@
     .cta-badge {
       display: inline-block;
       color: #8ec8e8;
-      font-size: 0.85rem;
+      font-size: 0.75rem;
       font-weight: 500;
       letter-spacing: 2px;
       text-transform: uppercase;
-      margin-bottom: 1rem;
+      margin-bottom: 0.8rem;
       opacity: 0;
       transform: translateY(20px);
       transition: opacity 0.6s ease, transform 0.6s ease;
@@ -541,10 +543,10 @@
     }
 
     .cta-title {
-      font-size: 3rem;
+      font-size: 2.2rem;
       font-weight: 700;
       color: white;
-      margin-bottom: 1rem;
+      margin-bottom: 0.8rem;
       letter-spacing: -0.02em;
       opacity: 0;
       transform: translateY(20px);
@@ -561,9 +563,9 @@
     }
 
     .cta-subtitle {
-      font-size: 1.2rem;
+      font-size: 1rem;
       color: rgba(255, 255, 255, 0.8);
-      margin-bottom: 2rem;
+      margin-bottom: 1.8rem;
       font-weight: 400;
       opacity: 0;
       transform: translateY(20px);
@@ -577,7 +579,7 @@
 
     .cta-buttons {
       display: flex;
-      gap: 1.5rem;
+      gap: 1rem;
       justify-content: center;
       flex-wrap: wrap;
       opacity: 0;
@@ -591,8 +593,8 @@
     }
 
     .btn-primary-cta {
-      padding: 1rem 2.5rem;
-      font-size: 1.1rem;
+      padding: 0.8rem 1.8rem;
+      font-size: 0.95rem;
       background: #6ec8ff;
       color: #0b2b4a;
       border: none;
@@ -602,7 +604,7 @@
       transition: all 0.25s ease;
       display: inline-flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       text-decoration: none;
     }
 
@@ -613,8 +615,8 @@
     }
 
     .btn-outline-cta {
-      padding: 1rem 2.5rem;
-      font-size: 1.1rem;
+      padding: 0.8rem 1.8rem;
+      font-size: 0.95rem;
       background: transparent;
       color: white;
       border: 2px solid rgba(255, 255, 255, 0.3);
@@ -624,7 +626,7 @@
       transition: all 0.25s ease;
       display: inline-flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       text-decoration: none;
     }
 
@@ -634,11 +636,114 @@
       transform: translateY(-3px);
     }
 
+    /* ===== Intro Bubble Card ===== */
+    .intro-bubble {
+      background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+      border-radius: 40px 15px 40px 15px;
+      padding: 2.2rem 1.5rem;
+      box-shadow: 0 30px 50px -20px rgba(11, 74, 111, 0.15), 0 0 0 1px rgba(11, 74, 111, 0.05) inset;
+      border: 1px solid rgba(110, 200, 255, 0.15);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s ease;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .intro-bubble:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 40px 60px -20px rgba(11, 74, 111, 0.2), 0 0 0 1px rgba(11, 74, 111, 0.08) inset;
+    }
+
+    .intro-icon-circle {
+      width: 65px;
+      height: 65px;
+      background: linear-gradient(135deg, #0b4a6f, #1a6a96);
+      border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.2rem;
+      box-shadow: 0 15px 30px -10px rgba(11, 74, 111, 0.3);
+      animation: morphShape 8s ease-in-out infinite;
+    }
+
+    @keyframes morphShape {
+      0%, 100% {
+        border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+      }
+      25% {
+        border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+      }
+      50% {
+        border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+      }
+      75% {
+        border-radius: 40% 60% 30% 70% / 40% 70% 30% 60%;
+      }
+    }
+
+    .intro-icon-circle i {
+      font-size: 2rem;
+      color: white;
+    }
+
+    .intro-title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #0b2b4a;
+      text-align: center;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+
+    .intro-arrow {
+      color: #0b4a6f;
+      font-weight: 300;
+      margin: 0 6px;
+      opacity: 0.6;
+    }
+
+    .intro-description {
+      font-size: 1rem;
+      color: #5a6d80;
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 1.5rem;
+      line-height: 1.6;
+    }
+
+    .intro-badge-group {
+      display: flex;
+      justify-content: center;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+    }
+
+    .intro-badge {
+      background: linear-gradient(135deg, #e8f4fd, #dcecf5);
+      color: #0b4a6f;
+      padding: 0.5rem 1.2rem;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      border: 1px solid rgba(11, 74, 111, 0.1);
+      box-shadow: 0 4px 10px -5px rgba(11, 74, 111, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .intro-badge:hover {
+      background: #0b4a6f;
+      color: white;
+      transform: translateY(-2px);
+    }
+
     /* ===== Footer ===== */
     .footer {
       background: linear-gradient(135deg, #0a1e30, #0b2b4a);
       color: white;
-      padding: 4rem 0 2rem;
+      padding: 3rem 0 1.5rem;
       margin-top: 0;
       width: 100vw;
       margin-left: calc(-50vw + 50%);
@@ -648,22 +753,22 @@
     .footer-content {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 0 2rem;
+      padding: 0 1.5rem;
       display: grid;
       grid-template-columns: 2fr 1fr 1fr 1.5fr;
-      gap: 3rem;
+      gap: 2rem;
     }
 
     .footer-section h4 {
-      font-size: 1.3rem;
-      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
       color: #6ec8ff;
     }
 
     .footer-section p {
       color: #b8d4e8;
-      margin-bottom: 1.5rem;
-      font-size: 1rem;
+      margin-bottom: 1.2rem;
+      font-size: 0.9rem;
     }
 
     .footer-section ul {
@@ -671,13 +776,13 @@
     }
 
     .footer-section ul li {
-      margin-bottom: 0.8rem;
+      margin-bottom: 0.6rem;
     }
 
     .footer-section ul li a {
       color: #b8d4e8;
       text-decoration: none;
-      font-size: 1rem;
+      font-size: 0.9rem;
       transition: color 0.3s;
     }
 
@@ -687,15 +792,15 @@
 
     .social-links {
       display: flex;
-      gap: 1rem;
+      gap: 0.8rem;
       margin-top: 1rem;
     }
 
     .social-links a {
       color: white;
       background: rgba(255, 255, 255, 0.1);
-      width: 40px;
-      height: 40px;
+      width: 36px;
+      height: 36px;
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -711,14 +816,16 @@
 
     .footer-bottom {
       max-width: 1200px;
-      margin: 3rem auto 0;
-      padding: 2rem 2rem 0;
+      margin: 2rem auto 0;
+      padding: 1.5rem 1.5rem 0;
       border-top: 1px solid rgba(255, 255, 255, 0.1);
       display: flex;
       justify-content: space-between;
       align-items: center;
       color: #8aa9c2;
-      font-size: 0.95rem;
+      font-size: 0.85rem;
+      flex-wrap: wrap;
+      gap: 1rem;
     }
 
     .footer-bottom a {
@@ -737,18 +844,19 @@
 
     .newsletter-input input {
       flex: 1;
-      padding: 0.8rem 1rem;
+      padding: 0.7rem 0.8rem;
       border: none;
-      border-radius: 10px 0 0 10px;
+      border-radius: 8px 0 0 8px;
       outline: none;
+      font-size: 0.85rem;
     }
 
     .newsletter-input button {
       background: #0b4a6f;
       color: white;
       border: none;
-      padding: 0.8rem 1.5rem;
-      border-radius: 0 10px 10px 0;
+      padding: 0 1rem;
+      border-radius: 0 8px 8px 0;
       cursor: pointer;
       transition: background 0.3s;
     }
@@ -763,58 +871,169 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Responsive */
+    /* ===== FULLY MOBILE RESPONSIVE ===== */
     @media (max-width: 1024px) {
       .section-row {
         flex-direction: column !important;
         gap: 2rem;
+        text-align: center;
+      }
+      .section-row.reverse {
+        flex-direction: column !important;
+      }
+      .section-content, .section-image {
+        text-align: center;
       }
       .footer-content {
         grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
       }
       .hero-title {
-        font-size: 3rem;
+        font-size: 2.8rem;
       }
       .cta-title {
-        font-size: 2.5rem;
+        font-size: 2rem;
       }
       .section-heading {
-        font-size: 1.9rem;
+        font-size: 1.8rem;
+        text-align: center;
+      }
+      .section-label {
+        text-align: center;
+      }
+      .feature-list li {
+        text-align: left;
+        justify-content: flex-start;
+      }
+      .timeline-item {
+        text-align: left;
       }
     }
 
     @media (max-width: 768px) {
       .navbar {
-        padding: 1rem 1.5rem;
+        padding: 0.8rem 1rem;
       }
       .nav-links {
         display: none;
       }
+      .hero-section {
+        min-height: 450px;
+      }
       .hero-title {
-        font-size: 2.5rem;
+        font-size: 2.2rem;
+      }
+      .hero-subtitle {
+        font-size: 0.95rem;
+      }
+      .hero-badge {
+        font-size: 0.7rem;
+        padding: 0.4rem 1rem;
       }
       .stats-banner {
         grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 1.5rem;
       }
       .footer-content {
         grid-template-columns: 1fr;
+        text-align: center;
+        gap: 1.8rem;
       }
       .footer-bottom {
         flex-direction: column;
-        gap: 1rem;
         text-align: center;
       }
       .section-heading {
-        font-size: 1.7rem;
+        font-size: 1.6rem;
       }
       .cta-title {
-        font-size: 2rem;
+        font-size: 1.6rem;
       }
       .section-text {
-        font-size: 1rem;
+        font-size: 0.9rem;
       }
       .feature-list li {
+        font-size: 0.88rem;
+      }
+      .intro-title {
+        font-size: 1.6rem;
+      }
+      .intro-description {
+        font-size: 0.9rem;
+      }
+      .intro-badge {
+        font-size: 0.7rem;
+        padding: 0.4rem 1rem;
+      }
+      .intro-bubble {
+        padding: 1.8rem 1rem;
+      }
+      .intro-icon-circle {
+        width: 55px;
+        height: 55px;
+      }
+      .intro-icon-circle i {
+        font-size: 1.6rem;
+      }
+      .section-new {
+        padding: 2.5rem 0;
+      }
+      .breadcrumb {
+        padding: 1rem 0;
+        font-size: 0.8rem;
+      }
+      .timeline-icon {
+        width: 38px;
+        height: 38px;
+      }
+      .timeline-icon i {
+        font-size: 0.9rem;
+      }
+      .timeline-content h4 {
         font-size: 0.95rem;
+      }
+      .timeline-content p {
+        font-size: 0.8rem;
+      }
+      .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      .btn-primary-cta, .btn-outline-cta {
+        width: 80%;
+        justify-content: center;
+      }
+      .social-links {
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-title {
+        font-size: 1.8rem;
+      }
+      .hero-subtitle {
+        font-size: 0.85rem;
+      }
+      .section-heading {
+        font-size: 1.4rem;
+      }
+      .stat-number {
+        font-size: 1.6rem;
+      }
+      .intro-title {
+        font-size: 1.3rem;
+      }
+      .intro-arrow {
+        margin: 0 3px;
+      }
+      .cta-title {
+        font-size: 1.4rem;
+      }
+      .btn-primary-cta, .btn-outline-cta {
+        width: 90%;
+        font-size: 0.85rem;
       }
     }
   </style>
@@ -832,14 +1051,13 @@
       <a href="why-qite.html">Why QITE</a>
       <a href="how-qite-works.html" class="active"> How It Works</a>
       <a href="index.html#internships"> Internships</a>
-      <a href="#contact"> Contact</a>
+      <a href="contact.html"> Contact</a>
     </div>
   </nav>
 
   <!-- Hero Section -->
   <section class="hero-section">
     <div class="hero-overlay"></div>
-    
     <div class="hero-content-wrapper">
       <div class="hero-badge">
         <i class="fas fa-diagram-project"></i> THE QITE MODEL
@@ -862,201 +1080,24 @@
   </div>
 
   <!-- Intro Section - Bubble/Card UI -->
-<div class="container">
-  <div style="padding: 3rem 0 4rem;">
-    <div class="intro-bubble">
-      <div class="intro-icon-wrapper">
-        
-      </div>
-      <h2 class="intro-title">Explore <span class="intro-arrow">→</span> Train <span class="intro-arrow">→</span> Intern</h2>
-      <p class="intro-description">
-        Our proven three-phase model ensures you're fully prepared, confident, and ready to contribute from day one of your internship.
-      </p>
-      <div class="intro-badge-group">
-        <span class="intro-badge">1-2 Weeks Exploration</span>
-        <span class="intro-badge">2-4 Weeks Training</span>
-        <span class="intro-badge">8-12 Weeks Internship</span>
+  <div class="container">
+    <div style="padding: 2rem 0 3rem;">
+      <div class="intro-bubble">
+        <div class="intro-icon-circle">
+          <i class="fas fa-chalkboard-user"></i>
+        </div>
+        <h2 class="intro-title">Explore <span class="intro-arrow">→</span> Train <span class="intro-arrow">→</span> Intern</h2>
+        <p class="intro-description">
+          Our proven three-phase model ensures you're fully prepared, confident, and ready to contribute from day one of your internship.
+        </p>
+        <div class="intro-badge-group">
+          <span class="intro-badge">1-2 Weeks Exploration</span>
+          <span class="intro-badge">2-4 Weeks Training</span>
+          <span class="intro-badge">8-12 Weeks Internship</span>
+        </div>
       </div>
     </div>
   </div>
-</div>
-<style>
-    /* ===== Intro Bubble Card ===== */
-.intro-bubble {
-  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-  border-radius: 60px 20px 60px 20px;
-  padding: 3.5rem 3rem;
-  box-shadow: 0 30px 50px -20px rgba(11, 74, 111, 0.15), 0 0 0 1px rgba(11, 74, 111, 0.05) inset;
-  border: 1px solid rgba(110, 200, 255, 0.15);
-  position: relative;
-  overflow: hidden;
-  transition: all 0.4s ease;
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
-.intro-bubble:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 40px 60px -20px rgba(11, 74, 111, 0.2), 0 0 0 1px rgba(11, 74, 111, 0.08) inset;
-  border-color: rgba(110, 200, 255, 0.3);
-}
-
-.intro-bubble::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  right: -20%;
-  width: 300px;
-  height: 300px;
-  background: radial-gradient(circle, rgba(110, 200, 255, 0.05) 0%, transparent 70%);
-  border-radius: 50%;
-  pointer-events: none;
-}
-
-.intro-bubble::after {
-  content: '';
-  position: absolute;
-  bottom: -30%;
-  left: -10%;
-  width: 250px;
-  height: 250px;
-  background: radial-gradient(circle, rgba(11, 74, 111, 0.04) 0%, transparent 70%);
-  border-radius: 50%;
-  pointer-events: none;
-}
-
-.intro-icon-wrapper {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 1.5rem;
-  position: relative;
-  z-index: 2;
-}
-
-.intro-icon-circle {
-  width: 80px;
-  height: 80px;
-  background: linear-gradient(135deg, #0b4a6f, #1a6a96);
-  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 15px 30px -10px rgba(11, 74, 111, 0.3);
-  animation: morphShape 8s ease-in-out infinite;
-}
-
-@keyframes morphShape {
-  0%, 100% {
-    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-  }
-  25% {
-    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-  }
-  50% {
-    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
-  }
-  75% {
-    border-radius: 40% 60% 30% 70% / 40% 70% 30% 60%;
-  }
-}
-
-.intro-icon-circle i {
-  font-size: 2.5rem;
-  color: white;
-}
-
-.intro-title {
-  font-size: 2.8rem;
-  font-weight: 700;
-  color: #0b2b4a;
-  text-align: center;
-  margin-bottom: 1.2rem;
-  letter-spacing: -0.02em;
-  position: relative;
-  z-index: 2;
-}
-
-.intro-arrow {
-  color: #0b4a6f;
-  font-weight: 300;
-  margin: 0 8px;
-  opacity: 0.6;
-}
-
-.intro-description {
-  font-size: 1.2rem;
-  color: #5a6d80;
-  text-align: center;
-  max-width: 700px;
-  margin: 0 auto 1.8rem;
-  line-height: 1.7;
-  position: relative;
-  z-index: 2;
-}
-
-.intro-badge-group {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  flex-wrap: wrap;
-  position: relative;
-  z-index: 2;
-}
-
-.intro-badge {
-  background: linear-gradient(135deg, #e8f4fd, #dcecf5);
-  color: #0b4a6f;
-  padding: 0.6rem 1.5rem;
-  border-radius: 40px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  letter-spacing: 0.3px;
-  border: 1px solid rgba(11, 74, 111, 0.1);
-  box-shadow: 0 4px 10px -5px rgba(11, 74, 111, 0.1);
-  transition: all 0.3s ease;
-}
-
-.intro-badge:hover {
-  background: #0b4a6f;
-  color: white;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 15px -5px rgba(11, 74, 111, 0.2);
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .intro-bubble {
-    padding: 2.5rem 1.5rem;
-    border-radius: 40px 15px 40px 15px;
-  }
-  
-  .intro-title {
-    font-size: 2rem;
-  }
-  
-  .intro-description {
-    font-size: 1rem;
-  }
-  
-  .intro-icon-circle {
-    width: 65px;
-    height: 65px;
-  }
-  
-  .intro-icon-circle i {
-    font-size: 2rem;
-  }
-  
-  .intro-badge-group {
-    gap: 0.8rem;
-  }
-  
-  .intro-badge {
-    padding: 0.5rem 1.2rem;
-    font-size: 0.8rem;
-  }
-}
-</style>
 
   <!-- Phase 1: Exploration -->
   <section class="section-new section-white">
@@ -1071,7 +1112,7 @@
           <li><i class="fas fa-check-circle"></i> <span><strong>Career coaching:</strong> 1-on-1 sessions with experienced career coaches</span></li>
           <li><i class="fas fa-check-circle"></i> <span><strong>Job shadowing:</strong> Observe professionals before committing to an internship</span></li>
         </ul>
-        <div style="margin-top: 1.5rem;">
+        <div style="margin-top: 1rem;">
           <span class="duration-badge">
             <i class="far fa-clock"></i> Duration: 1-2 weeks
           </span>
@@ -1096,7 +1137,7 @@
           <li><i class="fas fa-check-circle"></i> <span><strong>Technical skills:</strong> Hands-on practice with tools and technologies</span></li>
           <li><i class="fas fa-check-circle"></i> <span><strong>Soft skills:</strong> Communication, teamwork, and professional etiquette</span></li>
         </ul>
-        <div style="margin-top: 1.5rem;">
+        <div style="margin-top: 1rem;">
           <span class="duration-badge">
             <i class="far fa-clock"></i> Duration: 2-4 weeks
           </span>
@@ -1121,7 +1162,7 @@
           <li><i class="fas fa-check-circle"></i> <span><strong>Performance reviews:</strong> Regular check-ins to track your growth</span></li>
           <li><i class="fas fa-check-circle"></i> <span><strong>Networking:</strong> Build connections with industry professionals</span></li>
         </ul>
-        <div style="margin-top: 1.5rem;">
+        <div style="margin-top: 1rem;">
           <span class="duration-badge">
             <i class="far fa-clock"></i> Duration: 8-12 weeks
           </span>
