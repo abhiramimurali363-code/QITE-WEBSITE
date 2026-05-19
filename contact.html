@@ -21,189 +21,222 @@
       overflow-x: hidden;
     }
 
-/* ===== NAVIGATION - VISIBLE ON MOBILE ===== */
-.navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 100;
-  padding: 1rem 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: linear-gradient(to bottom, rgba(8, 28, 51, 0.95), transparent);
-  transition: all 0.3s ease;
-  flex-wrap: wrap;
-}
+    /* ===== NAVIGATION - DESKTOP & MOBILE HAMBURGER ===== */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: linear-gradient(to bottom, rgba(8, 28, 51, 0.95), transparent);
+      transition: all 0.3s ease;
+      flex-wrap: wrap;
+    }
 
-.navbar.scrolled {
-  background: rgba(255, 255, 255, 0.96);
-  backdrop-filter: blur(15px);
-  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
-  padding: 0.7rem 1.5rem;
-}
+    .navbar.scrolled {
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(15px);
+      box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
+      padding: 0.7rem 1.5rem;
+    }
 
-.navbar.scrolled .logo,
-.navbar.scrolled .nav-links a {
-  color: #0b2b4a;
-}
+    .navbar.scrolled .logo,
+    .navbar.scrolled .nav-links a {
+      color: #0b2b4a;
+    }
 
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-weight: 700;
-  font-size: 1.7rem;
-  color: white;
-  text-decoration: none;
-}
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 700;
+      font-size: 1.7rem;
+      color: white;
+      text-decoration: none;
+      z-index: 1002;
+    }
 
-.logo i {
-  font-size: 1.8rem;
-  color: #6ec8ff;
-}
+    .logo i {
+      font-size: 1.8rem;
+      color: #6ec8ff;
+    }
 
-.nav-links {
-  display: flex;
-  gap: 1.5rem;
-}
+    /* Desktop navigation links (visible on large screens) */
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+    }
 
-.nav-links a {
-  text-decoration: none;
-  color: white;
-  font-weight: 500;
-  font-size: 1rem;
-  transition: 0.3s;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
+    .nav-links a {
+      text-decoration: none;
+      color: white;
+      font-weight: 500;
+      font-size: 1rem;
+      transition: 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
 
-.nav-links a i {
-  font-size: 0.95rem;
-}
+    .nav-links a i {
+      font-size: 0.95rem;
+    }
 
-.nav-links a:hover {
-  color: #6ec8ff;
-}
+    .nav-links a:hover {
+      color: #6ec8ff;
+    }
 
-.nav-links a.active {
-  color: #6ec8ff;
-}
+    .nav-links a.active {
+      color: #6ec8ff;
+    }
 
-.navbar.scrolled .nav-links a.active {
-  color: #0b4a6f;
-}
+    .navbar.scrolled .nav-links a.active {
+      color: #0b4a6f;
+    }
 
-/* ===== MOBILE RESPONSIVE - NAVBAR STAYS VISIBLE ===== */
-@media (max-width: 768px) {
-  .navbar {
-    padding: 0.8rem 1rem;
-    flex-direction: column;
-    gap: 0.8rem;
-  }
-  
-  .logo {
-    width: 100%;
-    justify-content: center;
-    font-size: 1.5rem;
-  }
-  
-  .logo i {
-    font-size: 1.6rem;
-  }
-  
-  .nav-links {
-    width: 100%;
-    justify-content: center;
-    gap: 0.8rem;
-    flex-wrap: wrap;
-  }
-  
-  .nav-links a {
-    font-size: 0.85rem;
-    padding: 0.4rem 0.8rem;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 50px;
-  }
-  
-  .navbar.scrolled .nav-links a {
-    background: rgba(0, 0, 0, 0.05);
-  }
-  
-  .nav-links a i {
-    font-size: 0.8rem;
-  }
-}
+    /* ===== HAMBURGER BUTTON (Mobile Only) ===== */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 30px;
+      height: 21px;
+      cursor: pointer;
+      z-index: 1002;
+      background: transparent;
+      border: none;
+      padding: 0;
+    }
 
-@media (max-width: 480px) {
-  .nav-links {
-    gap: 0.5rem;
-  }
-  
-  .nav-links a {
-    font-size: 0.75rem;
-    padding: 0.3rem 0.6rem;
-  }
-}
-/* ===== MOBILE RESPONSIVE - KEEP NAVBAR VISIBLE ===== */
-@media (max-width: 768px) {
-  .navbar {
-    padding: 0.8rem 1rem;
-    background: rgba(8, 28, 51, 0.95);
-  }
-  
-  .navbar.scrolled {
-    background: rgba(255, 255, 255, 0.96);
-  }
-  
-  .logo {
-    font-size: 1.4rem;
-  }
-  
-  .logo i {
-    font-size: 1.5rem;
-  }
-  
-  .nav-links {
-    display: flex !important;
-    gap: 0.6rem;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  
-  .nav-links a {
-    font-size: 0.8rem;
-    padding: 0.3rem 0.7rem;
-    background: rgba(255, 255, 255, 0.15);
-    border-radius: 50px;
-  }
-  
-  .navbar.scrolled .nav-links a {
-    background: rgba(0, 0, 0, 0.08);
-    color: #0b2b4a;
-  }
-  
-  .nav-links a i {
-    font-size: 0.75rem;
-  }
-}
+    .hamburger span {
+      display: block;
+      height: 3px;
+      width: 100%;
+      background-color: white;
+      border-radius: 3px;
+      transition: all 0.3s ease;
+    }
 
-@media (max-width: 480px) {
-  .nav-links a {
-    font-size: 0.7rem;
-    padding: 0.25rem 0.5rem;
-  }
-  
-  .logo {
-    font-size: 1.2rem;
-  }
-  
-  .logo i {
-    font-size: 1.3rem;
-  }
-}
+    .navbar.scrolled .hamburger span {
+      background-color: #0b2b4a;
+    }
+
+    /* Mobile menu panel */
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: rgba(10, 30, 48, 0.98);
+      backdrop-filter: blur(20px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform: translateX(100%);
+      transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      visibility: hidden;
+    }
+
+    .mobile-menu.open {
+      transform: translateX(0);
+      visibility: visible;
+    }
+
+    .mobile-menu-links {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+      text-align: center;
+    }
+
+    .mobile-menu-links a {
+      color: white;
+      text-decoration: none;
+      font-size: 1.6rem;
+      font-weight: 600;
+      transition: 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .mobile-menu-links a i {
+      font-size: 1.3rem;
+    }
+
+    .mobile-menu-links a:hover,
+    .mobile-menu-links a.active {
+      color: #6ec8ff;
+    }
+
+    .close-menu {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      background: rgba(255,255,255,0.1);
+      border: none;
+      color: white;
+      font-size: 1.8rem;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .close-menu:hover {
+      background: #0b4a6f;
+    }
+
+    /* Responsive: Show hamburger and hide desktop nav-links on mobile */
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 0.8rem 1.2rem;
+      }
+      
+      .nav-links {
+        display: none;
+      }
+      
+      .hamburger {
+        display: flex;
+      }
+      
+      .logo {
+        font-size: 1.5rem;
+      }
+      
+      .logo i {
+        font-size: 1.6rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .navbar {
+        padding: 0.7rem 1rem;
+      }
+      .logo {
+        font-size: 1.3rem;
+      }
+      .logo i {
+        font-size: 1.4rem;
+      }
+      .mobile-menu-links a {
+        font-size: 1.3rem;
+        gap: 10px;
+      }
+    }
+
     /* ===== Hero with Background Image ===== */
     .hero-contact {
       position: relative;
@@ -482,7 +515,7 @@
       border: none;
     }
 
-    /* ===== Footer - SAME AS INDEX.HTML ===== */
+    /* ===== Footer - SAME AS ORIGINAL ===== */
     .footer {
       background: linear-gradient(135deg, #0a1e30, #0b2b4a);
       color: white;
@@ -597,12 +630,6 @@
     }
 
     @media (max-width: 768px) {
-      .navbar {
-        padding: 0.8rem 1rem;
-      }
-      .nav-links {
-        display: none;
-      }
       .hero-contact {
         min-height: 320px;
       }
@@ -717,25 +744,50 @@
         justify-content: center;
       }
     }
+
+    /* prevent body scroll when mobile menu open */
+    body.menu-open {
+      overflow: hidden;
+    }
   </style>
 </head>
 <body>
 
-  <!-- Navigation - EXACTLY SAME AS ALL OTHER PAGES -->
- <!-- Navigation - SAME ON ALL PAGES -->
-<nav class="navbar" id="navbar">
-  <a href="index.html" class="logo">
-    <i class="fas fa-bolt"></i>
-    <span>QITE</span>
-  </a>
-  <div class="nav-links">
-    <a href="index.html"> Home</a>
-    <a href="why-qite.html"> Why QITE</a>
-    <a href="how-qite-works.html"> How It Works</a>
-    <a href="internships.html"> Internships</a>
-    <a href="contact.html"> Contact</a>
+  <!-- Navigation with hamburger button for mobile -->
+  <nav class="navbar" id="navbar">
+    <a href="index.html" class="logo">
+      <i class="fas fa-bolt"></i>
+      <span>QITE</span>
+    </a>
+    <!-- Desktop nav links (visible on larger screens) -->
+    <div class="nav-links">
+      <a href="index.html"> Home</a>
+      <a href="why-qite.html"> Why QITE</a>
+      <a href="how-qite-works.html"> How It Works</a>
+      <a href="internships.html"> Internships</a>
+      <a href="contact.html" class="active"> Contact</a>
+    </div>
+    <!-- Hamburger button for mobile -->
+    <button class="hamburger" id="hamburgerBtn" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile menu overlay -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="close-menu" id="closeMenuBtn" aria-label="Close">
+      <i class="fas fa-times"></i>
+    </button>
+    <div class="mobile-menu-links">
+      <a href="index.html"><i class="fas fa-home"></i> Home</a>
+      <a href="why-qite.html"><i class="fas fa-question-circle"></i> Why QITE</a>
+      <a href="how-qite-works.html"><i class="fas fa-cogs"></i> How It Works</a>
+      <a href="internships.html"><i class="fas fa-briefcase"></i> Internships</a>
+      <a href="contact.html" class="active"><i class="fas fa-envelope"></i> Contact</a>
+    </div>
   </div>
-</nav>
 
   <!-- Hero with Background Image -->
   <section class="hero-contact">
@@ -803,7 +855,7 @@
           <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
           <div>
             <h4>Our Office</h4>
-            <p>500 Sansome Street, Suite 400<br>San Francisco, CA 94111</p>
+            <p>3rd Floor, Aleema square, Beypore-Kozhikode Road, Kannanchery, Kozhikode, Kerala-673003</p>
           </div>
         </div>
 
@@ -838,7 +890,7 @@
     </div>
   </div>
 
-  <!-- Footer - SAME AS ALL OTHER PAGES -->
+  <!-- Footer -->
   <footer class="footer">
     <div class="footer-content">
       <div class="footer-section">
@@ -885,6 +937,7 @@
   </footer>
 
   <script>
+    // Navbar scroll effect
     window.addEventListener('scroll', function() {
       const navbar = document.getElementById('navbar');
       if (window.scrollY > 100) {
@@ -894,34 +947,70 @@
       }
     });
 
-    document.getElementById('sendBtn').addEventListener('click', function(e) {
-      e.preventDefault();
-      
-      const name = document.getElementById('fullName').value.trim();
-      const email = document.getElementById('emailAddr').value.trim();
-      const subject = document.getElementById('subjectLine').value.trim();
-      const message = document.getElementById('msgContent').value.trim();
+    // Mobile menu elements
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const closeMenuBtn = document.getElementById('closeMenuBtn');
+    const body = document.body;
 
-      if (!name || !email || !subject || !message) {
-        alert('Please fill in all fields.');
-        return;
-      }
+    function openMobileMenu() {
+      mobileMenu.classList.add('open');
+      body.classList.add('menu-open');
+    }
 
-      const btn = this;
-      const originalText = btn.innerHTML;
-      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-      btn.disabled = true;
+    function closeMobileMenu() {
+      mobileMenu.classList.remove('open');
+      body.classList.remove('menu-open');
+    }
 
-      setTimeout(() => {
-        alert('✅ Message sent! We\'ll reply within 24 hours.');
-        document.getElementById('fullName').value = '';
-        document.getElementById('emailAddr').value = '';
-        document.getElementById('subjectLine').value = '';
-        document.getElementById('msgContent').value = '';
-        btn.innerHTML = originalText;
-        btn.disabled = false;
-      }, 1500);
+    hamburgerBtn.addEventListener('click', openMobileMenu);
+    closeMenuBtn.addEventListener('click', closeMobileMenu);
+
+    // Close mobile menu when any link is clicked
+    const mobileLinks = document.querySelectorAll('.mobile-menu-links a');
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', closeMobileMenu);
     });
+
+    // Close menu when clicking outside content area (on backdrop)
+    mobileMenu.addEventListener('click', (e) => {
+      if (e.target === mobileMenu) {
+        closeMobileMenu();
+      }
+    });
+
+    // Contact form submit handler (same as original with enhancement)
+    const sendBtn = document.getElementById('sendBtn');
+    if (sendBtn) {
+      sendBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const name = document.getElementById('fullName').value.trim();
+        const email = document.getElementById('emailAddr').value.trim();
+        const subject = document.getElementById('subjectLine').value.trim();
+        const message = document.getElementById('msgContent').value.trim();
+
+        if (!name || !email || !subject || !message) {
+          alert('Please fill in all fields.');
+          return;
+        }
+
+        const btn = this;
+        const originalText = btn.innerHTML;
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+        btn.disabled = true;
+
+        setTimeout(() => {
+          alert('✅ Message sent! We\'ll reply within 24 hours.');
+          document.getElementById('fullName').value = '';
+          document.getElementById('emailAddr').value = '';
+          document.getElementById('subjectLine').value = '';
+          document.getElementById('msgContent').value = '';
+          btn.innerHTML = originalText;
+          btn.disabled = false;
+        }, 1500);
+      });
+    }
   </script>
 </body>
 </html>
