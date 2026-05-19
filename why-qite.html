@@ -361,7 +361,7 @@
       border-radius: 2px;
     }
 
-    /* ===== Benefits Flip Grid - FULLY MOBILE RESPONSIVE ===== */
+    /* ===== Benefits Flip Grid - FIXED FOR MOBILE ===== */
     .benefits-flip-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -376,6 +376,13 @@
       cursor: pointer;
     }
 
+    /* For desktop hover support */
+    @media (min-width: 769px) {
+      .flip-card:hover .flip-card-inner {
+        transform: rotateY(180deg);
+      }
+    }
+
     .flip-card-inner {
       position: relative;
       width: 100%;
@@ -387,7 +394,8 @@
       box-shadow: 0 15px 35px -12px rgba(0, 0, 0, 0.1);
     }
 
-    .flip-card:hover .flip-card-inner {
+    /* Flip class added via JavaScript for mobile tap */
+    .flip-card.flipped .flip-card-inner {
       transform: rotateY(180deg);
     }
 
@@ -414,6 +422,7 @@
       transition: opacity 0.3s ease;
     }
 
+    .flip-card.flipped .flip-card-front img,
     .flip-card:hover .flip-card-front img {
       opacity: 0.5;
     }
@@ -462,6 +471,7 @@
       transition: opacity 0.3s ease;
     }
 
+    .flip-card.flipped .flip-hint,
     .flip-card:hover .flip-hint {
       opacity: 1;
     }
@@ -1462,6 +1472,35 @@
     // Observe all feature blocks
     document.querySelectorAll('.feature-block').forEach(block => {
       featureObserver.observe(block);
+    });
+
+    // ===== FIX: Mobile Flip Card Functionality =====
+    // Add click/tap support for flip cards on mobile devices
+    const flipCards = document.querySelectorAll('.flip-card');
+    
+    flipCards.forEach(card => {
+      card.addEventListener('click', function(e) {
+        // Only apply this behavior on mobile screens (max-width: 768px)
+        if (window.innerWidth <= 768) {
+          e.stopPropagation();
+          // Toggle the flipped class
+          this.classList.toggle('flipped');
+        }
+      });
+    });
+
+    // Optional: Close other flip cards when clicking on a different one (for better UX)
+    flipCards.forEach(card => {
+      card.addEventListener('click', function(e) {
+        if (window.innerWidth <= 768) {
+          // Close all other cards
+          flipCards.forEach(otherCard => {
+            if (otherCard !== card && otherCard.classList.contains('flipped')) {
+              otherCard.classList.remove('flipped');
+            }
+          });
+        }
+      });
     });
   </script>
 </body>
