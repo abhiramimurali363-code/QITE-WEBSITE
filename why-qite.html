@@ -361,7 +361,7 @@
       border-radius: 2px;
     }
 
-    /* ===== Benefits Flip Grid - FIXED FOR MOBILE ===== */
+    /* ===== Benefits Flip Grid - FULLY MOBILE RESPONSIVE ===== */
     .benefits-flip-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -469,21 +469,15 @@
       margin-top: 0.5rem;
     }
 
-    /* Mobile tap instruction badge - MORE VISIBLE */
+    /* Mobile tap instruction - only shown on mobile */
     .tap-instruction {
       display: none;
-      background: rgba(110, 200, 255, 0.3);
-      backdrop-filter: blur(5px);
-      padding: 0.25rem 0.8rem;
-      border-radius: 30px;
       font-size: 0.65rem;
       font-weight: 500;
       color: #6ec8ff;
-      margin-top: 0.6rem;
-      letter-spacing: 0.5px;
+      margin-top: 0.5rem;
     }
 
-    /* Show tap instruction only on mobile */
     @media (max-width: 768px) {
       .tap-instruction {
         display: inline-flex;
@@ -492,14 +486,9 @@
       }
     }
 
-    .flip-hint i {
+    .flip-hint i,
+    .tap-instruction i {
       font-size: 0.65rem;
-      animation: spinHint 3s infinite;
-    }
-
-    @keyframes spinHint {
-      0%, 100% { transform: rotate(0deg); }
-      50% { transform: rotate(180deg); }
     }
 
     /* Back of card */
@@ -1090,8 +1079,8 @@
             <div class="flip-overlay"></div>
             <div class="flip-content">
               <h3>Clarity Before Commitment</h3>
-              <span class="flip-hint"></span>
-              <span class="tap-instruction"><i class="fas fa-fingerprint"></i> Tap to flip</span>
+              <span class="flip-hint"><i class="fas fa-sync-alt"></i> Hover to explore</span>
+              <span class="tap-instruction"><i class="fas fa-hand-pointer"></i> Tap to flip</span>
             </div>
           </div>
           <div class="flip-card-back">
@@ -1121,8 +1110,8 @@
             <div class="flip-overlay"></div>
             <div class="flip-content">
               <h3>Dedicated Mentorship</h3>
-              <span class="flip-hint"></span>
-              <span class="tap-instruction"><i class="fas fa-fingerprint"></i> Tap to flip</span>
+              <span class="flip-hint"><i class="fas fa-sync-alt"></i> Hover to explore</span>
+              <span class="tap-instruction"><i class="fas fa-hand-pointer"></i> Tap to flip</span>
             </div>
           </div>
           <div class="flip-card-back">
@@ -1152,8 +1141,8 @@
             <div class="flip-overlay"></div>
             <div class="flip-content">
               <h3>Industry-Recognized Training</h3>
-              <span class="flip-hint"></span>
-              <span class="tap-instruction"><i class="fas fa-fingerprint"></i> Tap to flip</span>
+              <span class="flip-hint"><i class="fas fa-sync-alt"></i> Hover to explore</span>
+              <span class="tap-instruction"><i class="fas fa-hand-pointer"></i> Tap to flip</span>
             </div>
           </div>
           <div class="flip-card-back">
@@ -1183,8 +1172,8 @@
             <div class="flip-overlay"></div>
             <div class="flip-content">
               <h3>Global Opportunities</h3>
-              <span class="flip-hint"> </span>
-              <span class="tap-instruction"><i class="fas fa-fingerprint"></i> Tap to flip</span>
+              <span class="flip-hint"><i class="fas fa-sync-alt"></i> Hover to explore</span>
+              <span class="tap-instruction"><i class="fas fa-hand-pointer"></i> Tap to flip</span>
             </div>
           </div>
           <div class="flip-card-back">
@@ -1214,8 +1203,8 @@
             <div class="flip-overlay"></div>
             <div class="flip-content">
               <h3>89% Job Offer Rate</h3>
-              <span class="flip-hint"></i></span>
-              <span class="tap-instruction"><i class="fas fa-fingerprint"></i> Tap to flip</span>
+              <span class="flip-hint"><i class="fas fa-sync-alt"></i> Hover to explore</span>
+              <span class="tap-instruction"><i class="fas fa-hand-pointer"></i> Tap to flip</span>
             </div>
           </div>
           <div class="flip-card-back">
@@ -1245,8 +1234,8 @@
             <div class="flip-overlay"></div>
             <div class="flip-content">
               <h3>500+ Partner Companies</h3>
-              <span class="flip-hint"></span>
-              <span class="tap-instruction"><i class="fas fa-fingerprint"></i> Tap to flip</span>
+              <span class="flip-hint"><i class="fas fa-sync-alt"></i> Hover to explore</span>
+              <span class="tap-instruction"><i class="fas fa-hand-pointer"></i> Tap to flip</span>
             </div>
           </div>
           <div class="flip-card-back">
@@ -1496,27 +1485,34 @@
       featureObserver.observe(block);
     });
 
-    // ===== FIXED: Mobile Flip Card Functionality with Better UX =====
+    // ===== FIXED: Mobile Flip Card Functionality (Only fix - no other changes) =====
     const flipCards = document.querySelectorAll('.flip-card');
     
+    // Function to close all flip cards
+    function closeAllFlipCards() {
+      flipCards.forEach(card => {
+        card.classList.remove('flipped');
+      });
+    }
+    
+    // Add click/tap support for flip cards on mobile devices only
     flipCards.forEach(card => {
-      // For mobile: toggle flip on tap
       card.addEventListener('click', function(e) {
         // Only apply this behavior on mobile screens (max-width: 768px)
         if (window.innerWidth <= 768) {
           e.stopPropagation();
           
-          // Toggle the flipped class on this card
+          // Check if this card is already flipped
           const isFlipped = this.classList.contains('flipped');
           
-          // First, close all other cards
+          // Close all other cards first
           flipCards.forEach(otherCard => {
             if (otherCard !== this && otherCard.classList.contains('flipped')) {
               otherCard.classList.remove('flipped');
             }
           });
           
-          // Then toggle this card
+          // Toggle this card
           if (!isFlipped) {
             this.classList.add('flipped');
           } else {
@@ -1526,19 +1522,14 @@
       });
     });
 
-    // Optional: Reset flip when scrolling (improves UX on mobile)
-    let scrollTimeout;
+    // Optional: When scrolling on mobile, auto-close flip cards after delay
+    let scrollTimer;
     window.addEventListener('scroll', function() {
       if (window.innerWidth <= 768) {
-        // Clear previous timeout
-        if (scrollTimeout) clearTimeout(scrollTimeout);
-        
-        // After scrolling stops, flip cards back
-        scrollTimeout = setTimeout(function() {
-          flipCards.forEach(card => {
-            card.classList.remove('flipped');
-          });
-        }, 2000);
+        if (scrollTimer) clearTimeout(scrollTimer);
+        scrollTimer = setTimeout(() => {
+          closeAllFlipCards();
+        }, 2500);
       }
     });
   </script>
