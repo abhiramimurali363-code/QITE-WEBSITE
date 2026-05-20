@@ -515,19 +515,19 @@
       border: none;
     }
 
-    /* ===== Footer - SAME AS ORIGINAL ===== */
+    /* ===== FOOTER - STANDARDIZED (consistent with other pages) ===== */
     .footer {
       background: linear-gradient(135deg, #0a1e30, #0b2b4a);
       color: white;
-      padding: 3rem 0 1.5rem;
-      margin-top: 2.5rem;
+      padding: 2.5rem 0 1.2rem;
+      margin-top: 2rem;
       width: 100vw;
       margin-left: calc(-50vw + 50%);
       margin-right: calc(-50vw + 50%);
     }
 
     .footer-content {
-      max-width: 1100px;
+      max-width: 1300px;
       margin: 0 auto;
       padding: 0 1.5rem;
       display: grid;
@@ -537,17 +537,14 @@
 
     .footer-section h4 {
       font-size: 1rem;
-      margin-bottom: 1.2rem;
+      margin-bottom: 1rem;
       color: #6ec8ff;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
     }
 
     .footer-section p {
       color: #b8d4e8;
-      margin-bottom: 1.2rem;
-      font-size: 0.85rem;
+      margin-bottom: 1rem;
+      font-size: 0.8rem;
       line-height: 1.5;
     }
 
@@ -556,38 +553,38 @@
     }
 
     .footer-section ul li {
-      margin-bottom: 0.6rem;
+      margin-bottom: 0.5rem;
     }
 
     .footer-section ul li a {
       color: #b8d4e8;
       text-decoration: none;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       transition: color 0.3s;
     }
 
     .footer-section ul li a:hover {
-      color: #ffffff;
+      color: #6ec8ff;
     }
 
     .social-links {
       display: flex;
       gap: 0.8rem;
-      margin-top: 1rem;
+      margin-top: 0.8rem;
+      flex-wrap: wrap;
     }
 
     .social-links a {
       color: white;
       background: rgba(255, 255, 255, 0.1);
-      width: 36px;
-      height: 36px;
+      width: 34px;
+      height: 34px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       transition: all 0.3s;
       text-decoration: none;
-      font-size: 1rem;
     }
 
     .social-links a:hover {
@@ -596,15 +593,15 @@
     }
 
     .footer-bottom {
-      max-width: 1100px;
-      margin: 2rem auto 0;
+      max-width: 1300px;
+      margin: 1.5rem auto 0;
       padding: 1.2rem 1.5rem 0;
       border-top: 1px solid rgba(255, 255, 255, 0.1);
       display: flex;
       justify-content: space-between;
       align-items: center;
       color: #8aa9c2;
-      font-size: 0.8rem;
+      font-size: 0.7rem;
       flex-wrap: wrap;
       gap: 0.8rem;
     }
@@ -618,11 +615,35 @@
       color: #ffffff;
     }
 
+    .newsletter-input {
+      display: flex;
+      margin-top: 0.8rem;
+    }
+
+    .newsletter-input input {
+      flex: 1;
+      padding: 0.6rem 0.8rem;
+      border: none;
+      border-radius: 8px 0 0 8px;
+      outline: none;
+      font-size: 0.8rem;
+    }
+
+    .newsletter-input button {
+      background: #0b4a6f;
+      color: white;
+      border: none;
+      padding: 0.6rem 1rem;
+      border-radius: 0 8px 8px 0;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
     /* ===== FULLY MOBILE RESPONSIVE ===== */
     @media (max-width: 1024px) {
       .footer-content {
         grid-template-columns: repeat(2, 1fr);
-        gap: 2rem;
+        gap: 1.5rem;
       }
       .quick-contact {
         gap: 1rem;
@@ -699,7 +720,7 @@
         height: 180px;
       }
       .footer {
-        padding: 2.5rem 0 1.2rem;
+        padding: 2rem 0 1.2rem;
       }
       .footer-content {
         grid-template-columns: 1fr;
@@ -890,7 +911,7 @@
     </div>
   </div>
 
-  <!-- Footer -->
+  <!-- Footer - Standardized Footer -->
   <footer class="footer">
     <div class="footer-content">
       <div class="footer-section">
@@ -900,8 +921,10 @@
           <a href="#"><i class="fab fa-linkedin-in"></i></a>
           <a href="#"><i class="fab fa-twitter"></i></a>
           <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
         </div>
       </div>
+      
       <div class="footer-section">
         <h4>Quick Links</h4>
         <ul>
@@ -909,29 +932,38 @@
           <li><a href="how-qite-works.html">How It Works</a></li>
           <li><a href="internships.html">Internships</a></li>
           <li><a href="#">For Employers</a></li>
+          <li><a href="#">Blog</a></li>
         </ul>
       </div>
+      
       <div class="footer-section">
         <h4>Resources</h4>
         <ul>
           <li><a href="#">Career Guides</a></li>
           <li><a href="#">Resume Tips</a></li>
           <li><a href="#">Interview Prep</a></li>
+          <li><a href="#">Salary Insights</a></li>
           <li><a href="#">FAQs</a></li>
         </ul>
       </div>
+      
       <div class="footer-section">
         <h4>Stay Updated</h4>
-        <p>Get the latest internship opportunities.</p>
-        <p style="margin-top: 1rem;">hello@qite.co</p>
+        <p>Get the latest internship opportunities and career advice.</p>
+        <div class="newsletter-input">
+          <input type="email" placeholder="Your email">
+          <button><i class="fas fa-paper-plane"></i></button>
+        </div>
       </div>
     </div>
+    
     <div class="footer-bottom">
-      <div>© 2026 QITE. All rights reserved. Experience Before You Decide.</div>
       <div>
-        <a href="#">Privacy Policy</a>
-        <span style="margin: 0 1rem; opacity: 0.5;">|</span>
-        <a href="#">Terms of Service</a>
+        <i class="far fa-copyright"></i> 2026 QITE. All rights reserved. Experience Before You Decide.
+      </div>
+      <div>
+        <a href="#" style="color: #8aa9c2; text-decoration: none; margin-right: 1rem;">Privacy Policy</a>
+        <a href="#" style="color: #8aa9c2; text-decoration: none;">Terms of Service</a>
       </div>
     </div>
   </footer>

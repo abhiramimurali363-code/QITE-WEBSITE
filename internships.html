@@ -286,16 +286,129 @@
     .cta-section p { color: #3f5a6b; margin: 0.5rem 0 1.2rem; font-size: 0.9rem; }
     .btn-primary { padding: 0.7rem 1.8rem; background: #0b5a7e; color: white; border-radius: 50px; font-weight: 600; text-decoration: none; display: inline-block; transition: 0.2s; font-size: 0.9rem; }
 
-    .footer { background: #0c212e; color: #cfdfea; padding: 2.5rem 0 1.2rem; margin-top: 1rem; width: 100vw; margin-left: calc(-50vw + 50%); margin-right: calc(-50vw + 50%); }
-    .footer-content { max-width: 1240px; margin: 0 auto; padding: 0 1.5rem; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 1.8rem; }
-    .footer-section h4 { color: #8bc9f0; text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 0.8rem; font-size: 0.9rem; }
-    .footer-section p, .footer-section a { color: #b7cddd; font-size: 0.8rem; text-decoration: none; line-height: 1.5; }
-    .footer-section ul { list-style: none; }
-    .footer-section ul li { margin-bottom: 0.4rem; }
-    .social-links { display: flex; gap: 0.6rem; margin-top: 0.6rem; flex-wrap: wrap; }
-    .social-links a { background: rgba(255,255,255,0.1); width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.85rem; transition: 0.2s; }
-    .social-links a:hover { background: #0b5a7e; transform: translateY(-2px); }
-    .footer-bottom { max-width: 1240px; margin: 1.5rem auto 0; padding: 1rem 1.5rem 0; border-top: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between; font-size: 0.7rem; flex-wrap: wrap; gap: 0.8rem; }
+    /* ===== FOOTER - STANDARDIZED (consistent with other pages) ===== */
+    .footer {
+      background: linear-gradient(135deg, #0a1e30, #0b2b4a);
+      color: white;
+      padding: 2.5rem 0 1.2rem;
+      margin-top: 2rem;
+      width: 100vw;
+      margin-left: calc(-50vw + 50%);
+      margin-right: calc(-50vw + 50%);
+    }
+
+    .footer-content {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: 2rem;
+    }
+
+    .footer-section h4 {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      color: #6ec8ff;
+    }
+
+    .footer-section p {
+      color: #b8d4e8;
+      margin-bottom: 1rem;
+      font-size: 0.8rem;
+      line-height: 1.5;
+    }
+
+    .footer-section ul {
+      list-style: none;
+    }
+
+    .footer-section ul li {
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-section ul li a {
+      color: #b8d4e8;
+      text-decoration: none;
+      font-size: 0.8rem;
+      transition: color 0.3s;
+    }
+
+    .footer-section ul li a:hover {
+      color: #6ec8ff;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 0.8rem;
+      margin-top: 0.8rem;
+      flex-wrap: wrap;
+    }
+
+    .social-links a {
+      color: white;
+      background: rgba(255, 255, 255, 0.1);
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+      text-decoration: none;
+    }
+
+    .social-links a:hover {
+      background: #0b4a6f;
+      transform: translateY(-3px);
+    }
+
+    .footer-bottom {
+      max-width: 1300px;
+      margin: 1.5rem auto 0;
+      padding: 1.2rem 1.5rem 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #8aa9c2;
+      font-size: 0.7rem;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    .footer-bottom a {
+      color: #8aa9c2;
+      text-decoration: none;
+    }
+
+    .footer-bottom a:hover {
+      color: #ffffff;
+    }
+
+    .newsletter-input {
+      display: flex;
+      margin-top: 0.8rem;
+    }
+
+    .newsletter-input input {
+      flex: 1;
+      padding: 0.6rem 0.8rem;
+      border: none;
+      border-radius: 8px 0 0 8px;
+      outline: none;
+      font-size: 0.8rem;
+    }
+
+    .newsletter-input button {
+      background: #0b4a6f;
+      color: white;
+      border: none;
+      padding: 0.6rem 1rem;
+      border-radius: 0 8px 8px 0;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
 
     /* ===== FULLY MOBILE RESPONSIVE ===== */
     @media (max-width: 900px) {
@@ -427,14 +540,61 @@
   </div>
 </div>
 
+<!-- Footer - Standardized Footer -->
 <footer class="footer">
   <div class="footer-content">
-    <div class="footer-section"><h4>QITE</h4><p>Experience before you decide. Trusted by 15k+ interns worldwide.</p><div class="social-links"><a href="#"><i class="fab fa-linkedin-in"></i></a><a href="#"><i class="fab fa-twitter"></i></a></div></div>
-    <div class="footer-section"><h4>Browse</h4><ul><li><a href="why-qite.html">Why QITE</a></li><li><a href="how-qite-works.html">How it works</a></li><li><a href="internships.html">Internships</a></li></ul></div>
-    <div class="footer-section"><h4>Support</h4><ul><li><a href="contact.html">Contact</a></li><li><a href="#">FAQs</a></li><li><a href="#">Privacy</a></li></ul></div>
-    <div class="footer-section"><h4>Contact</h4><p>hello@qite.co</p></div>
+    <div class="footer-section">
+      <h4>About QITE</h4>
+      <p>QITE helps individuals explore careers, gain experience, and choose the right path. Experience before you decide.</p>
+      <div class="social-links">
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+      </div>
+    </div>
+    
+    <div class="footer-section">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="why-qite.html">Why QITE</a></li>
+        <li><a href="how-qite-works.html">How It Works</a></li>
+        <li><a href="internships.html">Internships</a></li>
+        <li><a href="#">For Employers</a></li>
+        <li><a href="#">Blog</a></li>
+      </ul>
+    </div>
+    
+    <div class="footer-section">
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="#">Career Guides</a></li>
+        <li><a href="#">Resume Tips</a></li>
+        <li><a href="#">Interview Prep</a></li>
+        <li><a href="#">Salary Insights</a></li>
+        <li><a href="#">FAQs</a></li>
+      </ul>
+    </div>
+    
+    <div class="footer-section">
+      <h4>Stay Updated</h4>
+      <p>Get the latest internship opportunities and career advice.</p>
+      <div class="newsletter-input">
+        <input type="email" placeholder="Your email">
+        <button><i class="fas fa-paper-plane"></i></button>
+      </div>
+    </div>
   </div>
-  <div class="footer-bottom"><span>© 2026 QITE. All rights reserved.</span><span><a href="#" style="color:#b7cddd;">Terms</a> · <a href="#" style="color:#b7cddd;">Privacy</a></span></div>
+  
+  <div class="footer-bottom">
+    <div>
+      <i class="far fa-copyright"></i> 2026 QITE. All rights reserved. Experience Before You Decide.
+    </div>
+    <div>
+      <a href="#" style="color: #8aa9c2; text-decoration: none; margin-right: 1rem;">Privacy Policy</a>
+      <a href="#" style="color: #8aa9c2; text-decoration: none;">Terms of Service</a>
+    </div>
+  </div>
 </footer>
 
 <script>
