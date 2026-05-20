@@ -3,9 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Contact · QITE</title>
+  <title>Why Choose QITE · Experience Before You Decide</title>
+  <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -16,12 +18,12 @@
     body {
       font-family: 'Inter', sans-serif;
       color: #1a1f2e;
-      line-height: 1.5;
+      line-height: 1.6;
       background: #fafbfc;
       overflow-x: hidden;
     }
 
-    /* ===== NAVIGATION - DESKTOP & MOBILE HAMBURGER ===== */
+    /* ===== NAVIGATION WITH HAMBURGER (MOBILE FRIENDLY) ===== */
     .navbar {
       position: fixed;
       top: 0;
@@ -34,7 +36,6 @@
       justify-content: space-between;
       background: linear-gradient(to bottom, rgba(8, 28, 51, 0.95), transparent);
       transition: all 0.3s ease;
-      flex-wrap: wrap;
     }
 
     .navbar.scrolled {
@@ -47,6 +48,10 @@
     .navbar.scrolled .logo,
     .navbar.scrolled .nav-links a {
       color: #0b2b4a;
+    }
+
+    .navbar.scrolled .hamburger span {
+      background-color: #0b2b4a;
     }
 
     .logo {
@@ -65,7 +70,7 @@
       color: #6ec8ff;
     }
 
-    /* Desktop navigation links (visible on large screens) */
+    /* Desktop navigation links */
     .nav-links {
       display: flex;
       gap: 1.5rem;
@@ -98,7 +103,7 @@
       color: #0b4a6f;
     }
 
-    /* ===== HAMBURGER BUTTON (Mobile Only) ===== */
+    /* ===== HAMBURGER BUTTON (Mobile only) ===== */
     .hamburger {
       display: none;
       flex-direction: column;
@@ -106,10 +111,10 @@
       width: 30px;
       height: 21px;
       cursor: pointer;
-      z-index: 1002;
       background: transparent;
       border: none;
       padding: 0;
+      z-index: 1002;
     }
 
     .hamburger span {
@@ -119,10 +124,6 @@
       background-color: white;
       border-radius: 3px;
       transition: all 0.3s ease;
-    }
-
-    .navbar.scrolled .hamburger span {
-      background-color: #0b2b4a;
     }
 
     /* Mobile menu panel */
@@ -203,19 +204,15 @@
       .navbar {
         padding: 0.8rem 1.2rem;
       }
-      
       .nav-links {
         display: none;
       }
-      
       .hamburger {
         display: flex;
       }
-      
       .logo {
         font-size: 1.5rem;
       }
-      
       .logo i {
         font-size: 1.6rem;
       }
@@ -237,16 +234,27 @@
       }
     }
 
-    /* ===== Hero with Background Image ===== */
-    .hero-contact {
+    /* Prevent body scroll when mobile menu open */
+    body.menu-open {
+      overflow: hidden;
+    }
+
+    /* ===== Hero Section with Background Image ===== */
+    .hero-section {
       position: relative;
-      height: 50vh;
-      min-height: 380px;
-      background: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover no-repeat;
+      height: 100vh;
+      min-height: 480px;
+      width: 100%;
+      overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
       margin-top: 0;
+      background-image: url("https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&dpr=2");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: scroll;
     }
 
     .hero-overlay {
@@ -255,267 +263,511 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(135deg, rgb(8 28 51 / 75%) 0%, rgb(11 43 74 / 60%) 100%);
+      background: linear-gradient(135deg, rgb(8 28 51 / 65%) 0%, rgb(11 43 74 / 75%) 100%);
+      z-index: 1;
     }
 
-    .hero-content {
+    .hero-content-wrapper {
       position: relative;
       z-index: 2;
       text-align: center;
+      max-width: 1000px;
       padding: 0 1.5rem;
-      margin-top: 30px;
+      animation: fadeInUp 1s ease-out;
     }
 
-    .hero-content h1 {
-      font-size: 2.8rem;
-      font-weight: 700;
-      color: white;
-      margin-bottom: 0.8rem;
-    }
-
-    .hero-content h1 span {
+    .hero-badge {
+      display: inline-block;
+      background: rgba(110, 200, 255, 0.2);
+      backdrop-filter: blur(10px);
+      padding: 0.5rem 1.2rem;
+      border-radius: 50px;
       color: #6ec8ff;
+      font-weight: 500;
+      font-size: 0.8rem;
+      margin-bottom: 1.2rem;
+      border: 1px solid rgba(110, 200, 255, 0.3);
+      letter-spacing: 1.5px;
     }
 
-    .hero-content p {
+    .hero-title {
+      font-size: 2.8rem;
+      font-weight: 800;
+      color: white;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+      text-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero-title span {
+      background: linear-gradient(135deg, #6ec8ff, #ffffff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
       font-size: 1rem;
       color: rgba(255, 255, 255, 0.9);
+      max-width: 800px;
+      margin: 0 auto;
     }
 
     /* ===== Container ===== */
     .container {
-      max-width: 1100px;
+      max-width: 1300px;
       margin: 0 auto;
       padding: 0 1.25rem;
     }
 
-    /* ===== Quick Contact Cards ===== */
-    .quick-contact {
+    /* ===== Breadcrumb ===== */
+    .breadcrumb {
+      padding: 1.5rem 0 1rem;
+      color: #5a6d80;
+      font-size: 0.85rem;
+    }
+
+    .breadcrumb a {
+      color: #0b4a6f;
+      text-decoration: none;
+    }
+
+    .breadcrumb a:hover {
+      text-decoration: underline;
+    }
+
+    /* ===== Section Styles ===== */
+    .section {
+      padding: 2.5rem 0;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #0b2b4a;
+      margin-bottom: 1.5rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, #0b4a6f, #6ec8ff);
+      border-radius: 2px;
+    }
+
+    /* ===== Benefits Flip Grid - FIXED FOR MOBILE ===== */
+    .benefits-flip-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 1.25rem;
-      margin: -45px 0 2.5rem;
-      position: relative;
-      z-index: 10;
+      gap: 1.5rem;
+      margin: 2rem 0;
     }
 
-    .quick-card {
-      background: white;
-      border-radius: 20px;
-      padding: 1.5rem 1rem;
-      text-align: center;
-      box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.1);
-      border: 1px solid #e8edf2;
-      text-decoration: none;
-      color: inherit;
-      transition: all 0.3s ease;
-    }
-
-    .quick-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 25px 45px -12px rgba(11, 74, 111, 0.2);
-    }
-
-    .quick-icon {
-      width: 55px;
-      height: 55px;
-      background: linear-gradient(135deg, #0b4a6f, #1a6a96);
-      border-radius: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 1rem;
-      font-size: 1.6rem;
-      color: white;
-    }
-
-    .quick-card h3 {
-      font-size: 1.05rem;
-      font-weight: 600;
-      color: #0b2b4a;
-      margin-bottom: 0.4rem;
-    }
-
-    .quick-card p {
-      font-size: 0.85rem;
-      color: #5a6d80;
-    }
-
-    /* ===== Main Contact Section ===== */
-    .contact-main {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2.5rem;
-      margin: 2rem 0 4rem;
-    }
-
-    /* Contact Form */
-    .contact-form {
-      background: white;
-      border-radius: 24px;
-      padding: 2rem;
-      border: 1px solid #e8edf2;
-      box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.05);
-    }
-
-    .contact-form h3 {
-      font-size: 1.4rem;
-      font-weight: 600;
-      color: #0b2b4a;
-      margin-bottom: 0.4rem;
-    }
-
-    .contact-form p {
-      color: #5a6d80;
-      margin-bottom: 1.5rem;
-      font-size: 0.9rem;
-    }
-
-    .form-group {
-      margin-bottom: 1rem;
-    }
-
-    .form-group label {
-      display: block;
-      font-size: 0.8rem;
-      font-weight: 500;
-      color: #0b2b4a;
-      margin-bottom: 0.3rem;
-    }
-
-    .form-group input,
-    .form-group textarea {
-      width: 100%;
-      padding: 0.8rem 1rem;
-      border: 1px solid #e2eaf0;
-      border-radius: 12px;
-      font-family: 'Inter', sans-serif;
-      font-size: 0.9rem;
-      outline: none;
-      transition: border-color 0.2s;
-    }
-
-    .form-group input:focus,
-    .form-group textarea:focus {
-      border-color: #0b4a6f;
-    }
-
-    .form-group textarea {
-      min-height: 120px;
-      resize: vertical;
-    }
-
-    .submit-btn {
-      width: 100%;
-      padding: 0.9rem;
-      background: #0b4a6f;
-      color: white;
-      border: none;
-      border-radius: 12px;
-      font-weight: 600;
-      font-size: 0.95rem;
+    .flip-card {
+      background: transparent;
+      height: 360px;
+      perspective: 1500px;
       cursor: pointer;
-      transition: background 0.2s;
     }
 
-    .submit-btn:hover {
-      background: #1a6a96;
+    /* For desktop hover support */
+    @media (min-width: 769px) {
+      .flip-card:hover .flip-card-inner {
+        transform: rotateY(180deg);
+      }
     }
 
-    /* Right Column - Info + Map */
-    .contact-info-col {
+    .flip-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      text-align: left;
+      transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+      transform-style: preserve-3d;
+      border-radius: 20px;
+      box-shadow: 0 15px 35px -12px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Flip class added via JavaScript for mobile tap */
+    .flip-card.flipped .flip-card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .flip-card-front,
+    .flip-card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      border-radius: 20px;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+
+    /* For front side, we keep overflow hidden to maintain design */
+    .flip-card-front {
+      overflow: hidden;
+    }
+
+    .flip-card-front img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.75;
+      transition: opacity 0.3s ease;
+    }
+
+    .flip-card.flipped .flip-card-front img,
+    .flip-card:hover .flip-card-front img {
+      opacity: 0.5;
+    }
+
+    .flip-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to top, rgba(11, 43, 74, 0.95) 0%, rgba(11, 43, 74, 0.4) 100%);
+      z-index: 1;
+    }
+
+    .flip-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      padding: 1.5rem;
+      z-index: 2;
+      color: white;
+      text-align: center;
+    }
+
+    .flip-content h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 0.8rem;
+      letter-spacing: -0.02em;
+      line-height: 1.3;
+    }
+
+    .flip-hint {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.7rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: rgba(255, 255, 255, 0.7);
+      margin-top: 0.5rem;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .flip-card.flipped .flip-hint,
+    .flip-card:hover .flip-hint {
+      opacity: 1;
+    }
+
+    .flip-hint i {
+      font-size: 0.65rem;
+      animation: spinHint 3s infinite;
+    }
+
+    @keyframes spinHint {
+      0%, 100% { transform: rotate(0deg); }
+      50% { transform: rotate(180deg); }
+    }
+
+    /* Back of card - FIXED for mobile heading overlap */
+    .flip-card-back {
+      background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+      transform: rotateY(180deg);
+      border: 1px solid #e8edf2;
       display: flex;
       flex-direction: column;
-      gap: 1.2rem;
+      /* CRITICAL FIX: Ensure proper scrolling and content flow */
+      -webkit-overflow-scrolling: touch;
     }
 
-    .info-card {
-      background: white;
-      border-radius: 20px;
-      padding: 1.3rem;
-      border: 1px solid #e8edf2;
+    .flip-back-content {
+      padding: 1.5rem;
+      width: 100%;
       display: flex;
-      align-items: center;
-      gap: 1rem;
-      text-decoration: none;
-      color: inherit;
-      transition: all 0.2s;
+      flex-direction: column;
+      /* CRITICAL FIX: Allow content to determine height */
+      min-height: 100%;
     }
 
-    .info-card:hover {
-      border-color: #0b4a6f;
-    }
-
-    .info-icon {
-      width: 44px;
-      height: 44px;
-      background: #f0f6fa;
-      border-radius: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .flip-back-content h3 {
       font-size: 1.2rem;
-      color: #0b4a6f;
+      font-weight: 700;
+      color: #0b2b4a;
+      margin-bottom: 0.3rem;
+      letter-spacing: -0.02em;
+      line-height: 1.3;
+      word-break: break-word;
+      /* CRITICAL FIX: Prevent heading from shrinking */
       flex-shrink: 0;
     }
 
-    .info-card h4 {
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: #0b2b4a;
-    }
-
-    .info-card p {
-      font-size: 0.85rem;
+    .flip-back-subtitle {
+      font-size: 0.75rem;
       color: #5a6d80;
-      margin-top: 3px;
+      margin-bottom: 1rem;
+      font-weight: 400;
+      line-height: 1.4;
+      flex-shrink: 0;
     }
 
-    /* Social Icons */
-    .social-icons-row {
+    .flip-bullet-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      flex: 1;
+    }
+
+    .flip-bullet-list li {
       display: flex;
-      gap: 0.8rem;
-      padding: 0.5rem 0;
-      flex-wrap: wrap;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 0.6rem;
+      font-size: 0.75rem;
+      color: #3a4c5e;
+      line-height: 1.4;
+      word-break: break-word;
     }
 
-    .social-icon-btn {
-      width: 46px;
-      height: 46px;
-      background: white;
-      border: 1px solid #e2eaf0;
-      border-radius: 14px;
+    .flip-bullet-list li i {
+      color: #0b4a6f;
+      font-size: 0.7rem;
+      margin-top: 3px;
+      flex-shrink: 0;
+    }
+
+    .flip-stat {
+      background: #f0f6fa;
+      padding: 0.6rem 0.8rem;
+      border-radius: 12px;
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+      gap: 6px;
+      margin-top: 0.8rem;
+      border: 1px solid #dce5ec;
+      flex-shrink: 0;
+    }
+
+    .flip-stat-number {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #0b4a6f;
+      line-height: 1;
+    }
+
+    .flip-stat-label {
+      font-size: 0.7rem;
+      color: #5a6d80;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+
+    /* ===== Feature Blocks - WITH ANIMATIONS ===== */
+    .feature-block {
       display: flex;
       align-items: center;
-      justify-content: center;
-      color: #0b4a6f;
-      font-size: 1.3rem;
-      text-decoration: none;
-      transition: all 0.2s;
+      gap: 2rem;
+      margin: 3rem 0;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
     }
 
-    .social-icon-btn:hover {
+    .feature-block.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .feature-block.reverse {
+      flex-direction: row-reverse;
+    }
+
+    .feature-content {
+      flex: 1;
+      opacity: 0;
+      transform: translateX(-30px);
+      transition: opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s;
+    }
+
+    .feature-block.reverse .feature-content {
+      transform: translateX(30px);
+    }
+
+    .feature-block.visible .feature-content {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .feature-image {
+      flex: 1;
+      opacity: 0;
+      transform: translateX(30px);
+      transition: opacity 0.6s ease 0.4s, transform 0.6s ease 0.4s;
+    }
+
+    .feature-block.reverse .feature-image {
+      transform: translateX(-30px);
+    }
+
+    .feature-block.visible .feature-image {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .feature-image img {
+      width: 100%;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.15);
+      transition: transform 0.3s ease;
+    }
+
+    .feature-image img:hover {
+      transform: scale(1.02);
+    }
+
+    .feature-content h3 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #0b2b4a;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .feature-content h3 i {
+      color: #0b4a6f;
+      background: #e8f4fd;
+      padding: 8px;
+      border-radius: 12px;
+      font-size: 1.2rem;
+    }
+
+    .feature-list {
+      list-style: none;
+      margin: 1.2rem 0;
+    }
+
+    .feature-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 0.8rem;
+      color: #3a4c5e;
+      font-size: 0.9rem;
+      opacity: 0;
+      transform: translateX(-15px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    .feature-block.visible .feature-list li {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .feature-block.visible .feature-list li:nth-child(1) { transition-delay: 0.5s; }
+    .feature-block.visible .feature-list li:nth-child(2) { transition-delay: 0.6s; }
+    .feature-block.visible .feature-list li:nth-child(3) { transition-delay: 0.7s; }
+    .feature-block.visible .feature-list li:nth-child(4) { transition-delay: 0.8s; }
+
+    .feature-list li i {
+      color: #0b4a6f;
+      margin-top: 3px;
+      flex-shrink: 0;
+    }
+
+    /* ===== Stats Banner ===== */
+    .stats-banner {
+      background: linear-gradient(135deg, #0b2b4a, #1a4a6f);
+      border-radius: 24px;
+      padding: 2rem 1.5rem;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.2rem;
+      margin: 3rem 0;
+    }
+
+    .stat-item {
+      text-align: center;
+      color: white;
+    }
+
+    .stat-item .number {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #6ec8ff;
+    }
+
+    .stat-item .label {
+      font-size: 0.8rem;
+      opacity: 0.9;
+    }
+
+    /* ===== CTA Section ===== */
+    .cta-section {
+      background: linear-gradient(135deg, #e8f4fd, #d0e8f5);
+      border-radius: 30px;
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      margin: 3rem 0;
+    }
+
+    .cta-section h2 {
+      font-size: 1.8rem;
+      color: #0b2b4a;
+      margin-bottom: 0.8rem;
+    }
+
+    .cta-section p {
+      font-size: 0.95rem;
+      color: #3a4c5e;
+      margin-bottom: 1.5rem;
+    }
+
+    .btn-large {
+      padding: 0.9rem 2rem;
+      font-size: 0.95rem;
       background: #0b4a6f;
       color: white;
-      border-color: #0b4a6f;
-      transform: translateY(-3px);
-    }
-
-    /* Map Container */
-    .map-container {
-      border-radius: 20px;
-      overflow: hidden;
-      border: 1px solid #e8edf2;
-      height: 220px;
-    }
-
-    .map-container iframe {
-      width: 100%;
-      height: 100%;
       border: none;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
     }
 
-    /* ===== FOOTER - STANDARDIZED (consistent with other pages) ===== */
+    .btn-large:hover {
+      background: #1a6a96;
+      transform: translateY(-3px);
+      box-shadow: 0 20px 35px rgba(11, 74, 111, 0.3);
+    }
+
+    /* ===== FOOTER STYLES - STANDARDIZED ===== */
     .footer {
       background: linear-gradient(135deg, #0a1e30, #0b2b4a);
       color: white;
@@ -545,7 +797,6 @@
       color: #b8d4e8;
       margin-bottom: 1rem;
       font-size: 0.8rem;
-      line-height: 1.5;
     }
 
     .footer-section ul {
@@ -639,93 +890,140 @@
       transition: background 0.3s;
     }
 
-    /* ===== FULLY MOBILE RESPONSIVE ===== */
+    /* Animations */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ===== FULLY MOBILE RESPONSIVE - CRITICAL FIXES ===== */
     @media (max-width: 1024px) {
+      .benefits-flip-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.2rem;
+      }
+      .feature-block {
+        flex-direction: column !important;
+        gap: 1.5rem;
+      }
+      .stats-banner {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+      }
       .footer-content {
         grid-template-columns: repeat(2, 1fr);
         gap: 1.5rem;
       }
-      .quick-contact {
-        gap: 1rem;
+      .hero-title {
+        font-size: 2.2rem;
       }
     }
 
     @media (max-width: 768px) {
-      .hero-contact {
-        min-height: 320px;
+      .hero-section {
+        min-height: 420px;
       }
-      .hero-content h1 {
-        font-size: 2rem;
+      .hero-title {
+        font-size: 1.8rem;
       }
-      .hero-content p {
+      .hero-subtitle {
         font-size: 0.85rem;
       }
-      .quick-contact {
+      .hero-badge {
+        font-size: 0.7rem;
+        padding: 0.4rem 1rem;
+      }
+      .benefits-flip-grid {
         grid-template-columns: 1fr;
-        margin-top: -35px;
-        margin-bottom: 2rem;
         gap: 1rem;
       }
-      .quick-card {
+      
+      /* CRITICAL FIX: Allow cards to expand based on content on mobile */
+      .flip-card {
+        height: auto;
+        min-height: 320px;
+      }
+      
+      .flip-card-inner {
+        position: relative;
+        height: auto;
+        min-height: 320px;
+      }
+      
+      .flip-card-front,
+      .flip-card-back {
+        position: relative;
+        height: auto;
+        min-height: 320px;
+      }
+      
+      /* Ensure back side content flows properly */
+      .flip-card-back {
+        transform: rotateY(0deg);
+        display: none;
+      }
+      
+      .flip-card.flipped .flip-card-front {
+        display: none;
+      }
+      
+      .flip-card.flipped .flip-card-back {
+        display: flex;
+        transform: rotateY(0deg);
+      }
+      
+      /* For mobile, we need a different approach - disable 3D flip and use toggle */
+      .flip-card-inner {
+        transform-style: flat;
+      }
+      
+      .flip-card.flipped .flip-card-inner {
+        transform: rotateY(0deg);
+      }
+      
+      .flip-back-content {
         padding: 1.2rem;
       }
-      .quick-icon {
-        width: 48px;
-        height: 48px;
-        font-size: 1.4rem;
+      
+      .flip-back-content h3 {
+        font-size: 1.1rem;
+        margin-bottom: 0.3rem;
       }
-      .quick-card h3 {
-        font-size: 0.95rem;
+      
+      .flip-back-subtitle {
+        font-size: 0.7rem;
+        margin-bottom: 0.8rem;
       }
-      .contact-main {
-        grid-template-columns: 1fr;
-        gap: 1.8rem;
-        margin: 1.5rem 0 3rem;
+      
+      .flip-bullet-list li {
+        font-size: 0.75rem;
+        gap: 8px;
+        margin-bottom: 0.6rem;
       }
-      .contact-form {
-        padding: 1.5rem;
+      
+      .flip-stat {
+        padding: 0.5rem 0.7rem;
+        margin-top: 0.6rem;
       }
-      .contact-form h3 {
+      
+      .flip-stat-number {
         font-size: 1.2rem;
       }
-      .form-group input,
-      .form-group textarea {
-        padding: 0.7rem 0.9rem;
-        font-size: 0.85rem;
+      
+      .flip-stat-label {
+        font-size: 0.65rem;
       }
-      .submit-btn {
-        padding: 0.8rem;
-        font-size: 0.9rem;
+      
+      .stats-banner {
+        grid-template-columns: 1fr;
+        padding: 1.5rem;
       }
-      .info-card {
-        padding: 1rem;
-      }
-      .info-icon {
-        width: 38px;
-        height: 38px;
-        font-size: 1rem;
-      }
-      .info-card h4 {
-        font-size: 0.85rem;
-      }
-      .info-card p {
-        font-size: 0.75rem;
-      }
-      .social-icon-btn {
-        width: 40px;
-        height: 40px;
-        font-size: 1.1rem;
-      }
-      .map-container {
-        height: 180px;
-      }
-      .footer {
-        padding: 2rem 0 1.2rem;
+      .stat-item .number {
+        font-size: 1.6rem;
       }
       .footer-content {
         grid-template-columns: 1fr;
         text-align: center;
-        gap: 1.8rem;
       }
       .footer-section {
         text-align: center;
@@ -738,180 +1036,431 @@
         text-align: center;
         justify-content: center;
       }
+      .section-title {
+        font-size: 1.6rem;
+      }
+      .feature-content h3 {
+        font-size: 1.3rem;
+      }
+      .feature-list li {
+        font-size: 0.85rem;
+      }
+      .cta-section h2 {
+        font-size: 1.4rem;
+      }
+      .cta-section p {
+        font-size: 0.85rem;
+      }
+      .btn-large {
+        padding: 0.7rem 1.5rem;
+        font-size: 0.85rem;
+      }
     }
 
     @media (max-width: 480px) {
-      .hero-content h1 {
-        font-size: 1.6rem;
+      .hero-title {
+        font-size: 1.5rem;
       }
-      .hero-contact {
-        min-height: 280px;
+      .hero-subtitle {
+        font-size: 0.8rem;
       }
-      .quick-card {
-        padding: 1rem;
+      .flip-card {
+        min-height: 300px;
       }
-      .quick-icon {
-        width: 42px;
-        height: 42px;
+      .flip-content h3 {
+        font-size: 1rem;
+      }
+      .feature-content h3 {
         font-size: 1.2rem;
       }
-      .contact-form {
-        padding: 1.2rem;
+      .section-title {
+        font-size: 1.4rem;
       }
-      .form-group {
-        margin-bottom: 0.8rem;
+      .flip-back-content {
+        padding: 1rem;
       }
-      .social-icons-row {
-        justify-content: center;
+      .flip-back-content h3 {
+        font-size: 1rem;
       }
-    }
-
-    /* prevent body scroll when mobile menu open */
-    body.menu-open {
-      overflow: hidden;
+      .flip-bullet-list li {
+        font-size: 0.7rem;
+        gap: 6px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- Navigation with hamburger button for mobile -->
-  <nav class="navbar" id="navbar">
-    <a href="index.html" class="logo">
-      <i class="fas fa-bolt"></i>
-      <span>QITE</span>
-    </a>
-    <!-- Desktop nav links (visible on larger screens) -->
-    <div class="nav-links">
-      <a href="index.html"> Home</a>
-      <a href="why-qite.html"> Why QITE</a>
-      <a href="how-qite-works.html"> How It Works</a>
-      <a href="internships.html"> Internships</a>
-      <a href="contact.html" class="active"> Contact</a>
-    </div>
-    <!-- Hamburger button for mobile -->
-    <button class="hamburger" id="hamburgerBtn" aria-label="Menu">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-  </nav>
-
-  <!-- Mobile menu overlay -->
-  <div class="mobile-menu" id="mobileMenu">
-    <button class="close-menu" id="closeMenuBtn" aria-label="Close">
-      <i class="fas fa-times"></i>
-    </button>
-    <div class="mobile-menu-links">
-      <a href="index.html"><i class="fas fa-home"></i> Home</a>
-      <a href="why-qite.html"><i class="fas fa-question-circle"></i> Why QITE</a>
-      <a href="how-qite-works.html"><i class="fas fa-cogs"></i> How It Works</a>
-      <a href="internships.html"><i class="fas fa-briefcase"></i> Internships</a>
-      <a href="contact.html" class="active"><i class="fas fa-envelope"></i> Contact</a>
-    </div>
+<!-- Navigation with Hamburger Button for Mobile -->
+<nav class="navbar" id="navbar">
+  <a href="index.html" class="logo">
+    <i class="fas fa-bolt"></i>
+    <span>QITE</span>
+  </a>
+  <!-- Desktop navigation links -->
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="why-qite.html" class="active">Why QITE</a>
+    <a href="how-qite-works.html">How It Works</a>
+    <a href="internships.html">Internships</a>
+    <a href="contact.html">Contact</a>
   </div>
+  <!-- Hamburger button for mobile -->
+  <button class="hamburger" id="hamburgerBtn" aria-label="Menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</nav>
 
-  <!-- Hero with Background Image -->
-  <section class="hero-contact">
+<!-- Mobile Menu Overlay -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="close-menu" id="closeMenuBtn" aria-label="Close">
+    <i class="fas fa-times"></i>
+  </button>
+  <div class="mobile-menu-links">
+    <a href="index.html"><i class="fas fa-home"></i> Home</a>
+    <a href="why-qite.html" class="active"><i class="fas fa-question-circle"></i> Why QITE</a>
+    <a href="how-qite-works.html"><i class="fas fa-cogs"></i> How It Works</a>
+    <a href="internships.html"><i class="fas fa-briefcase"></i> Internships</a>
+    <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+  </div>
+</div>
+
+  <!-- Hero Section with Background Image -->
+  <section class="hero-section">
     <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <h1>Get in <span>touch</span></h1>
-      <p>We're here to help you start your career journey</p>
+    
+    <div class="hero-content-wrapper">
+      <div class="hero-badge">
+        <i class="fas fa-gem"></i> THE QITE DIFFERENCE
+      </div>
+      <h1 class="hero-title">
+        Why <span>Choose QITE</span>
+      </h1>
+      <p class="hero-subtitle">
+        We're not just another internship platform. We're your career discovery partner, committed to helping you find clarity before commitment.
+      </p>
     </div>
   </section>
 
+  <!-- Breadcrumb -->
   <div class="container">
-    
-    <!-- Quick Contact Cards -->
-    <div class="quick-contact">
-      <a href="tel:+919745529558" class="quick-card">
-        <div class="quick-icon"><i class="fas fa-phone-alt"></i></div>
-        <h3>Call Us Directly</h3>
-        <p>+91 9745529558</p>
-      </a>
-
-      <a href="mailto:tomercondevelopers@gmail.com" class="quick-card">
-        <div class="quick-icon"><i class="fas fa-envelope"></i></div>
-        <h3>Email Us</h3>
-        <p>tomercondevelopers@gmail.com</p>
-      </a>
-
-      <a href="https://wa.me/919745529558" target="_blank" class="quick-card">
-        <div class="quick-icon"><i class="fab fa-whatsapp"></i></div>
-        <h3>WhatsApp</h3>
-        <p>Chat with us</p>
-      </a>
-    </div>
-
-    <!-- Main Contact Section -->
-    <div class="contact-main">
-      
-      <div class="contact-form">
-        <h3>Send us a message</h3>
-        <p>We'll get back to you within 24 hours</p>
-        
-        <div class="form-group">
-          <label>Full Name</label>
-          <input type="text" id="fullName" placeholder="John Doe">
-        </div>
-        <div class="form-group">
-          <label>Email Address</label>
-          <input type="email" id="emailAddr" placeholder="john@example.com">
-        </div>
-        <div class="form-group">
-          <label>Subject</label>
-          <input type="text" id="subjectLine" placeholder="How can we help?">
-        </div>
-        <div class="form-group">
-          <label>Message</label>
-          <textarea id="msgContent" placeholder="Write your message here..."></textarea>
-        </div>
-        <button class="submit-btn" id="sendBtn">
-          <i class="fas fa-paper-plane" style="margin-right: 8px;"></i> Send Message
-        </button>
-      </div>
-
-      <div class="contact-info-col">
-        
-        <div class="info-card">
-          <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
-          <div>
-            <h4>Our Office</h4>
-            <p>3rd Floor, Aleema square, Beypore-Kozhikode Road, Kannanchery, Kozhikode, Kerala-673003</p>
-          </div>
-        </div>
-
-        <div class="info-card">
-          <div class="info-icon"><i class="far fa-clock"></i></div>
-          <div>
-            <h4>Working Hours</h4>
-            <p>Monday - Friday<br>9:00 AM - 6:00 PM IST</p>
-          </div>
-        </div>
-
-        <div class="social-icons-row">
-          <a href="https://twitter.com/qite" target="_blank" class="social-icon-btn" title="Twitter">
-            <i class="fab fa-twitter"></i>
-          </a>
-          <a href="https://wa.me/919745529558" target="_blank" class="social-icon-btn" title="WhatsApp">
-            <i class="fab fa-whatsapp"></i>
-          </a>
-          <a href="https://linkedin.com/company/qite" target="_blank" class="social-icon-btn" title="LinkedIn">
-            <i class="fab fa-linkedin-in"></i>
-          </a>
-          <a href="https://instagram.com/qite" target="_blank" class="social-icon-btn" title="Instagram">
-            <i class="fab fa-instagram"></i>
-          </a>
-        </div>
-
-        <div class="map-container">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3913.2824720058483!2d75.81024577481848!3d11.237447588841875!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba65d1615c4585d%3A0x4d26ddfbdc1cd44!2sAleema%20Square%2C%20Kozhikode%20Road%2C%20Beypore%2C%20Kannanchery%2C%20Kerala%20673003!5e0!3m2!1sen!2sin!4v1700000000000" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div>
-
-      </div>
+    <div class="breadcrumb">
+      <a href="index.html">Home</a> <i class="fas fa-chevron-right" style="font-size: 0.7rem; margin: 0 8px;"></i> 
+      <span style="color: #0b4a6f; font-weight: 500;">Why Choose QITE</span>
     </div>
   </div>
 
-  <!-- Footer - Standardized Footer -->
+  <!-- Main Content -->
+  <div class="container">
+    
+    <!-- Intro Section -->
+    <section class="section">
+      <h2 class="section-title">The QITE Advantage</h2>
+      <p style="font-size: 1rem; color: #3a4c5e; max-width: 900px;">
+        In a world where career decisions shape your future, QITE provides the experience you need to make informed choices. 
+        We've designed every aspect of our platform to give you real exposure, practical skills, and genuine clarity.
+      </p>
+    </section>
+
+    <!-- Key Benefits Grid - 3D Flip Animation -->
+    <div class="benefits-flip-grid">
+      
+      <!-- Card 1: Clarity Before Commitment -->
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <img src="https://images.pexels.com/photos/3184298/pexels-photo-3184298.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Career Clarity">
+            <div class="flip-overlay"></div>
+            <div class="flip-content">
+              <h3>Clarity Before Commitment</h3>
+              <span class="flip-hint"><i class="fas fa-sync-alt"></i> Tap to explore</span>
+            </div>
+          </div>
+          <div class="flip-card-back">
+            <div class="flip-back-content">
+              <h3>Clarity Before Commitment</h3>
+              <p class="flip-back-subtitle">Test-drive careers before deciding</p>
+              <ul class="flip-bullet-list">
+                <li><i class="fas fa-check-circle"></i> Multi-role exploration opportunities</li>
+                <li><i class="fas fa-check-circle"></i> Personalized career assessments</li>
+                <li><i class="fas fa-check-circle"></i> Industry shadowing programs</li>
+                <li><i class="fas fa-check-circle"></i> 1-on-1 career coaching sessions</li>
+              </ul>
+              <div class="flip-stat">
+                <span class="flip-stat-number">94%</span>
+                <span class="flip-stat-label">clarity rate</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: Dedicated Mentorship -->
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <img src="https://images.pexels.com/photos/3184423/pexels-photo-3184423.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Mentorship">
+            <div class="flip-overlay"></div>
+            <div class="flip-content">
+              <h3>Dedicated Mentorship</h3>
+              <span class="flip-hint"><i class="fas fa-sync-alt"></i> Tap to explore</span>
+            </div>
+          </div>
+          <div class="flip-card-back">
+            <div class="flip-back-content">
+              <h3>Dedicated Mentorship</h3>
+              <p class="flip-back-subtitle">Guidance from industry experts</p>
+              <ul class="flip-bullet-list">
+                <li><i class="fas fa-check-circle"></i> Weekly 1-on-1 meetings</li>
+                <li><i class="fas fa-check-circle"></i> Portfolio and work reviews</li>
+                <li><i class="fas fa-check-circle"></i> Professional network introductions</li>
+                <li><i class="fas fa-check-circle"></i> Career advocacy and support</li>
+              </ul>
+              <div class="flip-stat">
+                <span class="flip-stat-number">500+</span>
+                <span class="flip-stat-label">active mentors</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: Industry-Recognized Training -->
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <img src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Training">
+            <div class="flip-overlay"></div>
+            <div class="flip-content">
+              <h3>Industry-Recognized Training</h3>
+              <span class="flip-hint"><i class="fas fa-sync-alt"></i> Tap to explore</span>
+            </div>
+          </div>
+          <div class="flip-card-back">
+            <div class="flip-back-content">
+              <h3>Industry Training</h3>
+              <p class="flip-back-subtitle">Skills that employers value</p>
+              <ul class="flip-bullet-list">
+                <li><i class="fas fa-check-circle"></i> 20-40 hour micro-courses</li>
+                <li><i class="fas fa-check-circle"></i> Expert-led live workshops</li>
+                <li><i class="fas fa-check-circle"></i> Portfolio-building projects</li>
+                <li><i class="fas fa-check-circle"></i> Industry-recognized certificates</li>
+              </ul>
+              <div class="flip-stat">
+                <span class="flip-stat-number">50+</span>
+                <span class="flip-stat-label">certification paths</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4: Global Opportunities -->
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <img src="https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Global Opportunities">
+            <div class="flip-overlay"></div>
+            <div class="flip-content">
+              <h3>Global Opportunities</h3>
+              <span class="flip-hint"><i class="fas fa-sync-alt"></i> Tap to explore</span>
+            </div>
+          </div>
+          <div class="flip-card-back">
+            <div class="flip-back-content">
+              <h3>Global Opportunities</h3>
+              <p class="flip-back-subtitle">Work without borders</p>
+              <ul class="flip-bullet-list">
+                <li><i class="fas fa-check-circle"></i> 100% remote options available</li>
+                <li><i class="fas fa-check-circle"></i> Hybrid roles in tech hubs</li>
+                <li><i class="fas fa-check-circle"></i> In-person across 30+ countries</li>
+                <li><i class="fas fa-check-circle"></i> Visa sponsorship support</li>
+              </ul>
+              <div class="flip-stat">
+                <span class="flip-stat-number">30+</span>
+                <span class="flip-stat-label">countries</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 5: 89% Job Offer Rate -->
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <img src="https://images.pexels.com/photos/3769021/pexels-photo-3769021.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Job Success">
+            <div class="flip-overlay"></div>
+            <div class="flip-content">
+              <h3>89% Job Offer Rate</h3>
+              <span class="flip-hint"><i class="fas fa-sync-alt"></i> Tap to explore</span>
+            </div>
+          </div>
+          <div class="flip-card-back">
+            <div class="flip-back-content">
+              <h3>89% Job Offer Rate</h3>
+              <p class="flip-back-subtitle">From intern to employee</p>
+              <ul class="flip-bullet-list">
+                <li><i class="fas fa-check-circle"></i> Real project ownership</li>
+                <li><i class="fas fa-check-circle"></i> Direct exposure to hiring managers</li>
+                <li><i class="fas fa-check-circle"></i> Performance reviews that matter</li>
+                <li><i class="fas fa-check-circle"></i> Full-time offer negotiation support</li>
+              </ul>
+              <div class="flip-stat">
+                <span class="flip-stat-number">89%</span>
+                <span class="flip-stat-label">offer rate</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 6: 500+ Partner Companies -->
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <img src="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Partner Companies">
+            <div class="flip-overlay"></div>
+            <div class="flip-content">
+              <h3>500+ Partner Companies</h3>
+              <span class="flip-hint"><i class="fas fa-sync-alt"></i> Tap to explore</span>
+            </div>
+          </div>
+          <div class="flip-card-back">
+            <div class="flip-back-content">
+              <h3>500+ Partners</h3>
+              <p class="flip-back-subtitle">Find your perfect culture fit</p>
+              <ul class="flip-bullet-list">
+                <li><i class="fas fa-check-circle"></i> Fortune 500 corporations</li>
+                <li><i class="fas fa-check-circle"></i> High-growth startups</li>
+                <li><i class="fas fa-check-circle"></i> Non-profit organizations</li>
+                <li><i class="fas fa-check-circle"></i> Government and research labs</li>
+              </ul>
+              <div class="flip-stat">
+                <span class="flip-stat-number">500+</span>
+                <span class="flip-stat-label">vetted partners</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Detailed Feature 1: Career Exploration -->
+    <div class="feature-block" id="feature1">
+      <div class="feature-content">
+        <h3><i class="fas fa-compass"></i> Deep Career Exploration</h3>
+        <p style="font-size: 0.95rem; color: #3a4c5e; margin-bottom: 1.2rem;">
+          Before you commit to a career path, you need to understand what the day-to-day really looks like. 
+          QITE provides immersive experiences that go beyond job descriptions.
+        </p>
+        <ul class="feature-list">
+          <li><i class="fas fa-check-circle"></i> Comprehensive career assessments to identify your strengths and interests</li>
+          <li><i class="fas fa-check-circle"></i> Industry deep-dives with professionals sharing real experiences</li>
+          <li><i class="fas fa-check-circle"></i> Job shadowing opportunities before full internship commitment</li>
+          <li><i class="fas fa-check-circle"></i> Personalized career coaching sessions</li>
+        </ul>
+      </div>
+      <div class="feature-image">
+        <img src="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Career Exploration">
+      </div>
+    </div>
+
+    <!-- Detailed Feature 2: Training -->
+    <div class="feature-block reverse" id="feature2">
+      <div class="feature-content">
+        <h3><i class="fas fa-graduation-cap"></i> Practical Skills Training</h3>
+        <p style="font-size: 0.95rem; color: #3a4c5e; margin-bottom: 1.2rem;">
+          We don't throw you into the deep end. Our training phase ensures you have the foundational skills 
+          to contribute meaningfully from day one of your internship.
+        </p>
+        <ul class="feature-list">
+          <li><i class="fas fa-check-circle"></i> Industry-specific micro-courses (20-40 hours each)</li>
+          <li><i class="fas fa-check-circle"></i> Live workshops with industry professionals</li>
+          <li><i class="fas fa-check-circle"></i> Technical and soft skills development</li>
+          <li><i class="fas fa-check-circle"></i> Portfolio-building projects to showcase your abilities</li>
+        </ul>
+      </div>
+      <div class="feature-image">
+        <img src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Skills Training">
+      </div>
+    </div>
+
+    <!-- Detailed Feature 3: Real Experience -->
+    <div class="feature-block" id="feature3">
+      <div class="feature-content">
+        <h3><i class="fas fa-briefcase"></i> Meaningful Work Experience</h3>
+        <p style="font-size: 0.95rem; color: #3a4c5e; margin-bottom: 1.2rem;">
+          Our internships aren't about getting coffee. You'll work on real projects that matter to the business 
+          and build your professional portfolio.
+        </p>
+        <ul class="feature-list">
+          <li><i class="fas fa-check-circle"></i> Real responsibilities with measurable outcomes</li>
+          <li><i class="fas fa-check-circle"></i> Regular feedback and performance reviews</li>
+          <li><i class="fas fa-check-circle"></i> Networking opportunities with industry leaders</li>
+          <li><i class="fas fa-check-circle"></i> Competitive stipends (85% of our internships are paid)</li>
+        </ul>
+      </div>
+      <div class="feature-image">
+        <img src="https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Real Experience">
+      </div>
+    </div>
+
+    <!-- Detailed Feature 4: Post-Internship Support -->
+    <div class="feature-block reverse" id="feature4">
+      <div class="feature-content">
+        <h3><i class="fas fa-handshake"></i> Beyond The Internship</h3>
+        <p style="font-size: 0.95rem; color: #3a4c5e; margin-bottom: 1.2rem;">
+          Our relationship doesn't end when your internship does. We continue to support your career journey 
+          long after you complete your program.
+        </p>
+        <ul class="feature-list">
+          <li><i class="fas fa-check-circle"></i> Alumni network with exclusive job opportunities</li>
+          <li><i class="fas fa-check-circle"></i> Resume and LinkedIn profile optimization</li>
+          <li><i class="fas fa-check-circle"></i> Interview preparation and salary negotiation tips</li>
+          <li><i class="fas fa-check-circle"></i> Lifetime access to career resources and webinars</li>
+        </ul>
+      </div>
+      <div class="feature-image">
+        <img src="https://images.pexels.com/photos/3184396/pexels-photo-3184396.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Career Support">
+      </div>
+    </div>
+
+    <!-- Stats Banner -->
+    <div class="stats-banner">
+      <div class="stat-item">
+        <div class="number">15,000+</div>
+        <div class="label">Interns Placed</div>
+      </div>
+      <div class="stat-item">
+        <div class="number">94%</div>
+        <div class="label">Clarity Rate</div>
+      </div>
+      <div class="stat-item">
+        <div class="number">89%</div>
+        <div class="label">Job Offer Rate</div>
+      </div>
+      <div class="stat-item">
+        <div class="number">4.9/5</div>
+        <div class="label">Satisfaction Score</div>
+      </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="cta-section">
+      <h2>Ready to Find Your Path?</h2>
+      <p>Join thousands of students and career-changers who found clarity through QITE.</p>
+      <a href="internships.html" class="btn-large">
+        <i class="fas fa-rocket"></i> Start Your Journey Today
+      </a>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
   <footer class="footer">
     <div class="footer-content">
       <div class="footer-section">
@@ -979,7 +1528,7 @@
       }
     });
 
-    // Mobile menu elements
+    // Mobile menu functionality
     const hamburgerBtn = document.getElementById('hamburgerBtn');
     const mobileMenu = document.getElementById('mobileMenu');
     const closeMenuBtn = document.getElementById('closeMenuBtn');
@@ -1011,38 +1560,56 @@
       }
     });
 
-    // Contact form submit handler
-    const sendBtn = document.getElementById('sendBtn');
-    if (sendBtn) {
-      sendBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        
-        const name = document.getElementById('fullName').value.trim();
-        const email = document.getElementById('emailAddr').value.trim();
-        const subject = document.getElementById('subjectLine').value.trim();
-        const message = document.getElementById('msgContent').value.trim();
-
-        if (!name || !email || !subject || !message) {
-          alert('Please fill in all fields.');
-          return;
+    // Scroll animations for feature blocks
+    const observerOptions = { threshold: 0.2 };
+    const featureObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
         }
-
-        const btn = this;
-        const originalText = btn.innerHTML;
-        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-        btn.disabled = true;
-
-        setTimeout(() => {
-          alert('✅ Message sent! We\'ll reply within 24 hours.');
-          document.getElementById('fullName').value = '';
-          document.getElementById('emailAddr').value = '';
-          document.getElementById('subjectLine').value = '';
-          document.getElementById('msgContent').value = '';
-          btn.innerHTML = originalText;
-          btn.disabled = false;
-        }, 1500);
       });
+    }, observerOptions);
+
+    // Observe all feature blocks
+    document.querySelectorAll('.feature-block').forEach(block => {
+      featureObserver.observe(block);
+    });
+
+    // ===== FIXED: Mobile Flip Card Functionality =====
+    // For mobile devices, we disable 3D transform and use simple show/hide
+    const flipCards = document.querySelectorAll('.flip-card');
+    
+    function isMobile() {
+      return window.innerWidth <= 768;
     }
+    
+    flipCards.forEach(card => {
+      card.addEventListener('click', function(e) {
+        if (isMobile()) {
+          e.stopPropagation();
+          
+          // Close all other cards first
+          flipCards.forEach(otherCard => {
+            if (otherCard !== card && otherCard.classList.contains('flipped')) {
+              otherCard.classList.remove('flipped');
+            }
+          });
+          
+          // Toggle current card
+          this.classList.toggle('flipped');
+        }
+      });
+    });
+    
+    // Handle orientation change
+    window.addEventListener('resize', function() {
+      if (!isMobile()) {
+        // Reset all flipped cards when switching to desktop
+        flipCards.forEach(card => {
+          card.classList.remove('flipped');
+        });
+      }
+    });
   </script>
 </body>
 </html>
