@@ -253,12 +253,6 @@
     .section-header h2 { font-size: 1.6rem; font-weight: 650; color: #0d3145; }
     .results-count { background: #eaf1f8; padding: 0.3rem 1rem; border-radius: 30px; font-size: 0.75rem; color: #2b5068; }
 
-    /* ---------- filter pills (wrap naturally) ---------- */
-    .filter-tabs { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 1.8rem; }
-    .filter-tab { padding: 0.45rem 1.2rem; border: 1px solid #dce5ed; background: white; border-radius: 40px; font-size: 0.8rem; font-weight: 500; color: #39586c; cursor: pointer; transition: all 0.2s; }
-    .filter-tab:hover { background: #e9f2fa; border-color: #aac3d6; }
-    .filter-tab.active { background: #0c5175; color: white; border-color: #0c5175; font-weight: 600; }
-
     /* ---------- internship list (fully responsive) ---------- */
     .internship-list { display: flex; flex-direction: column; gap: 1rem; margin: 1rem 0 2.5rem; }
     .internship-item { background: white; border-radius: 18px; padding: 1.2rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; border: 1px solid #eef3f8; transition: all 0.2s; box-shadow: 0 4px 12px rgba(0,0,0,0.02); flex-wrap: wrap; }
@@ -276,7 +270,6 @@
     .stipend-badge { background: #e9f5fd; color: #0b6288; font-weight: 700; padding: 0.25rem 0.9rem; border-radius: 25px; font-size: 0.8rem; }
     .apply-btn { display: inline-flex; align-items: center; gap: 6px; padding: 0.5rem 1.2rem; background: #0d4e73; color: white; border: none; border-radius: 30px; font-weight: 600; font-size: 0.8rem; cursor: pointer; transition: 0.2s; text-decoration: none; }
     .apply-btn:hover { background: #156a94; transform: translateY(-2px); box-shadow: 0 6px 18px rgba(9,90,130,0.2); }
-    .apply-deadline { font-size: 0.7rem; color: #6f8494; }
 
     .no-results { text-align: center; padding: 3rem 1rem; color: #5d7483; display: none; }
     .no-results i { font-size: 2.2rem; color: #cddce8; margin-bottom: 0.8rem; }
@@ -430,7 +423,6 @@
       .stat-number { font-size: 1.3rem; }
       .stat-label { font-size: 0.6rem; }
       .section-header h2 { font-size: 1.4rem; }
-      .filter-tab { padding: 0.35rem 1rem; font-size: 0.75rem; }
       .item-left { gap: 0.8rem; }
       .company-logo { width: 42px; height: 42px; font-size: 0.9rem; }
       .item-info h3 { font-size: 0.95rem; }
@@ -453,7 +445,6 @@
       .item-right { flex-direction: column; align-items: stretch; gap: 0.5rem; }
       .apply-btn { justify-content: center; }
       .stipend-badge { text-align: center; }
-      .apply-deadline { text-align: center; }
     }
   </style>
 </head>
@@ -520,18 +511,8 @@
     <span class="results-count" id="resultsCount">20 opportunities</span>
   </div>
 
-  <div class="filter-tabs">
-    <button class="filter-tab active" data-filter="all">All</button>
-    <button class="filter-tab" data-filter="technology">Technology</button>
-    <button class="filter-tab" data-filter="business">Business</button>
-    <button class="filter-tab" data-filter="design">Design</button>
-    <button class="filter-tab" data-filter="marketing">Marketing</button>
-    <button class="filter-tab" data-filter="healthcare">Healthcare</button>
-    <button class="filter-tab" data-filter="engineering">Engineering</button>
-  </div>
-
   <div class="internship-list" id="internshipList"></div>
-  <div class="no-results" id="noResults"><i class="fas fa-file-alt"></i><h3>No matching internships</h3><p>Try a different filter or search term</p></div>
+  <div class="no-results" id="noResults"><i class="fas fa-file-alt"></i><h3>No matching internships</h3><p>Try a different search term</p></div>
 
   <div class="cta-section">
     <h3>Don't see the perfect role?</h3>
@@ -641,38 +622,46 @@
   });
 
   const internships = [
-    { company:'TechCorp',location:'San Francisco, CA',title:'Frontend Developer Intern',duration:'12 weeks',start:'Summer 2026',stipend:'$6,200/mo',category:'technology',deadline:'May 15, 2026',type:'Remote'},
-    { company:'DataFlow',location:'New York, NY',title:'Data Science Intern',duration:'10 weeks',start:'Fall 2026',stipend:'$5,800/mo',category:'technology',deadline:'June 1, 2026',type:'Hybrid'},
-    { company:'NeuraLab',location:'Boston, MA',title:'AI/ML Research Intern',duration:'14 weeks',start:'Summer 2026',stipend:'$7,000/mo',category:'technology',deadline:'May 10, 2026',type:'Hybrid'},
-    { company:'CloudScale',location:'Seattle, WA',title:'Cloud Engineering Intern',duration:'12 weeks',start:'Summer 2026',stipend:'$6,500/mo',category:'technology',deadline:'May 25, 2026',type:'Remote'},
-    { company:'CyberShield',location:'Washington, DC',title:'Cybersecurity Intern',duration:'12 weeks',start:'Fall 2026',stipend:'$6,000/mo',category:'technology',deadline:'June 15, 2026',type:'On-site'},
-    { company:'AppForge',location:'Austin, TX',title:'iOS Developer Intern',duration:'10 weeks',start:'Summer 2026',stipend:'$5,500/mo',category:'technology',deadline:'May 20, 2026',type:'Remote'},
-    { company:'FinServe',location:'Chicago, IL',title:'Financial Analyst Intern',duration:'10 weeks',start:'Summer 2026',stipend:'$5,500/mo',category:'business',deadline:'May 30, 2026',type:'On-site'},
-    { company:'StratEdge',location:'New York, NY',title:'Consulting Intern',duration:'12 weeks',start:'Summer 2026',stipend:'$6,800/mo',category:'business',deadline:'May 12, 2026',type:'On-site'},
-    { company:'VentureFirst',location:'San Francisco, CA',title:'VC Intern',duration:'10 weeks',start:'Fall 2026',stipend:'$5,200/mo',category:'business',deadline:'June 5, 2026',type:'Hybrid'},
-    { company:'Studio M',location:'Los Angeles, CA',title:'Product Design Intern',duration:'8 weeks',start:'Summer 2026',stipend:'$5,200/mo',category:'design',deadline:'May 20, 2026',type:'On-site'},
-    { company:'EcoDesign',location:'Portland, OR',title:'UX Research Intern',duration:'8 weeks',start:'Summer 2026',stipend:'$4,900/mo',category:'design',deadline:'May 18, 2026',type:'Hybrid'},
-    { company:'PixelCraft',location:'Remote',title:'Graphic Design Intern',duration:'10 weeks',start:'Fall 2026',stipend:'$3,800/mo',category:'design',deadline:'June 8, 2026',type:'Remote'},
-    { company:'Brandify',location:'Austin, TX',title:'Digital Marketing Intern',duration:'10 weeks',start:'Fall 2026',stipend:'$4,800/mo',category:'marketing',deadline:'June 15, 2026',type:'Remote'},
-    { company:'MediaPulse',location:'Remote',title:'Content Creation Intern',duration:'10 weeks',start:'Fall 2026',stipend:'$4,500/mo',category:'marketing',deadline:'June 5, 2026',type:'Remote'},
-    { company:'GrowthHack',location:'Los Angeles, CA',title:'Growth Marketing Intern',duration:'12 weeks',start:'Summer 2026',stipend:'$5,000/mo',category:'marketing',deadline:'May 25, 2026',type:'Hybrid'},
-    { company:'HealthTech',location:'Remote',title:'Healthcare Analytics Intern',duration:'12 weeks',start:'Fall 2026',stipend:'$5,000/mo',category:'healthcare',deadline:'June 10, 2026',type:'Remote'},
-    { company:'BioGen',location:'San Diego, CA',title:'Clinical Research Intern',duration:'14 weeks',start:'Summer 2026',stipend:'$4,800/mo',category:'healthcare',deadline:'May 15, 2026',type:'On-site'},
-    { company:'AeroDyne',location:'Houston, TX',title:'Mechanical Engineering Intern',duration:'12 weeks',start:'Summer 2026',stipend:'$5,500/mo',category:'engineering',deadline:'May 20, 2026',type:'On-site'},
-    { company:'GreenBuild',location:'Denver, CO',title:'Civil Engineering Intern',duration:'10 weeks',start:'Summer 2026',stipend:'$5,000/mo',category:'engineering',deadline:'May 25, 2026',type:'On-site'},
-    { company:'QuantumBit',location:'Remote',title:'Software Engineer Intern',duration:'12 weeks',start:'Summer 2026',stipend:'$6,300/mo',category:'technology',deadline:'May 18, 2026',type:'Remote'},
+    { company:'TechCorp',location:'San Francisco, CA',title:'Frontend Developer Intern',duration:'12 weeks',start:'Summer 2026',stipend:'₹52,000/mo',category:'technology',type:'Remote'},
+    { company:'DataFlow',location:'New York, NY',title:'Data Science Intern',duration:'10 weeks',start:'Fall 2026',stipend:'₹48,000/mo',category:'technology',type:'Hybrid'},
+    { company:'NeuraLab',location:'Boston, MA',title:'AI/ML Research Intern',duration:'14 weeks',start:'Summer 2026',stipend:'₹58,000/mo',category:'technology',type:'Hybrid'},
+    { company:'CloudScale',location:'Seattle, WA',title:'Cloud Engineering Intern',duration:'12 weeks',start:'Summer 2026',stipend:'₹54,000/mo',category:'technology',type:'Remote'},
+    { company:'CyberShield',location:'Washington, DC',title:'Cybersecurity Intern',duration:'12 weeks',start:'Fall 2026',stipend:'₹50,000/mo',category:'technology',type:'On-site'},
+    { company:'AppForge',location:'Austin, TX',title:'iOS Developer Intern',duration:'10 weeks',start:'Summer 2026',stipend:'₹46,000/mo',category:'technology',type:'Remote'},
+    { company:'FinServe',location:'Chicago, IL',title:'Financial Analyst Intern',duration:'10 weeks',start:'Summer 2026',stipend:'₹46,000/mo',category:'business',type:'On-site'},
+    { company:'StratEdge',location:'New York, NY',title:'Consulting Intern',duration:'12 weeks',start:'Summer 2026',stipend:'₹56,000/mo',category:'business',type:'On-site'},
+    { company:'VentureFirst',location:'San Francisco, CA',title:'VC Intern',duration:'10 weeks',start:'Fall 2026',stipend:'₹43,000/mo',category:'business',type:'Hybrid'},
+    { company:'Studio M',location:'Los Angeles, CA',title:'Product Design Intern',duration:'8 weeks',start:'Summer 2026',stipend:'₹43,000/mo',category:'design',type:'On-site'},
+    { company:'EcoDesign',location:'Portland, OR',title:'UX Research Intern',duration:'8 weeks',start:'Summer 2026',stipend:'₹41,000/mo',category:'design',type:'Hybrid'},
+    { company:'PixelCraft',location:'Remote',title:'Graphic Design Intern',duration:'10 weeks',start:'Fall 2026',stipend:'₹31,000/mo',category:'design',type:'Remote'},
+    { company:'Brandify',location:'Austin, TX',title:'Digital Marketing Intern',duration:'10 weeks',start:'Fall 2026',stipend:'₹40,000/mo',category:'marketing',type:'Remote'},
+    { company:'MediaPulse',location:'Remote',title:'Content Creation Intern',duration:'10 weeks',start:'Fall 2026',stipend:'₹37,000/mo',category:'marketing',type:'Remote'},
+    { company:'GrowthHack',location:'Los Angeles, CA',title:'Growth Marketing Intern',duration:'12 weeks',start:'Summer 2026',stipend:'₹42,000/mo',category:'marketing',type:'Hybrid'},
+    { company:'HealthTech',location:'Remote',title:'Healthcare Analytics Intern',duration:'12 weeks',start:'Fall 2026',stipend:'₹42,000/mo',category:'healthcare',type:'Remote'},
+    { company:'BioGen',location:'San Diego, CA',title:'Clinical Research Intern',duration:'14 weeks',start:'Summer 2026',stipend:'₹40,000/mo',category:'healthcare',type:'On-site'},
+    { company:'AeroDyne',location:'Houston, TX',title:'Mechanical Engineering Intern',duration:'12 weeks',start:'Summer 2026',stipend:'₹46,000/mo',category:'engineering',type:'On-site'},
+    { company:'GreenBuild',location:'Denver, CO',title:'Civil Engineering Intern',duration:'10 weeks',start:'Summer 2026',stipend:'₹42,000/mo',category:'engineering',type:'On-site'},
+    { company:'QuantumBit',location:'Remote',title:'Software Engineer Intern',duration:'12 weeks',start:'Summer 2026',stipend:'₹52,000/mo',category:'technology',type:'Remote'},
   ];
 
-  let currentFilter = 'all', searchQuery = '';
+  let searchQuery = '';
+  
   function getLogo(n){ return n.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase(); }
 
   function render(){
     let filtered = internships;
-    if(currentFilter!=='all') filtered = filtered.filter(i=>i.category===currentFilter);
+    
+    // Apply search filter
     if(searchQuery){
       const q = searchQuery.toLowerCase();
-      filtered = filtered.filter(i=> i.company.toLowerCase().includes(q) || i.title.toLowerCase().includes(q) || i.location.toLowerCase().includes(q) || i.type.toLowerCase().includes(q));
+      filtered = filtered.filter(i=> 
+        i.company.toLowerCase().includes(q) || 
+        i.title.toLowerCase().includes(q) || 
+        i.location.toLowerCase().includes(q) || 
+        i.type.toLowerCase().includes(q)
+      );
     }
+    
     document.getElementById('resultsCount').textContent = filtered.length ? `${filtered.length} opportunities` : '0 opportunities';
     document.getElementById('noResults').style.display = filtered.length ? 'none' : 'block';
     document.getElementById('internshipList').innerHTML = filtered.map(i=>`
@@ -692,24 +681,23 @@
         <div class="item-right">
           <span class="stipend-badge">${i.stipend}</span>
           <button class="apply-btn" onclick="alert('Application started for ${i.title} at ${i.company}!')">Apply Now <i class="fas fa-arrow-right"></i></button>
-          <span class="apply-deadline"><i class="far fa-hourglass"></i> Deadline ${i.deadline}</span>
         </div>
       </div>
     `).join('');
   }
 
-  function doSearch(){ searchQuery = document.getElementById('searchInput').value.trim(); render(); }
-  document.getElementById('searchInput').addEventListener('keypress',e=>{ if(e.key==='Enter') doSearch(); });
-
-  document.querySelectorAll('.filter-tab').forEach(btn=>{
-    btn.addEventListener('click',function(){
-      document.querySelectorAll('.filter-tab').forEach(b=>b.classList.remove('active'));
-      this.classList.add('active');
-      currentFilter = this.dataset.filter;
-      render();
-    });
+  function doSearch(){ 
+    searchQuery = document.getElementById('searchInput').value.trim(); 
+    render(); 
+  }
+  
+  document.getElementById('searchInput').addEventListener('keypress', function(e){
+    if(e.key === 'Enter') {
+      doSearch();
+    }
   });
 
+  // Initial render
   render();
 </script>
 </body>
